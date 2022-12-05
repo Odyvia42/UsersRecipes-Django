@@ -45,7 +45,7 @@ class Recipe(models.Model):
     description = models.TextField()
     steps_to_complete = models.TextField()
     picture = models.URLField()
-    likes = models.IntegerField()
+    likes = models.PositiveIntegerField(blank=True, default=0)
     tags = models.CharField(max_length=150)
     ACTIVE = 'AC'
     BLOCKED = 'BL'
