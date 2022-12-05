@@ -12,7 +12,7 @@ class User(models.Model):
         (BLOCKED, 'Blocked')
     ]
     status = models.CharField(max_length=2, choices=status_choices, default=ACTIVE)
-    faves = models.TextField(default='')
+    faves = models.TextField(default='', blank=True)
     registration_date = models.DateTimeField(auto_now_add=True, editable=False)
     update_date = models.DateTimeField(auto_now=True)
 
