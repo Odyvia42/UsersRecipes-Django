@@ -34,12 +34,12 @@ class Recipe(models.Model):
     BEVERAGE = 'BV'
     BAKERY = 'BK'
     dish_type_choices = [
-        (SALAD, 'Salad'),
-        (FIRST_COURSE, 'First course'),
-        (MAIN_COURSE, 'Main course'),
-        (DESSERT, 'Dessert'),
-        (BEVERAGE, 'Beverage'),
-        (BAKERY, 'Bakery'),
+        (SALAD, 'Салат'),
+        (FIRST_COURSE, 'Первое'),
+        (MAIN_COURSE, 'Второе'),
+        (DESSERT, 'Десерт'),
+        (BEVERAGE, 'Напиток'),
+        (BAKERY, 'Выпечка'),
     ]
     dish_type = models.CharField(max_length=2, choices=dish_type_choices, default=SALAD)
     description = models.TextField()
