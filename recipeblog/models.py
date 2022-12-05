@@ -42,10 +42,10 @@ class Recipe(models.Model):
         (BAKERY, 'Bakery'),
     ]
     dish_type = models.CharField(max_length=2, choices=dish_type_choices, default=SALAD)
-    description = models.TextField
-    steps_to_complete = models.TextField
-    picture = models.URLField
-    likes = models.IntegerField
+    description = models.TextField()
+    steps_to_complete = models.TextField()
+    picture = models.URLField()
+    likes = models.IntegerField()
     tags = models.CharField(max_length=150)
     ACTIVE = 'AC'
     BLOCKED = 'BL'
