@@ -16,6 +16,9 @@ class User(models.Model):
     registration_date = models.DateTimeField(auto_now_add=True, editable=False)
     update_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['registration_date']
+
     def __str__(self):
         return self.username
 
