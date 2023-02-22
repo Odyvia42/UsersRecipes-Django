@@ -1,21 +1,6 @@
-<html>
-<head>
-    <title>Кулинарный блог</title>
+{% extends 'index.html' %}
 
-</head>
-<body>
-<header>
-    <h1>Добро пожаловать в сервис пользовательских рецептов</h1>
-</header>
-<nav>
-    Навигация
-    <ul>
-        <li>На главную</li>
-        <li>Список авторов</li>
-        <li>Список рецептов</li>
-    </ul>
-
-</nav>
+{% block content %}
 
     <h2>Список пользователей</h2>
     {% for user in user_list %}
@@ -27,5 +12,5 @@
             {% endif %}
         </p>
     {% endfor %}
-</body>
-</html>
+
+{% endblock %}

@@ -5,7 +5,7 @@
 </head>
 <body>
 <header>
-    <h1>Добро пожаловать в сервис пользовательских рецептов</h1>
+    <h1> {% block title %} Добро пожаловать в сервис пользовательских рецептов {% endblock %}</h1>
 </header>
 <nav>
     Навигация
@@ -17,5 +17,9 @@
 
 </nav>
 
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
 </body>
 </html>
