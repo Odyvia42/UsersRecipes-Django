@@ -10,9 +10,9 @@
 <nav>
     Навигация
     <ul>
-        <li>На главную</li>
-        <li>Список авторов</li>
-        <li>Список рецептов</li>
+        <li> <a href=" {% url 'home' %} ">На главную</a></li>
+        <li> <a href=" {% url 'user-list' %}">Список авторов</a> </li>
+        <li> <a href=" {% url 'recipe-list' %}">Список рецептов</a></li>
     </ul>
 
 </nav>
