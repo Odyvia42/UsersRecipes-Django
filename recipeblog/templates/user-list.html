@@ -20,7 +20,12 @@
     <h2>Список пользователей</h2>
     {% for user in user_list %}
         <h3> {{ user.username }} </h3>
-        <p> {{ user.status }} </p>
+        <p> {% if user.status == 'AC' %}
+                Активен
+            {% else %}
+                Заблокирован
+            {% endif %}
+        </p>
     {% endfor %}
 </body>
 </html>
