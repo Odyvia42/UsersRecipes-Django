@@ -1,0 +1,49 @@
+h1 {
+text-align: center;
+}
+
+nav {
+display: flex;
+
+}
+
+
+.button {
+flex: auto;
+font-size: 20px;
+color: black;
+border: 2px solid black;
+text-align: center;
+padding: 10px;
+margin-left: 10px;
+margin-right: 10px;
+border-radius: 10px;
+text-decoration: none;
+outline: none;
+cursor: pointer;
+}
+
+nav a:link {
+background-color: none;
+}
+
+nav a:visited {
+background-color: none;
+}
+
+nav a:hover {
+border: 5px solid #00ec9e;
+}
+
+nav a:active {
+background-color: #00ec9e;
+}
+
+
+nav a.users:link {
+background-color: #ffecab;
+}
+
+nav a.users:visited {
+background-color: #ffecab;
+}

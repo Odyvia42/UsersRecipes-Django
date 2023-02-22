@@ -1,20 +1,21 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Кулинарный блог</title>
-
+    {% block styles %}
+    {% load static %}
+    <link rel="stylesheet" href=" {% static 'recipeblog/style.css'%}">
+    {% endblock %}
 </head>
 <body>
 <header>
     <h1> {% block title %} Добро пожаловать в сервис пользовательских рецептов {% endblock %}</h1>
 </header>
 <nav>
-    Навигация
-    <ul>
-        <li> <a href=" {% url 'home' %} ">На главную</a></li>
-        <li> <a href=" {% url 'user-list' %}">Список авторов</a> </li>
-        <li> <a href=" {% url 'recipe-list' %}">Список рецептов</a></li>
-    </ul>
-
+    {% block homebutton %}
+    <a href=" {% url 'home' %} " class="button">Главная страница</a>
+    {% endblock %}
+    <a href=" {% url 'user-list' %}" class="button users">Список авторов</a>
+    <a href=" {% url 'recipe-list' %}" class="button recipes">Список рецептов</a>
 </nav>
 
 <div id="content">
