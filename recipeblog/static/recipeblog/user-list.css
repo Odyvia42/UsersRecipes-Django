@@ -24,11 +24,11 @@ cursor: pointer;
 }
 
 nav a:link {
-background-color: none;
+background-color: white;
 }
 
 nav a:visited {
-background-color: none;
+background-color: white;
 }
 
 nav a:hover {
