@@ -23,9 +23,19 @@
             Напиток
             {% elif recipe.dish_type == 'BK' %}
             Выпечка
-            {% endif %} | Автор: {{ recipe.author }} | Опубликован: {{ recipe.publication_date }}</p>
+            {% endif %} | Автор: {{ recipe.author }} | Опубликован: {{ recipe.publication_date }}
+            | Обновлён: {{ recipe.update_date }} | Статус:
+            {% if recipe.status == 'AC' %}
+                Активен
+            {% else %}
+                Заблокирован
+            {% endif %}
+            </p>
         <img src=" {{ recipe.picture }} " alt=" {{ recipe.title }} ">
+        <h3>Описание:</h3>
         <p> {{ recipe.description }} </p>
+        <h3>Приготовление:</h3>
+        <p> {{ recipe.steps_to_complete }} </p>
         <p> Теги: {{ recipe.tags }} </p>
         <p> ❤️ {{ recipe.likes }} </p>
 
