@@ -5,5 +5,6 @@ urlpatterns=[
     path('', views.index, name='home'),
     path('users/', views.UserListView.as_view(), name='user-list'),
     path('recipes/', views.RecipeListView.as_view(), name='recipe-list'),
+    path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
 
 ]
