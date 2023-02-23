@@ -24,6 +24,9 @@ class User(models.Model):
     def __str__(self):
         return self.username
 
+    def get_absolute_url(self):
+        return reverse('user-detail', args=[str(self.id)])
+
 class Recipe(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     publication_date = models.DateTimeField(auto_now_add=True, editable=False)

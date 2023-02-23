@@ -17,6 +17,10 @@ class UserListView(ListView):
     context_object_name = 'user_list'
     template_name = 'user-list.html'
 
+class UserDetailView(generic.DetailView):
+    model = User
+    template_name = 'user-detail.html'
+
 class RecipeListView(ListView):
     model = Recipe
     context_object_name = 'recipe_list'
