@@ -11,7 +11,7 @@
 
 {% block content %}
 
-    <h2>Список пользователей</h2>
+    <h2>Пользователи</h2>
     {% for user in user_list %}
         <h3> {{ user.username }} </h3>
         <p> {% if user.status == 'AC' %}

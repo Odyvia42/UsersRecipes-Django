@@ -10,7 +10,7 @@
     {% endblock %}
 
 {% block content %}
-    <h2>Список пользователей</h2>
+    <h2>Рецепты</h2>
     {% for recipe in recipe_list %}
         <h3> {{ recipe.title }} </h3>
         <p> {% if recipe.dish_type == 'SL' %}
