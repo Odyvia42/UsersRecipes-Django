@@ -7,7 +7,6 @@ display: flex;
 
 }
 
-
 .button {
 flex: auto;
 font-size: 20px;
@@ -39,3 +38,25 @@ nav a:active {
 background-color: #00ec9e;
 }
 
+
+.container {
+display: flex;
+margin-top: 10px;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+
+
+.content + .content {
+margin-left: 1vw;
+}
+
+.user_sidebar,
+.misc {
+width: 20vw;
+}
+
+.main {
+width: 60vw;
+}

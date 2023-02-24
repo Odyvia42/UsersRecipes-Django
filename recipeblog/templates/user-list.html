@@ -9,6 +9,10 @@
     <a href=" {% url 'home' %} " class="button">На главную</a>
     {% endblock %}
 
+{% block user_sidebar %}
+
+{% endblock %}
+
 {% block content %}
 
     <h2>Пользователи</h2>
@@ -23,5 +27,9 @@
         </p>
 
     {% endfor %}
+
+{% endblock %}
+
+{% block misc %}
 
 {% endblock %}

@@ -18,9 +18,24 @@
     <a href=" {% url 'recipe-list' %}" class="button recipes">Список рецептов</a>
 </nav>
 
-<div id="content">
-    {% block content %}
-    {% endblock %}
-</div>
+<section class="container">
+    <div class="content user_sidebar">
+        {% block user_sidebar %}
+
+        {% endblock %}
+    </div>
+
+    <div class="content main">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <div class="content misc">
+        {% block misc %}
+
+        {% endblock %}
+    </div>
+</section>
 </body>
 </html>

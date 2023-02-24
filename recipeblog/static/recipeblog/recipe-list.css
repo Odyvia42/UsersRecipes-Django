@@ -47,3 +47,28 @@ background-color: #ffecab;
 nav a.recipes:visited {
 background-color: #ffecab;
 }
+
+.container {
+display: flex;
+margin-top: 10px;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+.content + .content {
+margin-left: 1vw;
+}
+
+.main p {
+width: 100%;
+height: auto;
+}
+
+.main {
+width: 60vw;
+}
+
+.user_sidebar,
+.misc {
+width: 20vw;
+}
