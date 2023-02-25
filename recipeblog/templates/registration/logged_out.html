@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href=" {% static 'recipeblog/detail-pages.css'%}">
+{% endblock %}
+
+    {% block homebutton %}
+    <a href=" {% url 'home' %} " class="button">На главную</a>
+    {% endblock %}
+
+{% block content %}
+    <p> Вы успешно вышли из аккаунта.</p>
+    <a href="{% url 'login' %}">Чтобы войти в аккаунт, нажмите сюда.</a>
+
+{% endblock %}

@@ -18,6 +18,9 @@ class User(models.Model):
     registration_date = models.DateTimeField(auto_now_add=True, editable=False)
     update_date = models.DateTimeField(auto_now=True)
 
+    password = models.CharField(max_length=30)
+    email = models.EmailField()
+
     class Meta:
         ordering = ['registration_date']
 

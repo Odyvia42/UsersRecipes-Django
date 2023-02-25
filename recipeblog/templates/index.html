@@ -21,6 +21,11 @@
 <section class="container">
     <div class="content user_sidebar">
         {% block user_sidebar %}
+            {% if user.is_authenticated %}
+                <p>Hello there!</p>
+            {% else %}
+                <p><a href=" {% url 'login' %}" class="button userlogin">Войти на сайт</a></p>
+            {% endif %}
 
         {% endblock %}
     </div>
