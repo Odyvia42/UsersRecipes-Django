@@ -62,6 +62,11 @@ width: 20vw;
 width: 60vw;
 }
 
+.loginform {
+width: 50%;
+margin: auto
+}
+
 /* Оформление кнопки входа на сайт */
 
 .userlogin:link {

@@ -11,6 +11,7 @@
 
 {% block content %}
 
+    <div class="loginform">
     {% if form.errors %}
         <p>Логин и пароль не совпадают. Пожалуйста, попробуйте снова.</p>
     {% endif %}
@@ -42,5 +43,6 @@
 
     <p> <a href=" {% url 'password_reset' %} "> Забыли пароль? </a> </p>
     <p> Ещё нет аккаунта? <a href=""> Зарегистрироваться </a> </p>
+    </div>
 
 {% endblock %}
