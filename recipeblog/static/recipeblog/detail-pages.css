@@ -30,7 +30,8 @@ nav a:visited {
 background-color: white;
 }
 
-nav a:hover {
+nav a:hover,
+nav a:focus {
 border: 5px solid #00ec9e;
 }
 
@@ -72,7 +73,8 @@ background-color: white;
 background-color: white;
 }
 
-.userlogin:hover {
+.userlogin:hover,
+.userlogin:focus {
 border: 5px solid #00ec9e;
 }
 

@@ -32,7 +32,7 @@ background-color: white;
 }
 
 nav a:hover,
-.userlogin:hover {
+nav a:focus {
 border: 5px solid #00ec9e;
 }
 
@@ -79,7 +79,8 @@ background-color: white;
 background-color: white;
 }
 
-.userlogin:hover {
+.userlogin:hover,
+.userlogin:focus {
 border: 5px solid #00ec9e;
 }
 

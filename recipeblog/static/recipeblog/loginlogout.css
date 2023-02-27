@@ -7,7 +7,6 @@ display: flex;
 
 }
 
-
 .button {
 flex: auto;
 font-size: 20px;
@@ -41,14 +40,6 @@ background-color: #00ec9e;
 }
 
 
-nav a.recipes:link {
-background-color: #ffecab;
-}
-
-nav a.recipes:visited {
-background-color: #ffecab;
-}
-
 .container {
 display: flex;
 margin-top: 10px;
@@ -56,17 +47,10 @@ margin-left: 10px;
 margin-right: 10px;
 }
 
+
+
 .content + .content {
 margin-left: 1vw;
-}
-
-.main p {
-width: 100%;
-height: auto;
-}
-
-.main {
-width: 60vw;
 }
 
 .user_sidebar,
@@ -74,6 +58,9 @@ width: 60vw;
 width: 20vw;
 }
 
+.main {
+width: 60vw;
+}
 
 /* Оформление кнопки входа на сайт */
 
