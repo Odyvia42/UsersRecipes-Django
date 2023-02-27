@@ -67,3 +67,20 @@ width: 20vw;
 width: 60vw;
 }
 
+/* Оформление кнопки входа на сайт */
+
+.userlogin:link {
+background-color: white;
+}
+
+.userlogin:visited {
+background-color: white;
+}
+
+.userlogin:hover {
+border: 5px solid #00ec9e;
+}
+
+.userlogin:active {
+background-color: #00ec9e;
+}

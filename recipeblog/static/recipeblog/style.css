@@ -31,7 +31,8 @@ nav a:visited {
 background-color: white;
 }
 
-nav a:hover {
+nav a:hover,
+.userlogin:hover {
 border: 5px solid #00ec9e;
 }
 
@@ -46,6 +47,7 @@ background-color: #ffecab;
 nav a.home:visited {
 background-color: #ffecab;
 }
+
 
 .container {
 display: flex;
@@ -66,3 +68,22 @@ width: 20vw;
 .main {
 width: 60vw;
 }
+
+/* Оформление кнопки входа на сайт */
+
+.userlogin:link {
+background-color: white;
+}
+
+.userlogin:visited {
+background-color: white;
+}
+
+.userlogin:hover {
+border: 5px solid #00ec9e;
+}
+
+.userlogin:active {
+background-color: #00ec9e;
+}
+
