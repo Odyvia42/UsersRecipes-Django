@@ -53,9 +53,12 @@ margin-right: 10px;
 margin-left: 1vw;
 }
 
-.user_sidebar,
-.misc {
+.user_sidebar {
 width: 20vw;
+}
+
+.misc {
+width: 10vw
 }
 
 .main {
@@ -66,6 +69,12 @@ width: 60vw;
 width: 50%;
 margin: auto
 }
+
+.user_sidebar p {
+margin-top: 5vh;
+padding-right: 2vw;
+}
+
 
 /* Оформление кнопки входа на сайт */
 

@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href=" {% static 'recipeblog/loginlogout.css'%}">
+{% endblock %}
+
+    {% block homebutton %}
+    <a href=" {% url 'home' %} " class="button">На главную</a>
+    {% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>При регистрации произошла ошибка. Пожалуйста, проверьте правильность введённых данных.</p>
+{% endif %}
+
+<form action=" {% url 'register_user' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Зарегистрироваться" class="button login">
+</form>
+
+
+{% endblock %}

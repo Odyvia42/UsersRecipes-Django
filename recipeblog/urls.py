@@ -7,5 +7,6 @@ urlpatterns=[
     path('recipes/', views.RecipeListView.as_view(), name='recipe-list'),
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
     path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('register_user/', views.register_user, name='register_user'),
 ]

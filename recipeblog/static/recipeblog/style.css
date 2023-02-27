@@ -69,6 +69,11 @@ width: 20vw;
 width: 60vw;
 }
 
+.user_sidebar p {
+margin-top: 5vh;
+padding-right: 2vw;
+}
+
 /* Оформление кнопки входа на сайт */
 
 .userlogin:link {
