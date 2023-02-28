@@ -12,6 +12,7 @@
 {% block content %}
 
     <h2> {{ user.username }} </h2>
+    {% if request.user.is_authenticated %}
     <p> Дата регистрации: {{ user.registration_date }} | Последнее обновление профиля: {{ user.update_date }} |
         Статус: {% if user.status == 'AC' %}
             Активен
@@ -20,6 +21,10 @@
         {% endif %}
     </p>
     <p> Избранные рецепты: </p>
+    {% else %}
+    <p>Эта страница доступна только авторизованным пользователям.</p>
+    <p>Для просмотра, пожалуйста, <a href=" {% url 'login' %}">авторизуйтесь</a>.</p>
+    {% endif %}
 
 
 {% endblock %}
