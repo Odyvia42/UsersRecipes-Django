@@ -21,7 +21,7 @@
 <section class="container">
     <div class="content user_sidebar">
         {% block user_sidebar %}
-            {% if user.is_authenticated %}
+            {% if request.user.is_authenticated %}
                 <p>Hello there!</p>
                 <p><a href=" {% url 'logout' %}" class="button userlogin">Выйти</a></p>
             {% else %}
