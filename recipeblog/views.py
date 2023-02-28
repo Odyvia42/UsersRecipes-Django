@@ -4,6 +4,8 @@ from django.http import HttpRequest, HttpResponse
 from django.views import generic
 from django.views.generic import ListView
 from django.contrib.auth.forms import UserCreationForm
+
+from recipeblog.forms import RegisterUserForm
 from recipeblog.models import User, Recipe
 
 
@@ -35,7 +37,7 @@ class RecipeDetailView(generic.DetailView):
 
 def register_user(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
@@ -43,7 +45,7 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             return redirect('login')
     else:
-        form = UserCreationForm
+        form = RegisterUserForm
     return render(request, 'registration/register_user.html', {'form': form})
 
 
