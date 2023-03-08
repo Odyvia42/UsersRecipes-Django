@@ -136,3 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = env("EMAIL_BACKEND")
+
+AUTH_USER_MODEL = 'recipeblog.User'

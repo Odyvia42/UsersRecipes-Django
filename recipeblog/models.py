@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 
@@ -5,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 
 
-class User(models.Model):
+class User(AbstractUser):
     username = models.CharField(unique=True, max_length=25)
     ACTIVE = 'AC'
     BLOCKED = 'BL'
