@@ -19,7 +19,7 @@ class User(AbstractUser):
     registration_date = models.DateTimeField(auto_now_add=True, editable=False)
     update_date = models.DateTimeField(auto_now=True)
 
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=350)
     email = models.EmailField()
 
     class Meta:
