@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 
@@ -5,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 
 
-class User(models.Model):
+class User(AbstractUser):
     username = models.CharField(unique=True, max_length=25)
     ACTIVE = 'AC'
     BLOCKED = 'BL'
@@ -18,7 +19,7 @@ class User(models.Model):
     registration_date = models.DateTimeField(auto_now_add=True, editable=False)
     update_date = models.DateTimeField(auto_now=True)
 
-    password = models.CharField(max_length=30)
+    password = models.CharField(max_length=50)
     email = models.EmailField()
 
     class Meta:
