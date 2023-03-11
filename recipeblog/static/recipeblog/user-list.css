@@ -92,3 +92,45 @@ border: 5px solid #00ec9e;
 .userlogin:active {
 background-color: #00ec9e;
 }
+
+/* Кнопки сортировки */
+
+.sorting {
+display: flex;
+flex-direction: column;
+flex-wrap: nowrap;
+height: fit-content;
+margin-top: 10px;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+
+.button-sort {
+width: 90%;
+height: auto;
+font-size: 15px;
+padding: 5px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+.button-sort:hover,
+.button-sort:focus {
+border: 5px solid #00ec9e;
+}
+
+.current-sort {
+background-color: #ffecab;
+}
+
+a.currentsort:link {
+background-color: #ffecab;
+}
+
+a.current-sort:visited {
+background-color: #ffecab;
+}
+
+.button-sort:active {
+background-color: #00ec9e;

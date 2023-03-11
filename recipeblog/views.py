@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate
+from django.db.models import F
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, request
 from django.views import generic
@@ -20,7 +21,7 @@ def index(request: HttpRequest):
 class UserListView(ListView):
     model = User
     context_object_name = 'user_list'
-    template_name = 'user-list.html'
+    template_name = 'user-list/user-list.html'
 
 class UserDetailView(generic.DetailView):
     model = User
@@ -52,7 +53,25 @@ def register_user(request):
 def show_current_user_profile(request, pk):
     current_user = User.objects.filter(id = pk).get()
     my_recipes = Recipe.objects.filter(id = current_user.id)
-    return render(request, 'my-profile.html', {'my_recipes':my_recipes})
+    return render(request, 'my-profile.html', {'my_recipes': my_recipes})
+
+def sort_user_list_by_reg_date_desc(request):
+    users = User.objects.order_by(F('registration_date').desc())
+    return render(request, 'user-list/user-list-sort-by-reg-date-desc.html', {'users': users})
+
+def sort_user_list_by_username_asc(request):
+    users = User.objects.order_by(F('username').asc())
+    return render(request, 'user-list/user-list-sort-by-username-asc.html', {'users': users})
+
+def sort_user_list_by_username_desc(request):
+    users = User.objects.order_by(F('username').desc())
+    return render(request, 'user-list/user-list-sort-by-username-desc.html', {'users': users})
+
+
+
+
+
+
 
 
 
