@@ -10,4 +10,8 @@ urlpatterns=[
     path('accounts/', include('django.contrib.auth.urls')),
     path('register_user/', views.register_user, name='register_user'),
     path('users/<int:pk>/my-profile/', views.show_current_user_profile, name='my-profile'),
+    path('users-sort-by-reg-date-desc/', views.sort_user_list_by_reg_date_desc, name='sort-users-by-reg-date-desc'),
+    path('users-sort-by-username-asc/', views.sort_user_list_by_username_asc, name='sort-users-by-username-asc'),
+    path('users-sort-by-username-desc', views.sort_user_list_by_username_desc, name='sort-users-by-username-desc'),
+
 ]

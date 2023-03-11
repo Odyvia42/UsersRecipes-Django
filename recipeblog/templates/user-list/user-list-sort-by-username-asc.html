@@ -14,7 +14,7 @@
 {% block content %}
 
     <h2>Пользователи</h2>
-    {% for user in user_list %}
+    {% for user in users %}
         <h3> <a href="{{ user.get_absolute_url }}">{{ user.username }} </a></h3>
         <p> Дата регистрации: {{ user.registration_date }} | Последнее обновление профиля: {{ user.update_date }} |
             {% if user.status == 'AC' %}
@@ -29,5 +29,15 @@
 {% endblock %}
 
 {% block misc %}
-
+<p>Сортировать по:</p>
+<a href=" {% url 'user-list' %} "
+   class="button button-sort sort-by-reg-date-asc">По дате регистрации ↑</a>
+<a href=" {% url 'sort-users-by-reg-date-desc' %} "
+   class="button button-sort sort-by-reg-date-desc">
+    По дате регистрации ↓</a>
+<a href=" {% url 'sort-users-by-username-asc' %} "
+   class="button button-sort current-sort sort-by-username-asc">
+    По алфавиту ↑</a>
+<a href=" {% url 'sort-users-by-username-desc' %} "
+   class="button button-sort sort-by-username-asc">По алфавиту ↓</a>
 {% endblock %}
