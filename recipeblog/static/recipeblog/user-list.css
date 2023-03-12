@@ -2,10 +2,10 @@ h1 {
 text-align: center;
 }
 
+/* Оформление блока навигации */
 nav {
 display: flex;
 }
-
 
 .button {
 flex: auto;
@@ -39,7 +39,6 @@ nav a:active {
 background-color: #00ec9e;
 }
 
-
 nav a.users:link {
 background-color: #ffecab;
 }
@@ -48,6 +47,7 @@ nav a.users:visited {
 background-color: #ffecab;
 }
 
+/* Общая раскладка сайта */
 .container {
 display: flex;
 margin-top: 10px;
