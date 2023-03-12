@@ -39,11 +39,11 @@ nav a:active {
 background-color: #00ec9e;
 }
 
-nav a.users:link {
+nav a.home:link {
 background-color: #ffecab;
 }
 
-nav a.users:visited {
+nav a.home:visited {
 background-color: #ffecab;
 }
 

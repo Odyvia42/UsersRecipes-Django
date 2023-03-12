@@ -39,14 +39,6 @@ nav a:active {
 background-color: #00ec9e;
 }
 
-nav a.users:link {
-background-color: #ffecab;
-}
-
-nav a.users:visited {
-background-color: #ffecab;
-}
-
 /* Общая раскладка сайта */
 .container {
 display: flex;
