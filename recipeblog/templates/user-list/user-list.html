@@ -40,5 +40,8 @@
    class="button button-sort sort-by-username-asc">По алфавиту ↑</a>
 <a href=" {% url 'sort-users-by-username-desc' %} "
    class="button button-sort sort-by-username-asc">По алфавиту ↓</a>
-
+<a href=" {% url 'sort-users-by-recipes-amount-asc' %} "
+   class="button button-sort sort-by-recipes-amount-asc">По количеству рецептов ↑</a>
+<a href=" {% url 'sort-users-by-recipes-amount-desc' %} "
+   class="button button-sort sort-by-username-desc">По количеству рецептов ↓</a>
 {% endblock %}

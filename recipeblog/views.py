@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from django.db.models import F
+from django.db.models import F, Count
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, request
 from django.views import generic
@@ -67,12 +67,10 @@ def sort_user_list_by_username_desc(request):
     users = User.objects.order_by(F('username').desc())
     return render(request, 'user-list/user-list-sort-by-username-desc.html', {'users': users})
 
+def sort_user_list_by_recipes_amount_asc(request):
+    users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('num_recipes').asc())
+    return render(request, 'user-list/user-list-sort-by-recipes-amount-asc.html', {'users': users})
 
-
-
-
-
-
-
-
-
+def sort_user_list_by_recipes_amount_desc(request):
+    users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('num_recipes').desc())
+    return render(request, 'user-list/user-list-sort-by-recipes-amount-desc.html', {'users': users})
