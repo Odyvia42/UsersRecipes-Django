@@ -111,17 +111,21 @@ margin-right: 10px;
 
 
 .button-sort {
-width: 90%;
+border: 3px solid gray;
+width: 95%;
 height: auto;
-font-size: 15px;
-padding: 5px;
+font-size: 12px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 1px;
+padding-right: 1px;
 margin-top: 5px;
 margin-bottom: 5px;
 }
 
 .button-sort:hover,
 .button-sort:focus {
-border: 5px solid #00ec9e;
+border: 3px solid #00ec9e;
 }
 
 .current-sort {
