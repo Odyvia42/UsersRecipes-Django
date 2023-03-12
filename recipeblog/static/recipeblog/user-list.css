@@ -93,7 +93,11 @@ border: 5px solid #00ec9e;
 background-color: #00ec9e;
 }
 
-/* Кнопки сортировки */
+/* Блок сортировки */
+
+.sorting p {
+text-align: center
+}
 
 .sorting {
 display: flex;
