@@ -23,11 +23,11 @@
         {% block user_sidebar %}
             {% if request.user.is_authenticated %}
                 <p>Привет, {{ request.user.username }}!</p>
-                <p><a href=" {% url 'my-profile' request.user.id %}" class="button">Мой профиль</a></p>
-                <p><a href=" {% url 'logout' %}" class="button userlogin">Выйти</a></p>
+                <a href=" {% url 'my-profile' request.user.id %}" class="button userlogin myprofile">Мой профиль</a>
+                <a href=" {% url 'logout' %}" class="button userlogin">Выйти</a>
             {% else %}
-                <p><a href=" {% url 'login' %}" class="button userlogin">Войти на сайт</a></p>
-                <p><a href=" {% url 'register_user' %}" class="button userlogin">Регистрация</a></p>
+                <a href=" {% url 'login' %}" class="button userlogin">Войти на сайт</a>
+                <a href=" {% url 'register_user' %}" class="button userlogin">Регистрация</a>
             {% endif %}
         {% endblock %}
     </div>

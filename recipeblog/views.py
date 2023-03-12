@@ -73,4 +73,5 @@ def sort_user_list_by_recipes_amount_asc(request):
 
 def sort_user_list_by_recipes_amount_desc(request):
     users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('num_recipes').desc())
-    return render(request, 'user-list/user-list-sort-by-recipes-amount-desc.html', {'users': users})
+    return render(request, 'user-list/user-list-sort-by-recipes-amount-desc.html',
+                  {'users': users})

@@ -2,16 +2,16 @@ h1 {
 text-align: center;
 }
 
+/* Оформление блока навигации */
 nav {
 display: flex;
-
 }
 
 .button {
 flex: auto;
 font-size: 20px;
 color: black;
-border: 2px solid black;
+border: 4px solid gray;
 text-align: center;
 padding: 10px;
 margin-left: 10px;
@@ -32,14 +32,14 @@ background-color: white;
 
 nav a:hover,
 nav a:focus {
-border: 5px solid #00ec9e;
+border: 4px solid #00ec9e;
 }
 
 nav a:active {
 background-color: #00ec9e;
 }
 
-
+/* Общая раскладка сайта */
 .container {
 display: flex;
 margin-top: 10px;
