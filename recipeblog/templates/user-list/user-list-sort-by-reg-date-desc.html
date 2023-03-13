@@ -15,14 +15,17 @@
 
     <h2>Пользователи</h2>
     {% for user in users %}
-        <h3> <a href="{{ user.get_absolute_url }}">{{ user.username }} </a></h3>
-        <p> Дата регистрации: {{ user.registration_date }} | Последнее обновление профиля: {{ user.update_date }} |
-            {% if user.status == 'AC' %}
-                Активен
-            {% else %}
-                Заблокирован
-            {% endif %}
-        </p>
+        {% if user.status == 'AC' %}
+            <h3> <a href="{{ user.get_absolute_url }}">{{ user.username }} </a></h3>
+            <p> Дата регистрации: {{ user.registration_date }} | Последнее обновление профиля: {{ user.update_date }} |
+                {% if user.status == 'AC' %}
+                    Активен
+                {% else %}
+                    Заблокирован
+                {% endif %}
+                | Всего рецептов: {{ user.num_recipes }}
+            </p>
+        {% endif %}
 
     {% endfor %}
 
