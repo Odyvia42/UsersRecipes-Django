@@ -17,16 +17,9 @@ from recipeblog.models import User, Recipe
 def index(request: HttpRequest):
     return render(request, 'index.html')
 
-
-class UserListView(ListView):
-    model = User
-    context_object_name = 'user_list'
-    template_name = 'user-list/user-list.html'
-
 class UserDetailView(generic.DetailView):
     model = User
     template_name = 'user-detail.html'
-
 
 class RecipeListView(ListView):
     model = Recipe
@@ -55,16 +48,21 @@ def show_current_user_profile(request, pk):
     my_recipes = Recipe.objects.filter(id = current_user.id)
     return render(request, 'my-profile.html', {'my_recipes': my_recipes})
 
+def sort_user_list_by_reg_date_asc(request):
+    users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('registration_date').asc())
+    return render(request, 'user-list/user-list-sort-by-reg-date-asc.html', {'users': users})
+
 def sort_user_list_by_reg_date_desc(request):
-    users = User.objects.order_by(F('registration_date').desc())
+    users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('registration_date').desc())
     return render(request, 'user-list/user-list-sort-by-reg-date-desc.html', {'users': users})
 
 def sort_user_list_by_username_asc(request):
-    users = User.objects.order_by(F('username').asc())
+    users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('username').asc())
     return render(request, 'user-list/user-list-sort-by-username-asc.html', {'users': users})
 
 def sort_user_list_by_username_desc(request):
-    users = User.objects.order_by(F('username').desc())
+    users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('username').desc())
+    users_with_recipes = User.objects.annotate(num_recipes=Count('recipe'))
     return render(request, 'user-list/user-list-sort-by-username-desc.html', {'users': users})
 
 def sort_user_list_by_recipes_amount_asc(request):
