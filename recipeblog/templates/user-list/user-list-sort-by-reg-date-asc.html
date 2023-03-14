@@ -27,16 +27,17 @@
             </p>
         {% endif %}
     {% endfor %}
-
-    {% if paged_users.has_previous %}
-        <a href="?page=1">&laquo Первая</a>
-        <a href="?page= {{ paged_users.previous_page_number }} ">Предыдущая</a>
-    {% endif %}
-    Страница {{ paged_users.number }} из {{ paged_users.paginator.num_pages }}
-    {% if paged_users.has_next %}
-        <a href="?page= {{ paged_users.next_page_number }}">Следующая</a>
-        <a href="?page= {{ paged_users.paginator.num_pages }} ">Последняя &raquo</a>
-    {% endif %}
+    <div class="pagination">
+        {% if paged_users.has_previous %}
+            <a href="?page=1" class="pages page-nav">&laquo Первая</a>
+            <a href="?page= {{ paged_users.previous_page_number }} " class="pages page-nav">Предыдущая</a>
+        {% endif %}
+        <p class="pages current-page">Страница {{ paged_users.number }} из {{ paged_users.paginator.num_pages }}</p>
+        {% if paged_users.has_next %}
+            <a href="?page= {{ paged_users.next_page_number }}" class="pages page-nav">Следующая</a>
+            <a href="?page= {{ paged_users.paginator.num_pages }} " class="pages page-nav">Последняя &raquo</a>
+        {% endif %}
+    </div>
 
 
 {% endblock %}
