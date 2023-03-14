@@ -14,7 +14,7 @@
 {% block content %}
 
     <h2>Пользователи</h2>
-    {% for user in users %}
+    {% for user in paged_users %}
         {% if user.status == 'AC' %}
             <h3> <a href="{{ user.get_absolute_url }}">{{ user.username }} </a></h3>
             <p> Дата регистрации: {{ user.registration_date }} | Последнее обновление профиля: {{ user.update_date }} |
@@ -28,6 +28,15 @@
         {% endif %}
 
     {% endfor %}
+    {% if paged_users.has_previous %}
+        <a href="?page=1">&laquo Первая</a>
+        <a href="?page= {{ paged_users.previous_page_number }} ">Предыдущая</a>
+    {% endif %}
+    Страница {{ paged_users.number }} из {{ paged_users.paginator.num_pages }}
+    {% if paged_users.has_next %}
+        <a href="?page= {{ paged_users.next_page_number }}">Следующая</a>
+        <a href="?page= {{ paged_users.paginator.num_pages }} ">Последняя &raquo</a>
+    {% endif %}
 
 {% endblock %}
 
