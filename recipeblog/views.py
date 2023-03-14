@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate
+from django.core.paginator import Paginator
 from django.db.models import F, Count
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, request
@@ -50,26 +51,61 @@ def show_current_user_profile(request, pk):
 
 def sort_user_list_by_reg_date_asc(request):
     users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('registration_date').asc())
-    return render(request, 'user-list/user-list-sort-by-reg-date-asc.html', {'users': users})
+    p = Paginator(users, 5)
+    page = request.GET.get('page')
+    paged_users = p.get_page(page)
+    return render(request, 'user-list/user-list-sort-by-reg-date-asc.html',
+                  {'users': users,
+                   'paged_users': paged_users,
+                   })
 
 def sort_user_list_by_reg_date_desc(request):
     users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('registration_date').desc())
-    return render(request, 'user-list/user-list-sort-by-reg-date-desc.html', {'users': users})
+    p = Paginator(users, 5)
+    page = request.GET.get('page')
+    paged_users = p.get_page(page)
+    return render(request, 'user-list/user-list-sort-by-reg-date-desc.html',
+                  {'users': users,
+                   'paged_users': paged_users,
+                   })
 
 def sort_user_list_by_username_asc(request):
     users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('username').asc())
-    return render(request, 'user-list/user-list-sort-by-username-asc.html', {'users': users})
+    p = Paginator(users, 5)
+    page = request.GET.get('page')
+    paged_users = p.get_page(page)
+    return render(request, 'user-list/user-list-sort-by-username-asc.html',
+                  {'users': users,
+                   'paged_users': paged_users,
+                   })
 
 def sort_user_list_by_username_desc(request):
     users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('username').desc())
     users_with_recipes = User.objects.annotate(num_recipes=Count('recipe'))
-    return render(request, 'user-list/user-list-sort-by-username-desc.html', {'users': users})
+    p = Paginator(users, 5)
+    page = request.GET.get('page')
+    paged_users = p.get_page(page)
+    return render(request, 'user-list/user-list-sort-by-username-desc.html',
+                  {'users': users,
+                   'paged_users': paged_users,
+                   })
 
 def sort_user_list_by_recipes_amount_asc(request):
     users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('num_recipes').asc())
-    return render(request, 'user-list/user-list-sort-by-recipes-amount-asc.html', {'users': users})
+    p = Paginator(users, 5)
+    page = request.GET.get('page')
+    paged_users = p.get_page(page)
+    return render(request, 'user-list/user-list-sort-by-recipes-amount-asc.html',
+                  {'users': users,
+                   'paged_users': paged_users,
+                   })
 
 def sort_user_list_by_recipes_amount_desc(request):
     users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('num_recipes').desc())
+    p = Paginator(users, 5)
+    page = request.GET.get('page')
+    paged_users = p.get_page(page)
     return render(request, 'user-list/user-list-sort-by-recipes-amount-desc.html',
-                  {'users': users})
+                  {'users': users,
+                   'paged_users': paged_users,
+                   })
