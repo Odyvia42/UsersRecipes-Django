@@ -52,6 +52,7 @@ class Recipe(models.Model):
         (BAKERY, 'Выпечка'),
     ]
     dish_type = models.CharField(max_length=2, choices=dish_type_choices, default=SALAD)
+    ingredients = models.TextField(default='')
     description = models.TextField(default='')
     steps_to_complete = models.TextField(default='')
     picture = models.URLField(default='')
