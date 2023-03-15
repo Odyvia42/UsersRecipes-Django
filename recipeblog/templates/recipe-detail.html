@@ -34,6 +34,8 @@
         <img src=" {{ recipe.picture }} " alt=" {{ recipe.title }} ">
         <h3>Описание:</h3>
         <p> {{ recipe.description|linebreaks }} </p>
+        <h3>Ингредиенты:</h3>
+        <p> {{ recipe.ingredients|linebreaks }} </p>
         <h3>Приготовление:</h3>
         <p> {{ recipe.steps_to_complete|linebreaks }} </p>
         <p> Теги: {{ recipe.tags }} </p>
