@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href=" {% static 'recipeblog/detail-pages.css'%}">
+{% endblock %}
+
+    {% block homebutton %}
+    <a href=" {% url 'home' %} " class="button">На главную</a>
+    {% endblock %}
+
+{% block content %}
+
+
+    {% if request.user.is_authenticated %}
+        `{% if submitted %}
+            <h2>Новый рецепт</h2>
+            <div class="usernav">
+                <p>Рецепт успешно сохранён</p>
+                <br/>
+                <a href=" {% url 'add-recipe' %}" class="button userlogin">Добавить ещё один рецепт</a>
+                <a href=" {% url 'recipe-list' %}" class="button userlogin">Перейти в список рецептов</a>
+            </div>
+        {% else %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        <table width="85%">
+                            <tr>
+                                <td>{{ field.errors }}</td>
+
+                            </tr>
+                            <tr>
+                                <td width="25%">{{ field.label_tag }} </td>
+                                <td>{{ field }}</td>
+                            </tr>
+                            {% if field.help_text %}
+                            <tr>
+                                <td><p class="help">{{ field.help_text|safe }}</p></td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                {% endfor %}
+                <input type="submit" value="Сохранить" class="button">
+            </form>
+        {% endif %}`
+    {% else %}
+        <h2 style="color: red">Недостаточно прав для просмотра страницы</h2>
+        <p>Чтобы просматривать эту страницу нужно войти на сайт.</p>
+    {% endif %}
+
+{% endblock %}

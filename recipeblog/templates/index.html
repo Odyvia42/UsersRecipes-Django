@@ -24,6 +24,7 @@
             {% if request.user.is_authenticated %}
                 <p>Привет, {{ request.user.username }}!</p>
                 <a href=" {% url 'my-profile' request.user.id %}" class="button userlogin myprofile">Мой профиль</a>
+                <a href=" {% url 'add-recipe' %}" class="button userlogin">Новый рецепт</a>
                 <a href=" {% url 'logout' %}" class="button userlogin">Выйти</a>
             {% else %}
                 <a href=" {% url 'login' %}" class="button userlogin">Войти на сайт</a>
