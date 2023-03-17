@@ -2,12 +2,12 @@ from django.contrib.auth import authenticate
 from django.core.paginator import Paginator
 from django.db.models import F, Count
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponse, request
+from django.http import HttpRequest, HttpResponse, request, HttpResponseRedirect
 from django.views import generic
 from django.views.generic import ListView
 from django.contrib.auth.forms import UserCreationForm
 
-from recipeblog.forms import RegisterUserForm
+from recipeblog.forms import RegisterUserForm, RecipeForm
 from recipeblog.models import User, Recipe
 
 
@@ -109,3 +109,21 @@ def sort_user_list_by_recipes_amount_desc(request):
                   {'users': users,
                    'paged_users': paged_users,
                    })
+
+
+def add_recipe(request):
+    submitted = False
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            return HttpResponseRedirect('/add-recipe?submitted=True')
+    else:
+        form = RecipeForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'add-recipe.html',
+                  {'form': form,
+                   'submitted': submitted})
