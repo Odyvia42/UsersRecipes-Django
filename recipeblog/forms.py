@@ -16,3 +16,12 @@ class RecipeForm(ModelForm):
     class Meta:
         model = Recipe
         fields = ('title', 'dish_type', 'description', 'ingredients', 'steps_to_complete', 'picture', 'tags')
+        labels = {
+            'title': 'Название',
+            'dish_type': 'Тип блюда',
+            'description': 'Описание',
+            'ingredients': 'Ингредиенты',
+            'steps_to_complete': 'Пошаговая инструкция',
+            'picture': 'Фото',
+            'tags': 'Теги'
+        }
