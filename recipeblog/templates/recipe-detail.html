@@ -29,6 +29,9 @@
                 Активен
             {% else %}
                 Заблокирован
+            {% endif %} |
+            {% if recipe.author == request.user %}
+            <a href=" {% url 'update-recipe' recipe.id %}">Редактировать</a>
             {% endif %}
             </p>
         <img src=" {{ recipe.picture }} " alt=" {{ recipe.title }} ">

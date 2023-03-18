@@ -127,3 +127,13 @@ def add_recipe(request):
     return render(request, 'add-recipe.html',
                   {'form': form,
                    'submitted': submitted})
+
+def update_recipe(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
+    form = RecipeForm(request.POST or None, instance=recipe)
+    if form.is_valid():
+        form.save()
+        return redirect('recipe-detail', pk=recipe_id)
+    return render(request, 'update-recipe.html',
+                  {'recipe': recipe,
+                   'form': form})
