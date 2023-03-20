@@ -25,3 +25,14 @@ class RecipeForm(ModelForm):
             'picture': 'Фото',
             'tags': 'Теги'
         }
+
+class UserForm(ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+        labels = {
+            'username': 'Имя пользователя',
+            'email': 'Электронная почта',
+            'password': 'Пароль'
+        }
