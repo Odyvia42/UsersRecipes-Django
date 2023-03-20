@@ -128,3 +128,103 @@ border: 3px solid #00ec9e;
 .userlogin:active {
 background-color: #00ec9e;
 }
+
+
+/* Блок сортировки */
+
+.sorting p {
+text-align: center
+}
+
+.sorting {
+display: flex;
+flex-direction: column;
+flex-wrap: nowrap;
+height: fit-content;
+margin-top: 10px;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+
+.button-sort {
+border: 3px solid gray;
+width: 95%;
+height: auto;
+font-size: 12px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 1px;
+padding-right: 1px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+.button-sort:hover,
+.button-sort:focus {
+border: 3px solid #00ec9e;
+}
+
+.current-sort {
+background-color: #ffecab;
+}
+
+a.currentsort:link {
+background-color: #ffecab;
+}
+
+a.current-sort:visited {
+background-color: #ffecab;
+}
+
+.button-sort:active {
+background-color: #00ec9e;
+}
+
+/* Оформление блока пагинации */
+
+.pagination {
+display: inline-flex;
+width: 90%;
+}
+
+.pages {
+border: 3px solid gray;
+width: 95%;
+height: auto;
+font-size: 12px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 1px;
+padding-right: 1px;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 5px;
+margin-right: 5px;
+border-radius: 10px;
+text-align: center;
+}
+
+.page-nav {
+text-decoration: none;
+outline: none;
+cursor: pointer;
+color: black;
+}
+
+.current-page {
+background-color: #ffecab;
+}
+
+.page-nav:hover,
+.page-nav:focus {
+border: 3px solid #00ec9e;
+}
+
+.page-nav:visited {
+background-color: white;
+}
+
+.page-nav:active {
+background-color: #00ec9e;
+}

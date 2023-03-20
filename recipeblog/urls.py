@@ -14,7 +14,12 @@ urlpatterns=[
          name='sort-users-by-recipes-amount-asc'),
     path('users-sort-by-recipes-amount-desc/', views.sort_user_list_by_recipes_amount_desc,
          name='sort-users-by-recipes-amount-desc'),
-    path('recipes/', views.RecipeListView.as_view(), name='recipe-list'),
+    path('all-recipes-sort-by-pub-date-desc/', views.sort_all_recipes_by_pub_date_desc,
+         name='sort-all-recipes-by-pub-date-desc'),
+    path('all-recipes-sort-by-pub-date-asc/', views.sort_all_recipes_by_pub_date_asc,
+         name='sort-all-recipes-by-pub-date-asc'),
+
+
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
     path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
     path('accounts/', include('django.contrib.auth.urls')),
