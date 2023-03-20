@@ -76,7 +76,33 @@ padding-right: 2vw;
 }
 
 
-/* Оформление кнопки входа на сайт */
+/* Оформление блока пользовательской навигации */
+
+.user_sidebar {
+display: flex;
+flex-direction: column;
+flex-wrap: nowrap;
+height: fit-content;
+margin-top: 10px;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+.user_sidebar p {
+text-align: center;
+}
+.userlogin {
+border: 3px solid gray;
+width: 95%;
+height: auto;
+font-size: 14px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 1px;
+padding-right: 1px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
 
 .userlogin:link {
 background-color: white;
@@ -88,7 +114,7 @@ background-color: white;
 
 .userlogin:hover,
 .userlogin:focus {
-border: 5px solid #00ec9e;
+border: 3px solid #00ec9e;
 }
 
 .userlogin:active {
