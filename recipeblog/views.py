@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate
+from django.contrib.auth.views import PasswordChangeView
 from django.core.paginator import Paginator
 from django.db.models import F, Count
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, request, HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import ListView
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 
 from recipeblog.forms import RegisterUserForm, RecipeForm, UserForm
 from recipeblog.models import User, Recipe
@@ -30,6 +32,14 @@ class RecipeListView(ListView):
 class RecipeDetailView(generic.DetailView):
     model = Recipe
     template_name = 'recipe-detail.html'
+
+class ChangePasswordView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    template_name = 'registration/change-password.html'
+    success_url = reverse_lazy('password-success')
+
+def change_password_success(request):
+    return render(request, 'registration/change-password-success.html', {})
 
 def register_user(request):
     if request.method == 'POST':
@@ -147,3 +157,4 @@ def update_user(request, user_id):
     return render(request, 'update-user.html',
                   {'user': user,
                    'form': form})
+
