@@ -1,6 +1,9 @@
 from django.urls import path, include
 from . import views
 
+
+
+
 urlpatterns=[
     path('', views.index, name='home'),
     path('users-sort-by-reg-date-asc/', views.sort_user_list_by_reg_date_asc, name='sort-users-by-reg-date-asc'),
@@ -20,5 +23,6 @@ urlpatterns=[
     path('add-recipe', views.add_recipe, name='add-recipe'),
     path('recipes/update-recipe/<recipe_id>', views.update_recipe, name='update-recipe'),
     path('users/update-user/<user_id>', views.update_user, name='update-user'),
-
+    path('password/', views.ChangePasswordView.as_view(), name='change-password'),
+    path('password-success/', views.change_password_success, name='password-success'),
 ]

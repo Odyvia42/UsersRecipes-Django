@@ -35,6 +35,7 @@
             {% endfor %}
             <input type="submit" value="Сохранить" class="button">
         </form>
+        <p><a href=" {% url 'change-password' %}" class="button userlogin">Изменить пароль</a></p>
     {% else %}
         <h2 style="color: red">Недостаточно прав для просмотра страницы</h2>
         <p>Чтобы просматривать эту страницу нужно войти на сайт.</p>
