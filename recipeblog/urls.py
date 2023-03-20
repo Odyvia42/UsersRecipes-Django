@@ -19,5 +19,6 @@ urlpatterns=[
     path('users/<int:pk>/my-profile/', views.show_current_user_profile, name='my-profile'),
     path('add-recipe', views.add_recipe, name='add-recipe'),
     path('recipes/update-recipe/<recipe_id>', views.update_recipe, name='update-recipe'),
+    path('users/update-user/<user_id>', views.update_user, name='update-user'),
 
 ]

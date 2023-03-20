@@ -7,7 +7,7 @@ from django.views import generic
 from django.views.generic import ListView
 from django.contrib.auth.forms import UserCreationForm
 
-from recipeblog.forms import RegisterUserForm, RecipeForm
+from recipeblog.forms import RegisterUserForm, RecipeForm, UserForm
 from recipeblog.models import User, Recipe
 
 
@@ -136,4 +136,14 @@ def update_recipe(request, recipe_id):
         return redirect('recipe-detail', pk=recipe_id)
     return render(request, 'update-recipe.html',
                   {'recipe': recipe,
+                   'form': form})
+
+def update_user(request, user_id):
+    user = User.objects.get(pk=user_id)
+    form = UserForm(request.POST or None, instance=user)
+    if form.is_valid():
+        form.save()
+        return redirect('my-profile', pk=user_id)
+    return render(request, 'update-user.html',
+                  {'user': user,
                    'form': form})
