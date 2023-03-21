@@ -195,3 +195,22 @@ def sort_all_recipes_by_title_asc(request):
                   {'recipes': recipes,
                    'paged_recipes': paged_recipes,
                    })
+
+def sort_all_recipes_by_likes_desc(request):
+    recipes = Recipe.objects.order_by(F('likes').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/sort_all_recipes_by_likes_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+def sort_all_recipes_by_likes_asc(request):
+    recipes = Recipe.objects.order_by(F('likes').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/sort_all_recipes_by_likes_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })

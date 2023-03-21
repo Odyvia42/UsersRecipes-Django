@@ -84,8 +84,8 @@
    class="button button-sort">По алфавиту ↓</a>
 <a href=" {% url 'sort-all-recipes-by-title-asc' %} "
    class="button button-sort">По алфавиту ↑</a>
-<a href=" {% url 'sort-users-by-recipes-amount-asc' %} "
-   class="button button-sort">По количеству рецептов ↑</a>
-<a href=" {% url 'sort-users-by-recipes-amount-desc' %} "
-   class="button button-sort">По количеству рецептов ↓</a>
+<a href=" {% url 'sort-all-recipes-by-likes-desc' %} "
+   class="button button-sort">По рейтингу ↓</a>
+<a href=" {% url 'sort-all-recipes-by-likes-asc' %} "
+   class="button button-sort">По рейтингу ↑</a>
 {% endblock %}

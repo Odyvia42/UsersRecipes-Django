@@ -22,7 +22,10 @@ urlpatterns=[
          name='sort-all-recipes-by-title-desc'),
     path('all-recipes-sort-by-title-asc/', views.sort_all_recipes_by_title_asc,
          name='sort-all-recipes-by-title-asc'),
-
+    path('all-recipes-sort-by-likes-desc/', views.sort_all_recipes_by_likes_desc,
+         name='sort-all-recipes-by-likes-desc'),
+    path('all-recipes-sort-by-likes-asc/', views.sort_all_recipes_by_likes_asc,
+         name='sort-all-recipes-by-likes-asc'),
 
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
     path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
