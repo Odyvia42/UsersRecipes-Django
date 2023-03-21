@@ -158,12 +158,13 @@ def update_user(request, user_id):
 
 # представления для сортировки списка рецептов, основная категоризация по типу блюда
 
+# все рецепты
 def sort_all_recipes_by_pub_date_desc(request):
     recipes = Recipe.objects.order_by(F('publication_date').desc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
-    return render(request, 'recipe-list/sort_all_recipes_by_pub_date_desc.html',
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_pub_date_desc.html',
                   {'recipes': recipes,
                    'paged_recipes': paged_recipes,
                    })
@@ -172,7 +173,7 @@ def sort_all_recipes_by_pub_date_asc(request):
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
-    return render(request, 'recipe-list/sort_all_recipes_by_pub_date_asc.html',
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_pub_date_asc.html',
                   {'recipes': recipes,
                    'paged_recipes': paged_recipes,
                    })
@@ -182,7 +183,7 @@ def sort_all_recipes_by_title_desc(request):
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
-    return render(request, 'recipe-list/sort_all_recipes_by_title_desc.html',
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_title_desc.html',
                   {'recipes': recipes,
                    'paged_recipes': paged_recipes,
                    })
@@ -191,7 +192,7 @@ def sort_all_recipes_by_title_asc(request):
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
-    return render(request, 'recipe-list/sort_all_recipes_by_title_asc.html',
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_title_asc.html',
                   {'recipes': recipes,
                    'paged_recipes': paged_recipes,
                    })
@@ -201,7 +202,7 @@ def sort_all_recipes_by_likes_desc(request):
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
-    return render(request, 'recipe-list/sort_all_recipes_by_likes_desc.html',
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_likes_desc.html',
                   {'recipes': recipes,
                    'paged_recipes': paged_recipes,
                    })
@@ -210,7 +211,8 @@ def sort_all_recipes_by_likes_asc(request):
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
-    return render(request, 'recipe-list/sort_all_recipes_by_likes_asc.html',
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_likes_asc.html',
                   {'recipes': recipes,
                    'paged_recipes': paged_recipes,
                    })
+
