@@ -26,7 +26,10 @@ urlpatterns=[
          name='sort-all-recipes-by-likes-desc'),
     path('all-recipes-sort-by-likes-asc/', views.sort_all_recipes_by_likes_asc,
          name='sort-all-recipes-by-likes-asc'),
-
+    path('salads-sort-by-pub-date-desc/', views.sort_salads_by_pub_date_desc,
+         name='sort-salads-by-pub-date-desc'),
+    path('salads-sort-by-pub-date-asc/', views.sort_salads_by_pub_date_asc,
+         name='sort-salads-by-pub-date-asc'),
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
     path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
     path('accounts/', include('django.contrib.auth.urls')),
