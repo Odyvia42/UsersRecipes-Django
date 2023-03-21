@@ -18,6 +18,10 @@ urlpatterns=[
          name='sort-all-recipes-by-pub-date-desc'),
     path('all-recipes-sort-by-pub-date-asc/', views.sort_all_recipes_by_pub_date_asc,
          name='sort-all-recipes-by-pub-date-asc'),
+    path('all-recipes-sort-by-title-desc/', views.sort_all_recipes_by_title_desc,
+         name='sort-all-recipes-by-title-desc'),
+    path('all-recipes-sort-by-title-asc/', views.sort_all_recipes_by_title_asc,
+         name='sort-all-recipes-by-title-asc'),
 
 
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),

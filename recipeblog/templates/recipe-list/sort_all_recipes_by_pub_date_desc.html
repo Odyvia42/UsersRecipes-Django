@@ -13,7 +13,7 @@
 
 {% block content %}
 
-    <h2>Пользователи</h2>
+
     <h2>Рецепты</h2>
         {% for recipe in paged_recipes %}
             {% if recipe.status == 'AC' %}
@@ -80,10 +80,10 @@
     По дате публикации ↓</a>
 <a href=" {% url 'sort-all-recipes-by-pub-date-asc' %} "
    class="button button-sort">По дате публикации ↑</a>
-<a href=" {% url 'sort-users-by-username-asc' %} "
-   class="button button-sort">По алфавиту ↑</a>
-<a href=" {% url 'sort-users-by-username-desc' %} "
+<a href=" {% url 'sort-all-recipes-by-title-desc' %} "
    class="button button-sort">По алфавиту ↓</a>
+<a href=" {% url 'sort-all-recipes-by-title-asc' %} "
+   class="button button-sort">По алфавиту ↑</a>
 <a href=" {% url 'sort-users-by-recipes-amount-asc' %} "
    class="button button-sort">По количеству рецептов ↑</a>
 <a href=" {% url 'sort-users-by-recipes-amount-desc' %} "
