@@ -34,6 +34,10 @@ urlpatterns=[
          name='sort-salads-by-title-desc'),
     path('salads-sort-by-title-asc/', views.sort_salads_by_title_asc,
          name='sort-salads-by-title-asc'),
+    path('salads-sort-by-likes-desc/', views.sort_salads_by_likes_desc,
+         name='sort-salads-by-likes-desc'),
+    path('salads-sort-by-likes-asc/', views.sort_salads_by_likes_asc,
+         name='sort-salads-by-likes-asc'),
 
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
     path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
