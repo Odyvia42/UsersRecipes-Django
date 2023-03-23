@@ -60,7 +60,7 @@
 
 <p>Категории:</p>
 <a href=" {% url 'sort-all-recipes-by-pub-date-desc' %} "
-   class="button button-sort current-sort">Все рецепты</a>
+   class="button button-sort">Все рецепты</a>
 <a href=" {% url 'sort-salads-by-pub-date-desc' %} "
    class="button button-sort">Салаты</a>
 <a href=" {% url 'sort-first-courses-by-pub-date-asc' %} "
@@ -68,24 +68,24 @@
 <a href=" {% url 'sort-main-courses-by-pub-date-asc' %} "
    class="button button-sort">Второе</a>
 <a href=" {% url 'sort-bakery-by-pub-date-asc' %} "
-   class="button button-sort">Выпечка</a>
+   class="button button-sort current-sort">Выпечка</a>
 <a href=" {% url 'sort-all-recipes-by-pub-date-asc' %} "
    class="button button-sort">Десерт</a>
 <a href=" {% url 'sort-all-recipes-by-pub-date-asc' %} "
    class="button button-sort">Напиток</a>
 
 <p>Сортировать:</p>
-<a href=" {% url 'sort-all-recipes-by-pub-date-desc' %} "
+<a href=" {% url 'sort-bakery-by-pub-date-desc' %} "
    class="button button-sort">
     По дате публикации ↓</a>
-<a href=" {% url 'sort-all-recipes-by-pub-date-asc' %} "
+<a href=" {% url 'sort-bakery-by-pub-date-asc' %} "
    class="button button-sort">По дате публикации ↑</a>
-<a href=" {% url 'sort-all-recipes-by-title-desc' %} "
-   class="button button-sort">По алфавиту ↓</a>
-<a href=" {% url 'sort-all-recipes-by-title-asc' %} "
+<a href=" {% url 'sort-bakery-by-title-desc' %} "
+   class="button button-sort current-sort">По алфавиту ↓</a>
+<a href=" {% url 'sort-bakery-by-title-asc' %} "
    class="button button-sort">По алфавиту ↑</a>
-<a href=" {% url 'sort-all-recipes-by-likes-desc' %} "
+<a href=" {% url 'sort-bakery-by-likes-desc' %} "
    class="button button-sort">По рейтингу ↓</a>
-<a href=" {% url 'sort-all-recipes-by-likes-asc' %} "
-   class="button button-sort current-sort">По рейтингу ↑</a>
+<a href=" {% url 'sort-bakery-by-likes-asc' %} "
+   class="button button-sort">По рейтингу ↑</a>
 {% endblock %}
