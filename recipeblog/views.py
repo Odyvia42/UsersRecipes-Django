@@ -238,3 +238,22 @@ def sort_salads_by_pub_date_asc(request):
                    })
 
 
+def sort_salads_by_title_desc(request):
+    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('title').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/salads/sort_salads_by_title_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_salads_by_title_asc(request):
+    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('title').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/salads/sort_salads_by_title_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })

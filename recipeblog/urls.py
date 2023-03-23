@@ -30,6 +30,11 @@ urlpatterns=[
          name='sort-salads-by-pub-date-desc'),
     path('salads-sort-by-pub-date-asc/', views.sort_salads_by_pub_date_asc,
          name='sort-salads-by-pub-date-asc'),
+    path('salads-sort-by-title-desc/', views.sort_salads_by_title_desc,
+         name='sort-salads-by-title-desc'),
+    path('salads-sort-by-title-asc/', views.sort_salads_by_title_asc,
+         name='sort-salads-by-title-asc'),
+
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
     path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
     path('accounts/', include('django.contrib.auth.urls')),
