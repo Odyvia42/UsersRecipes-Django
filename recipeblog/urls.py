@@ -14,6 +14,7 @@ urlpatterns=[
          name='sort-users-by-recipes-amount-asc'),
     path('users-sort-by-recipes-amount-desc/', views.sort_user_list_by_recipes_amount_desc,
          name='sort-users-by-recipes-amount-desc'),
+
     path('all-recipes-sort-by-pub-date-desc/', views.sort_all_recipes_by_pub_date_desc,
          name='sort-all-recipes-by-pub-date-desc'),
     path('all-recipes-sort-by-pub-date-asc/', views.sort_all_recipes_by_pub_date_asc,
@@ -26,6 +27,7 @@ urlpatterns=[
          name='sort-all-recipes-by-likes-desc'),
     path('all-recipes-sort-by-likes-asc/', views.sort_all_recipes_by_likes_asc,
          name='sort-all-recipes-by-likes-asc'),
+
     path('salads-sort-by-pub-date-desc/', views.sort_salads_by_pub_date_desc,
          name='sort-salads-by-pub-date-desc'),
     path('salads-sort-by-pub-date-asc/', views.sort_salads_by_pub_date_asc,
@@ -38,6 +40,7 @@ urlpatterns=[
          name='sort-salads-by-likes-desc'),
     path('salads-sort-by-likes-asc/', views.sort_salads_by_likes_asc,
          name='sort-salads-by-likes-asc'),
+
     path('first-courses-sort-by-pub-date-desc/', views.sort_first_courses_by_pub_date_desc,
          name='sort-first-courses-by-pub-date-desc'),
     path('first-courses-sort-by-pub-date-asc/', views.sort_first_courses_by_pub_date_asc,
@@ -50,6 +53,7 @@ urlpatterns=[
          name='sort-first-courses-by-likes-desc'),
     path('first-courses-sort-by-likes-asc/', views.sort_first_courses_by_likes_asc,
          name='sort-first-courses-by-likes-asc'),
+
     path('main-courses-sort-by-pub-date-desc/', views.sort_main_courses_by_pub_date_desc,
          name='sort-main-courses-by-pub-date-desc'),
     path('main-courses-sort-by-pub-date-asc/', views.sort_main_courses_by_pub_date_asc,
@@ -75,6 +79,19 @@ urlpatterns=[
          name='sort-bakery-by-likes-desc'),
     path('bakery-sort-by-likes-asc/', views.sort_bakery_by_likes_asc,
          name='sort-bakery-by-likes-asc'),
+
+    path('desserts-sort-by-pub-date-desc/', views.sort_desserts_by_pub_date_desc,
+         name='sort-desserts-by-pub-date-desc'),
+    path('desserts-sort-by-pub-date-asc/', views.sort_desserts_by_pub_date_asc,
+         name='sort-desserts-by-pub-date-asc'),
+    path('desserts-sort-by-title-desc/', views.sort_desserts_by_title_desc,
+         name='sort-desserts-by-title-desc'),
+    path('desserts-sort-by-title-asc/', views.sort_desserts_by_title_asc,
+         name='sort-desserts-by-title-asc'),
+    path('desserts-sort-by-likes-desc/', views.sort_desserts_by_likes_desc,
+         name='sort-desserts-by-likes-desc'),
+    path('desserts-sort-by-likes-asc/', views.sort_desserts_by_likes_asc,
+         name='sort-desserts-by-likes-asc'),
 
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
     path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
