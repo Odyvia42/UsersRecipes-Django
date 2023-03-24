@@ -24,10 +24,7 @@ class UserDetailView(generic.DetailView):
     model = User
     template_name = 'user-detail.html'
 
-class RecipeListView(ListView):
-    model = Recipe
-    context_object_name = 'recipe_list'
-    template_name = 'recipe-list.html'
+
 
 class RecipeDetailView(generic.DetailView):
     model = Recipe
@@ -59,6 +56,7 @@ def show_current_user_profile(request, pk):
     my_recipes = Recipe.objects.filter(id = current_user.id)
     return render(request, 'my-profile.html', {'my_recipes': my_recipes})
 
+# представления для сортировки списка пользователей
 def sort_user_list_by_reg_date_asc(request):
     users = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('registration_date').asc())
     p = Paginator(users, 5)
@@ -120,7 +118,7 @@ def sort_user_list_by_recipes_amount_desc(request):
                    'paged_users': paged_users,
                    })
 
-
+# представления для форм создания и обновления рецептов
 def add_recipe(request):
     submitted = False
     if request.method == 'POST':
@@ -158,3 +156,439 @@ def update_user(request, user_id):
                   {'user': user,
                    'form': form})
 
+# представления для сортировки списка рецептов, основная категоризация по типу блюда
+
+# все рецепты
+def sort_all_recipes_by_pub_date_desc(request):
+    recipes = Recipe.objects.order_by(F('publication_date').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_pub_date_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+def sort_all_recipes_by_pub_date_asc(request):
+    recipes = Recipe.objects.order_by(F('publication_date').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_pub_date_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_all_recipes_by_title_desc(request):
+    recipes = Recipe.objects.order_by(F('title').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_title_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+def sort_all_recipes_by_title_asc(request):
+    recipes = Recipe.objects.order_by(F('title').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_title_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_all_recipes_by_likes_desc(request):
+    recipes = Recipe.objects.order_by(F('likes').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_likes_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+def sort_all_recipes_by_likes_asc(request):
+    recipes = Recipe.objects.order_by(F('likes').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/all-recipes/sort_all_recipes_by_likes_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+# салаты
+def sort_salads_by_pub_date_desc(request):
+    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('publication_date').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/salads/sort_salads_by_pub_date_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_salads_by_pub_date_asc(request):
+    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('publication_date').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/salads/sort_salads_by_pub_date_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+
+def sort_salads_by_title_desc(request):
+    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('title').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/salads/sort_salads_by_title_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_salads_by_title_asc(request):
+    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('title').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/salads/sort_salads_by_title_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_salads_by_likes_desc(request):
+    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('likes').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/salads/sort_salads_by_likes_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_salads_by_likes_asc(request):
+    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('likes').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/salads/sort_salads_by_likes_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+# первые блюда
+
+def sort_first_courses_by_pub_date_desc(request):
+    recipes = Recipe.objects.filter(dish_type='FC').order_by(F('publication_date').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/first-course/sort_first_courses_by_pub_date_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_first_courses_by_pub_date_asc(request):
+    recipes = Recipe.objects.filter(dish_type='FC').order_by(F('publication_date').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/first-course/sort_first_courses_by_pub_date_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+
+def sort_first_courses_by_title_desc(request):
+    recipes = Recipe.objects.filter(dish_type='FC').order_by(F('title').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/first-course/sort_first_courses_by_title_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_first_courses_by_title_asc(request):
+    recipes = Recipe.objects.filter(dish_type='FC').order_by(F('title').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/first-course/sort_first_courses_by_title_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_first_courses_by_likes_desc(request):
+    recipes = Recipe.objects.filter(dish_type='FC').order_by(F('likes').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/first-course/sort_first_courses_by_likes_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_first_courses_by_likes_asc(request):
+    recipes = Recipe.objects.filter(dish_type='FC').order_by(F('likes').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/first-course/sort_first_courses_by_likes_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+# вторые блюда
+
+def sort_main_courses_by_pub_date_desc(request):
+    recipes = Recipe.objects.filter(dish_type='MC').order_by(F('publication_date').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/main-course/sort_main_courses_by_pub_date_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_main_courses_by_pub_date_asc(request):
+    recipes = Recipe.objects.filter(dish_type='MC').order_by(F('publication_date').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/main-course/sort_main_courses_by_pub_date_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+
+def sort_main_courses_by_title_desc(request):
+    recipes = Recipe.objects.filter(dish_type='MC').order_by(F('title').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/main-course/sort_main_courses_by_title_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_main_courses_by_title_asc(request):
+    recipes = Recipe.objects.filter(dish_type='MC').order_by(F('title').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/main-course/sort_main_courses_by_title_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_main_courses_by_likes_desc(request):
+    recipes = Recipe.objects.filter(dish_type='MC').order_by(F('likes').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/main-course/sort_main_courses_by_likes_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_main_courses_by_likes_asc(request):
+    recipes = Recipe.objects.filter(dish_type='MC').order_by(F('likes').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/main-course/sort_main_courses_by_likes_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+# выпечка
+
+def sort_bakery_by_pub_date_desc(request):
+    recipes = Recipe.objects.filter(dish_type='BK').order_by(F('publication_date').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/bakery/sort_bakery_by_pub_date_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_bakery_by_pub_date_asc(request):
+    recipes = Recipe.objects.filter(dish_type='BK').order_by(F('publication_date').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/bakery/sort_bakery_by_pub_date_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+
+def sort_bakery_by_title_desc(request):
+    recipes = Recipe.objects.filter(dish_type='BK').order_by(F('title').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/bakery/sort_bakery_by_title_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_bakery_by_title_asc(request):
+    recipes = Recipe.objects.filter(dish_type='BK').order_by(F('title').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/bakery/sort_bakery_by_title_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_bakery_by_likes_desc(request):
+    recipes = Recipe.objects.filter(dish_type='BK').order_by(F('likes').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/bakery/sort_bakery_by_likes_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_bakery_by_likes_asc(request):
+    recipes = Recipe.objects.filter(dish_type='BK').order_by(F('likes').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/bakery/sort_bakery_by_likes_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+# десерты
+
+def sort_desserts_by_pub_date_desc(request):
+    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('publication_date').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/desserts/sort_desserts_by_pub_date_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_desserts_by_pub_date_asc(request):
+    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('publication_date').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/desserts/sort_desserts_by_pub_date_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+
+def sort_desserts_by_title_desc(request):
+    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('title').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/desserts/sort_desserts_by_title_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_desserts_by_title_asc(request):
+    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('title').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/desserts/sort_desserts_by_title_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_desserts_by_likes_desc(request):
+    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('likes').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/desserts/sort_desserts_by_likes_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_desserts_by_likes_asc(request):
+    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('likes').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/desserts/sort_desserts_by_likes_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+# напитки
+
+def sort_beverages_by_pub_date_desc(request):
+    recipes = Recipe.objects.filter(dish_type='BV').order_by(F('publication_date').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/beverages/sort_beverages_by_pub_date_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_beverages_by_pub_date_asc(request):
+    recipes = Recipe.objects.filter(dish_type='BV').order_by(F('publication_date').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/beverages/sort_beverages_by_pub_date_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+
+def sort_beverages_by_title_desc(request):
+    recipes = Recipe.objects.filter(dish_type='BV').order_by(F('title').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/beverages/sort_beverages_by_title_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_beverages_by_title_asc(request):
+    recipes = Recipe.objects.filter(dish_type='BV').order_by(F('title').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/beverages/sort_beverages_by_title_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_beverages_by_likes_desc(request):
+    recipes = Recipe.objects.filter(dish_type='BV').order_by(F('likes').desc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/beverages/sort_beverages_by_likes_desc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })
+
+def sort_beverages_by_likes_asc(request):
+    recipes = Recipe.objects.filter(dish_type='BV').order_by(F('likes').asc())
+    p = Paginator(recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'recipe-list/beverages/sort_beverages_by_likes_asc.html',
+                  {'recipes': recipes,
+                   'paged_recipes': paged_recipes,
+                   })

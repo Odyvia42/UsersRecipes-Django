@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href=" {% static 'recipeblog/recipe-list.css'%}">
+{% endblock %}
+
+    {% block homebutton %}
+    <a href=" {% url 'home' %} " class="button">На главную</a>
+    {% endblock %}
+
+
+
+{% block content %}
+
+
+    <h2>Рецепты</h2>
+        {% for recipe in paged_recipes %}
+            {% if recipe.status == 'AC' %}
+                <h3> <a href="{{ recipe.get_absolute_url }}"> {{ recipe.title }} </a></h3>
+                <p> {% if recipe.dish_type == 'SL' %}
+                    Салат
+                    {% elif recipe.dish_type == 'FC' %}
+                    Первое
+                    {% elif recipe.dish_type == 'MC' %}
+                    Второе
+                    {% elif recipe.dish_type == 'DS' %}
+                    Десерт
+                    {% elif recipe.dish_type == 'BV' %}
+                    Напиток
+                    {% elif recipe.dish_type == 'BK' %}
+                    Выпечка
+                    {% endif %} | Автор: {{ recipe.author }} | Опубликован: {{ recipe.publication_date }} |
+                    {% if recipe.author == request.user %}
+                    <a href=" {% url 'update-recipe' recipe.id %}">Редактировать</a>
+                    {% endif %}
+                </p>
+                <img src=" {{ recipe.picture }} " alt=" {{ recipe.title }} ">
+                <p> {{ recipe.description }} </p>
+                <p> Теги: {{ recipe.tags }} </p>
+                <p> ❤️ {{ recipe.likes }} </p>
+            {% endif %}
+        {% endfor %}
+    <div class="pagination">
+        {% if paged_recipes.has_previous %}
+            <a href="?page=1" class="pages page-nav">&laquo Первая</a>
+            <a href="?page= {{ paged_recipes.previous_page_number }} " class="pages page-nav">Предыдущая</a>
+        {% endif %}
+        <p class="pages current-page">Страница {{ paged_recipes.number }} из {{ paged_recipes.paginator.num_pages }}</p>
+        {% if paged_recipes.has_next %}
+            <a href="?page= {{ paged_recipes.next_page_number }}" class="pages page-nav">Следующая</a>
+            <a href="?page= {{ paged_recipes.paginator.num_pages }} " class="pages page-nav">Последняя &raquo</a>
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+{% block misc %}
+
+<p>Категории:</p>
+<a href=" {% url 'sort-all-recipes-by-pub-date-desc' %} "
+   class="button button-sort">Все рецепты</a>
+<a href=" {% url 'sort-salads-by-pub-date-desc' %} "
+   class="button button-sort">Салаты</a>
+<a href=" {% url 'sort-first-courses-by-pub-date-desc' %} "
+   class="button button-sort">Первое</a>
+<a href=" {% url 'sort-main-courses-by-pub-date-desc' %} "
+   class="button button-sort current-sort">Второе</a>
+<a href=" {% url 'sort-bakery-by-pub-date-desc' %} "
+   class="button button-sort">Выпечка</a>
+<a href=" {% url 'sort-desserts-by-pub-date-desc' %} "
+   class="button button-sort">Десерт</a>
+<a href=" {% url 'sort-beverages-by-pub-date-desc' %} "
+   class="button button-sort">Напиток</a>
+
+<p>Сортировать:</p>
+<a href=" {% url 'sort-main-courses-by-pub-date-desc' %} "
+   class="button button-sort">
+    По дате публикации ↓</a>
+<a href=" {% url 'sort-main-courses-by-pub-date-asc' %} "
+   class="button button-sort">По дате публикации ↑</a>
+<a href=" {% url 'sort-main-courses-by-title-desc' %} "
+   class="button button-sort">По алфавиту ↓</a>
+<a href=" {% url 'sort-main-courses-by-title-asc' %} "
+   class="button button-sort">По алфавиту ↑</a>
+<a href=" {% url 'sort-main-courses-by-likes-desc' %} "
+   class="button button-sort">По рейтингу ↓</a>
+<a href=" {% url 'sort-main-courses-by-likes-asc' %} "
+   class="button button-sort current-sort">По рейтингу ↑</a>
+{% endblock %}
