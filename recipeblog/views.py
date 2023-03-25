@@ -2,9 +2,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.views import PasswordChangeView
 from django.core.paginator import Paginator
 from django.db.models import F, Count
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest, HttpResponse, request, HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.views.generic import ListView
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
@@ -592,3 +592,9 @@ def sort_beverages_by_likes_asc(request):
                   {'recipes': recipes,
                    'paged_recipes': paged_recipes,
                    })
+# конец блока сортировки рецептов
+
+def like_recipe(request, pk):
+    recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
+    recipe.recipe_likes.add(request.user)
+    return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))

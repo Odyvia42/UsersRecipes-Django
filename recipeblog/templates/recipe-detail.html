@@ -43,5 +43,13 @@
         <p> {{ recipe.steps_to_complete|linebreaks }} </p>
         <p> Теги: {{ recipe.tags }} </p>
         <p> ❤️ {{ recipe.likes }} </p>
+        {{ recipe.recipe_likes.count }}
+
+        <form action=" {% url 'like-recipe' recipe.pk %} " method="POST">
+            {% csrf_token %}
+            <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
+                Мне нравится
+            </button>
+        </form>
 
 {% endblock %}
