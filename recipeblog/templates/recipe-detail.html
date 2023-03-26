@@ -42,8 +42,8 @@
         <h3>Приготовление:</h3>
         <p> {{ recipe.steps_to_complete|linebreaks }} </p>
         <p> Теги: {{ recipe.tags }} </p>
-        <p> ❤️ {{ recipe.likes }} </p>
-        {{ recipe.recipe_likes.count }}
+        <p> ❤️ {{ recipe.recipe_likes.count }} </p>
+
 
         <form action=" {% url 'like-recipe' recipe.pk %} " method="POST">
             {% csrf_token %}
