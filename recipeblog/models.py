@@ -32,6 +32,7 @@ class User(AbstractUser):
         return reverse('user-detail', args=[str(self.id)])
 
 
+
 class Recipe(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     publication_date = models.DateTimeField(auto_now_add=True, editable=False)
@@ -57,6 +58,7 @@ class Recipe(models.Model):
     steps_to_complete = models.TextField(default='')
     picture = models.URLField(default='')
     likes = models.PositiveIntegerField(blank=True, default=0)
+    recipe_likes = models.ManyToManyField(User, related_name='recipe_posts')
     tags = models.CharField(max_length=150)
     ACTIVE = 'AC'
     BLOCKED = 'BL'

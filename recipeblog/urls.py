@@ -116,4 +116,5 @@ urlpatterns=[
     path('users/update-user/<user_id>', views.update_user, name='update-user'),
     path('password/', views.ChangePasswordView.as_view(), name='change-password'),
     path('password-success/', views.change_password_success, name='password-success'),
+    path('like/<int:pk>', views.like_recipe, name='like-recipe'),
 ]

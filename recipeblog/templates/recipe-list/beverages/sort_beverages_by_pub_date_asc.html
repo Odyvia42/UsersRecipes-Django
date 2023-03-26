@@ -37,8 +37,9 @@
                 </p>
                 <img src=" {{ recipe.picture }} " alt=" {{ recipe.title }} ">
                 <p> {{ recipe.description }} </p>
+                <p> {{ recipe.description }} </p>
                 <p> Теги: {{ recipe.tags }} </p>
-                <p> ❤️ {{ recipe.likes }} </p>
+                <p> ❤️ {{ recipe.recipe_likes.count }} </p>
             {% endif %}
         {% endfor %}
     <div class="pagination">
