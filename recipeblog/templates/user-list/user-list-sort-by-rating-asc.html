@@ -40,9 +40,11 @@
         {% endif %}
     </div>
 
+
 {% endblock %}
 
 {% block misc %}
+
 <p>Сортировать:</p>
 <a href=" {% url 'sort-users-by-reg-date-asc' %} "
    class="button button-sort">По дате регистрации ↑</a>
@@ -56,9 +58,9 @@
 <a href=" {% url 'sort-users-by-recipes-amount-asc' %} "
    class="button button-sort">По количеству рецептов ↑</a>
 <a href=" {% url 'sort-users-by-recipes-amount-desc' %} "
-   class="button button-sort current-sort">По количеству рецептов ↓</a>
+   class="button button-sort">По количеству рецептов ↓</a>
 <a href=" {% url 'sort-users-by-rating-asc' %} "
-   class="button button-sort">По рейтингу ↑</a>
+   class="button button-sort current-sort">По рейтингу ↑</a>
 <a href=" {% url 'sort-users-by-rating-desc' %} "
    class="button button-sort">По рейтингу ↓</a>
 {% endblock %}

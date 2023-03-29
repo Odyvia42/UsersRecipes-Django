@@ -25,7 +25,7 @@
                 {% endif %}
                 | Всего рецептов: {{ user.num_recipes }}
             </p>
-            <p>Рейтинг {{ user.likes_amount }} </p>
+            <p>Рейтинг: {{ user.likes_amount }} </p>
         {% endif %}
     {% endfor %}
     <div class="pagination">
@@ -57,4 +57,8 @@
    class="button button-sort current-sort">По количеству рецептов ↑</a>
 <a href=" {% url 'sort-users-by-recipes-amount-desc' %} "
    class="button button-sort">По количеству рецептов ↓</a>
+<a href=" {% url 'sort-users-by-rating-asc' %} "
+   class="button button-sort">По рейтингу ↑</a>
+<a href=" {% url 'sort-users-by-rating-desc' %} "
+   class="button button-sort">По рейтингу ↓</a>
 {% endblock %}

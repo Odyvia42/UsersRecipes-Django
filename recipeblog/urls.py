@@ -14,6 +14,11 @@ urlpatterns=[
          name='sort-users-by-recipes-amount-asc'),
     path('users-sort-by-recipes-amount-desc/', views.sort_user_list_by_recipes_amount_desc,
          name='sort-users-by-recipes-amount-desc'),
+    path('users-sort-by-rating-asc/', views.sort_user_list_by_rating_asc,
+         name='sort-users-by-rating-asc'),
+    path('users-sort-by-rating-desc/', views.sort_user_list_by_rating_desc,
+         name='sort-users-by-rating-desc'),
+
 
     path('all-recipes-sort-by-pub-date-desc/', views.sort_all_recipes_by_pub_date_desc,
          name='sort-all-recipes-by-pub-date-desc'),

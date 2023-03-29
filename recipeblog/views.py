@@ -118,6 +118,26 @@ def sort_user_list_by_recipes_amount_desc(request):
                    'paged_users': paged_users,
                    })
 
+def sort_user_list_by_rating_asc(request):
+    users = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).order_by(F('likes_amount').asc())
+    p = Paginator(users, 5)
+    page = request.GET.get('page')
+    paged_users = p.get_page(page)
+    return render(request, 'user-list/user-list-sort-by-rating-asc.html',
+                  {'users': users,
+                   'paged_users': paged_users,
+                   })
+
+def sort_user_list_by_rating_desc(request):
+    users = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).order_by(F('likes_amount').desc())
+    p = Paginator(users, 5)
+    page = request.GET.get('page')
+    paged_users = p.get_page(page)
+    return render(request, 'user-list/user-list-sort-by-rating-desc.html',
+                  {'users': users,
+                   'paged_users': paged_users,
+                   })
+
 # представления для форм создания и обновления рецептов
 def add_recipe(request):
     submitted = False
