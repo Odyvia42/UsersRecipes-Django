@@ -14,6 +14,11 @@ urlpatterns=[
          name='sort-users-by-recipes-amount-asc'),
     path('users-sort-by-recipes-amount-desc/', views.sort_user_list_by_recipes_amount_desc,
          name='sort-users-by-recipes-amount-desc'),
+    path('users-sort-by-rating-asc/', views.sort_user_list_by_rating_asc,
+         name='sort-users-by-rating-asc'),
+    path('users-sort-by-rating-desc/', views.sort_user_list_by_rating_desc,
+         name='sort-users-by-rating-desc'),
+
 
     path('all-recipes-sort-by-pub-date-desc/', views.sort_all_recipes_by_pub_date_desc,
          name='sort-all-recipes-by-pub-date-desc'),
@@ -107,7 +112,9 @@ urlpatterns=[
          name='sort-beverages-by-likes-asc'),
 
     path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
-    path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
+#   path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
+    path('users/<int:pk>', views.show_user_profile, name='user-detail'),
+
     path('accounts/', include('django.contrib.auth.urls')),
     path('register_user/', views.register_user, name='register_user'),
     path('users/<int:pk>/my-profile/', views.show_current_user_profile, name='my-profile'),

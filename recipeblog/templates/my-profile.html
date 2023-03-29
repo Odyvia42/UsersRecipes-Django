@@ -22,11 +22,13 @@
             {% endif %}
 
         </p>
-        <p> Мои рецепты ({{ my_recipe|length }}): </p>
-        {% if my_recipe|length == 0 %}
+
+        <p> Рейтинг: {{ current_user.likes_amount }} </p>
+        <p> Мои рецепты ({{ current_user.num_recipes }}): </p>
+        {% if current_user.num_recipes == 0 %}
             <p>У Вас пока нет рецептов.</p>
         {% else %}
-            {% for recipe in my_recipe %}
+            {% for recipe in my_recipes %}
                 <p> {{ recipe }} </p>
             {% endfor %}
         {% endif %}
