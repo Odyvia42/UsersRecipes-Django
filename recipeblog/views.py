@@ -20,13 +20,8 @@ from recipeblog.models import User, Recipe
 def index(request: HttpRequest):
     return render(request, 'index.html')
 
-#class UserDetailView(generic.DetailView):
-#    model = User
-#    template_name = 'user-detail.html'
 
-def show_user_profile(request, pk):
-    user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).get(pk=pk)
-    return render(request, 'user-detail.html', {'user': user})
+
 
 class RecipeDetailView(generic.DetailView):
     model = Recipe
@@ -53,10 +48,14 @@ def register_user(request):
         form = RegisterUserForm
     return render(request, 'registration/register_user.html', {'form': form})
 
+def show_user_profile(request, pk):
+    user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).get(pk=pk)
+    return render(request, 'user-detail.html', {'user': user})
 def show_current_user_profile(request, pk):
-    current_user = User.objects.filter(id = pk).get()
+    current_user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).filter(id = pk).get()
     my_recipes = Recipe.objects.filter(id = current_user.id)
-    return render(request, 'my-profile.html', {'my_recipes': my_recipes})
+    return render(request, 'my-profile.html', {'current_user': current_user,
+                                               'my_recipes': my_recipes})
 
 # представления для сортировки списка пользователей
 def sort_user_list_by_reg_date_asc(request):
