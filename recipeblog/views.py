@@ -20,11 +20,13 @@ from recipeblog.models import User, Recipe
 def index(request: HttpRequest):
     return render(request, 'index.html')
 
-class UserDetailView(generic.DetailView):
-    model = User
-    template_name = 'user-detail.html'
+#class UserDetailView(generic.DetailView):
+#    model = User
+#    template_name = 'user-detail.html'
 
-
+def show_user_profile(request, pk):
+    user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).get(pk=pk)
+    return render(request, 'user-detail.html', {'user': user})
 
 class RecipeDetailView(generic.DetailView):
     model = Recipe
