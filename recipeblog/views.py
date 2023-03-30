@@ -23,9 +23,19 @@ def index(request: HttpRequest):
 
 
 
-class RecipeDetailView(generic.DetailView):
-    model = Recipe
-    template_name = 'recipe-detail.html'
+# class RecipeDetailView(generic.DetailView):
+#    model = Recipe
+#    template_name = 'recipe-detail.html'
+
+def show_recipe_detail(request, pk):
+    recipe = Recipe.objects.get(pk=pk)
+    is_faved = False
+    if recipe.favs.filter(id=request.user.id).exists():
+        is_faved=True
+    return render(request, 'recipe-detail.html',
+                  {'recipe': recipe,
+                   'is_faved': is_faved,
+                   })
 
 class ChangePasswordView(PasswordChangeView):
     form_class = PasswordChangeForm
@@ -631,3 +641,12 @@ def like_recipe(request, pk):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
     recipe.recipe_likes.add(request.user)
     return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))
+
+def fave_recipe(request, pk):
+    recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
+    if recipe.favs.filter(id=request.user.id).exists():
+        recipe.favs.remove(request.user)
+    else:
+        recipe.favs.add(request.user)
+    return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))
+

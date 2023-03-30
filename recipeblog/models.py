@@ -57,8 +57,8 @@ class Recipe(models.Model):
     ingredients = models.TextField(default='')
     steps_to_complete = models.TextField(default='')
     picture = models.URLField(default='')
-    likes = models.PositiveIntegerField(blank=True, default=0)
     recipe_likes = models.ManyToManyField(User, related_name='recipe_posts')
+    favs = models.ManyToManyField(User, related_name='recipe_favs', blank=True)
     tags = models.CharField(max_length=150)
     ACTIVE = 'AC'
     BLOCKED = 'BL'
