@@ -124,4 +124,5 @@ urlpatterns=[
     path('password-success/', views.change_password_success, name='password-success'),
     path('like/<int:pk>', views.like_recipe, name='like-recipe'),
     path('fave/<int:pk>', views.fave_recipe, name='fave-recipe'),
+    path('my-faves', views.show_my_favs, name='my-favs'),
 ]

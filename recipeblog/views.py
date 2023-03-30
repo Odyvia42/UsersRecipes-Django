@@ -650,3 +650,13 @@ def fave_recipe(request, pk):
         recipe.favs.add(request.user)
     return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))
 
+
+def show_my_favs(request):
+    user = request.user
+    fav_recipes = user.recipe_favs.all()
+    p = Paginator(fav_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'my_favs.html',
+                  {'paged_recipes': paged_recipes,
+                   'fav_recipes': fav_recipes})
