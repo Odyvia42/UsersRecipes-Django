@@ -109,3 +109,15 @@ border: 3px solid #00ec9e;
 .userlogin:active {
 background-color: #00ec9e;
 }
+
+.current-page {
+background-color: #ffecab;
+}
+
+a.current-page:link {
+background-color: #ffecab;
+}
+
+a.current-page:visited {
+background-color: #ffecab;
+}
