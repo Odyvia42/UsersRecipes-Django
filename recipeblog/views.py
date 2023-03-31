@@ -20,13 +20,6 @@ from recipeblog.models import User, Recipe
 def index(request: HttpRequest):
     return render(request, 'index.html')
 
-
-
-
-# class RecipeDetailView(generic.DetailView):
-#    model = Recipe
-#    template_name = 'recipe-detail.html'
-
 def show_recipe_detail(request, pk):
     recipe = Recipe.objects.get(pk=pk)
     is_faved = False
@@ -229,7 +222,7 @@ def sort_all_recipes_by_title_asc(request):
                    })
 
 def sort_all_recipes_by_likes_desc(request):
-    recipes = Recipe.objects.annotate(num_likes=Count('recipe_likes')).order_by(F('num_likes').desc())
+    recipes = Recipe.objects.annotate(num_likes=Count('likes')).order_by(F('num_likes').desc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -238,7 +231,7 @@ def sort_all_recipes_by_likes_desc(request):
                    'paged_recipes': paged_recipes,
                    })
 def sort_all_recipes_by_likes_asc(request):
-    recipes = Recipe.objects.annotate(num_likes=Count('recipe_likes')).order_by(F('num_likes').asc())
+    recipes = Recipe.objects.annotate(num_likes=Count('likes')).order_by(F('num_likes').asc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -290,7 +283,7 @@ def sort_salads_by_title_asc(request):
                    })
 
 def sort_salads_by_likes_desc(request):
-    recipes = Recipe.objects.filter(dish_type='SL').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='SL').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').desc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -301,7 +294,7 @@ def sort_salads_by_likes_desc(request):
                    })
 
 def sort_salads_by_likes_asc(request):
-    recipes = Recipe.objects.filter(dish_type='SL').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='SL').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').asc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -355,7 +348,7 @@ def sort_first_courses_by_title_asc(request):
                    })
 
 def sort_first_courses_by_likes_desc(request):
-    recipes = Recipe.objects.filter(dish_type='FC').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='FC').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').desc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -366,7 +359,7 @@ def sort_first_courses_by_likes_desc(request):
                    })
 
 def sort_first_courses_by_likes_asc(request):
-    recipes = Recipe.objects.filter(dish_type='FC').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='FC').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').asc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -420,7 +413,7 @@ def sort_main_courses_by_title_asc(request):
                    })
 
 def sort_main_courses_by_likes_desc(request):
-    recipes = Recipe.objects.filter(dish_type='MC').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='MC').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').desc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -431,7 +424,7 @@ def sort_main_courses_by_likes_desc(request):
                    })
 
 def sort_main_courses_by_likes_asc(request):
-    recipes = Recipe.objects.filter(dish_type='MC').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='MC').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').asc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -485,7 +478,7 @@ def sort_bakery_by_title_asc(request):
                    })
 
 def sort_bakery_by_likes_desc(request):
-    recipes = Recipe.objects.filter(dish_type='BK').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='BK').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').desc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -496,7 +489,7 @@ def sort_bakery_by_likes_desc(request):
                    })
 
 def sort_bakery_by_likes_asc(request):
-    recipes = Recipe.objects.filter(dish_type='BK').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='BK').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').asc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -550,7 +543,7 @@ def sort_desserts_by_title_asc(request):
                    })
 
 def sort_desserts_by_likes_desc(request):
-    recipes = Recipe.objects.filter(dish_type='DS').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='DS').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').desc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -561,7 +554,7 @@ def sort_desserts_by_likes_desc(request):
                    })
 
 def sort_desserts_by_likes_asc(request):
-    recipes = Recipe.objects.filter(dish_type='DS').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='DS').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').asc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -615,7 +608,7 @@ def sort_beverages_by_title_asc(request):
                    })
 
 def sort_beverages_by_likes_desc(request):
-    recipes = Recipe.objects.filter(dish_type='BV').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='BV').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').desc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -626,7 +619,7 @@ def sort_beverages_by_likes_desc(request):
                    })
 
 def sort_beverages_by_likes_asc(request):
-    recipes = Recipe.objects.filter(dish_type='BV').annotate(num_likes=Count('recipe_likes')).order_by(
+    recipes = Recipe.objects.filter(dish_type='BV').annotate(num_likes=Count('likes')).order_by(
         F('num_likes').asc())
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
@@ -639,7 +632,7 @@ def sort_beverages_by_likes_asc(request):
 
 def like_recipe(request, pk):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
-    recipe.recipe_likes.add(request.user)
+    recipe.likes.add(request.user)
     return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))
 
 def fave_recipe(request, pk):

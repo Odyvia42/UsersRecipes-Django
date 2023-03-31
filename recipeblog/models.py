@@ -57,7 +57,7 @@ class Recipe(models.Model):
     ingredients = models.TextField(default='')
     steps_to_complete = models.TextField(default='')
     picture = models.URLField(default='')
-    recipe_likes = models.ManyToManyField(User, related_name='recipe_posts')
+    likes = models.ManyToManyField(User, related_name='recipe_likes')
     favs = models.ManyToManyField(User, related_name='recipe_favs', blank=True)
     tags = models.CharField(max_length=150)
     ACTIVE = 'AC'
@@ -70,6 +70,9 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+    def total_likes(self):
+        return self.likes.count()
 
     def get_absolute_url(self):
         return reverse('recipe-detail', args=[str(self.id)])

@@ -42,7 +42,7 @@
         <h3>Приготовление:</h3>
         <p> {{ recipe.steps_to_complete|linebreaks }} </p>
         <p> Теги: {{ recipe.tags }} </p>
-        <p> ❤️ {{ recipe.recipe_likes.count }} </p>
+        <p> ❤️ {{ recipe.likes.count }} </p>
 
 
         <form action=" {% url 'like-recipe' recipe.pk %} " method="POST">
