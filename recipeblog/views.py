@@ -674,3 +674,4 @@ def show_user_favs(request, pk):
                   {'paged_recipes': paged_recipes,
                    'fav_recipes': fav_recipes,
                    'user': user})
+

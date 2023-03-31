@@ -165,15 +165,18 @@ margin-bottom: 5px;
 border: 3px solid #00ec9e;
 }
 
-.current-sort {
+.current-sort,
+.current-page {
 background-color: #ffecab;
 }
 
-a.currentsort:link {
+a.current-sort:link,
+a.current-page:link {
 background-color: #ffecab;
 }
 
-a.current-sort:visited {
+a.current-sort:visited,
+a.current-page:visited {
 background-color: #ffecab;
 }
 
