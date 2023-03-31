@@ -53,7 +53,10 @@ def register_user(request):
 
 def show_user_profile(request, pk):
     user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).get(pk=pk)
-    return render(request, 'user-detail.html', {'user': user})
+    fav_recipes = user.recipe_favs.all()
+    return render(request, 'user-detail.html',
+                  {'user': user,
+                   'fav_recipes': fav_recipes})
 def show_current_user_profile(request, pk):
     current_user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).filter(id = pk).get()
     my_recipes = Recipe.objects.filter(id = current_user.id)
@@ -653,3 +656,14 @@ def show_my_favs(request):
     return render(request, 'my_favs.html',
                   {'paged_recipes': paged_recipes,
                    'fav_recipes': fav_recipes})
+
+def show_user_favs(request, pk):
+    user = User.objects.get(id=pk)
+    fav_recipes = user.recipe_favs.all()
+    p = Paginator(fav_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'user_favs.html',
+                  {'paged_recipes': paged_recipes,
+                   'fav_recipes': fav_recipes,
+                   'user': user})

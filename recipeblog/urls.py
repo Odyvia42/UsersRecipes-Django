@@ -125,4 +125,5 @@ urlpatterns=[
     path('like/<int:pk>', views.like_recipe, name='like-recipe'),
     path('fave/<int:pk>', views.fave_recipe, name='fave-recipe'),
     path('my-faves', views.show_my_favs, name='my-favs'),
+    path('users/<int:pk>/favs/', views.show_user_favs, name='user-favs'),
 ]
