@@ -42,7 +42,7 @@
         <h3>Приготовление:</h3>
         <p> {{ recipe.steps_to_complete|linebreaks }} </p>
         <p> Теги: {{ recipe.tags }} </p>
-        <p> ❤️ {{ recipe.recipe_likes.count }} </p>
+        <p> ❤️ {{ recipe.likes.count }} </p>
 
 
         <form action=" {% url 'like-recipe' recipe.pk %} " method="POST">
@@ -51,5 +51,20 @@
                 Мне нравится
             </button>
         </form>
-
+        {% if is_faved == False %}
+        <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST">
+            {% csrf_token %}
+            <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
+                В избранное
+            </button>
+        </form>
+        {% else %}
+        В избранном
+        <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST">
+            {% csrf_token %}
+            <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
+                Удалить из избранного
+            </button>
+        </form>
+        {% endif %}
 {% endblock %}

@@ -15,7 +15,6 @@ class User(AbstractUser):
         (BLOCKED, 'Blocked')
     ]
     status = models.CharField(max_length=2, choices=status_choices, default=ACTIVE)
-    faves = models.TextField(default='', blank=True)
     registration_date = models.DateTimeField(auto_now_add=True, editable=False)
     update_date = models.DateTimeField(auto_now=True)
 
@@ -57,8 +56,8 @@ class Recipe(models.Model):
     ingredients = models.TextField(default='')
     steps_to_complete = models.TextField(default='')
     picture = models.URLField(default='')
-    likes = models.PositiveIntegerField(blank=True, default=0)
-    recipe_likes = models.ManyToManyField(User, related_name='recipe_posts')
+    likes = models.ManyToManyField(User, related_name='recipe_likes')
+    favs = models.ManyToManyField(User, related_name='recipe_favs', blank=True)
     tags = models.CharField(max_length=150)
     ACTIVE = 'AC'
     BLOCKED = 'BL'
@@ -70,6 +69,9 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+    def total_likes(self):
+        return self.likes.count()
 
     def get_absolute_url(self):
         return reverse('recipe-detail', args=[str(self.id)])

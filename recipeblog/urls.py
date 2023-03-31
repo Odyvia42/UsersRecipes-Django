@@ -111,8 +111,7 @@ urlpatterns=[
     path('beverages-sort-by-likes-asc/', views.sort_beverages_by_likes_asc,
          name='sort-beverages-by-likes-asc'),
 
-    path('recipes/<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
-#   path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
+    path('recipes/<int:pk>', views.show_recipe_detail, name='recipe-detail'),
     path('users/<int:pk>', views.show_user_profile, name='user-detail'),
 
     path('accounts/', include('django.contrib.auth.urls')),
@@ -124,4 +123,7 @@ urlpatterns=[
     path('password/', views.ChangePasswordView.as_view(), name='change-password'),
     path('password-success/', views.change_password_success, name='password-success'),
     path('like/<int:pk>', views.like_recipe, name='like-recipe'),
+    path('fave/<int:pk>', views.fave_recipe, name='fave-recipe'),
+    path('my-faves', views.show_my_favs, name='my-favs'),
+    path('users/<int:pk>/favs/', views.show_user_favs, name='user-favs'),
 ]
