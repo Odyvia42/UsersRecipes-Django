@@ -23,11 +23,15 @@ def index(request: HttpRequest):
 def show_recipe_detail(request, pk):
     recipe = Recipe.objects.get(pk=pk)
     is_faved = False
+    is_liked = False
     if recipe.favs.filter(id=request.user.id).exists():
         is_faved=True
+    if recipe.likes.filter(id=request.user.id).exists():
+        is_liked=True
     return render(request, 'recipe-detail.html',
                   {'recipe': recipe,
                    'is_faved': is_faved,
+                   'is_liked': is_liked,
                    })
 
 class ChangePasswordView(PasswordChangeView):
@@ -635,7 +639,10 @@ def sort_beverages_by_likes_asc(request):
 
 def like_recipe(request, pk):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
-    recipe.likes.add(request.user)
+    if recipe.likes.filter(id=request.user.id).exists():
+        recipe.likes.remove(request.user)
+    else:
+        recipe.likes.add(request.user)
     return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))
 
 def fave_recipe(request, pk):
