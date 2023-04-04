@@ -18,7 +18,8 @@ from recipeblog.models import User, Recipe
 # Create your views here.
 
 def index(request: HttpRequest):
-    return render(request, 'index.html')
+    top_recipes = Recipe.objects.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').desc())[:5]
+    return render(request, 'index.html', {'top_recipes': top_recipes})
 
 def show_recipe_detail(request, pk):
     recipe = Recipe.objects.get(pk=pk)
