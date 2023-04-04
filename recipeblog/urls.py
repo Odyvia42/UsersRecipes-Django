@@ -133,5 +133,13 @@ urlpatterns=[
     path('my-favs-bakery', views.show_my_favs_bakery, name='my-favs-bakery'),
     path('my-favs-beverages', views.show_my_favs_beverages, name='my-favs-beverages'),
 
+    path('my-recipes-all', views.show_my_recipes_all, name='my-recipes-all'),
+    path('my-recipes-salads', views.show_my_recipes_salads, name='my-recipes-salads'),
+    path('my-recipes-first-course', views.show_my_recipes_first_course, name='my-recipes-first-course'),
+    path('my-recipes-main-course', views.show_my_recipes_main_course, name='my-recipes-main-course'),
+    path('my-recipes-dessert', views.show_my_recipes_dessert, name='my-recipes-dessert'),
+    path('my-recipes-bakery', views.show_my_recipes_bakery, name='my-recipes-bakery'),
+    path('my-recipes-beverages', views.show_my_recipes_beverages, name='my-recipes-beverages'),
+
     path('users/<int:pk>/favs/', views.show_user_favs, name='user-favs'),
 ]
