@@ -124,6 +124,14 @@ urlpatterns=[
     path('password-success/', views.change_password_success, name='password-success'),
     path('like/<int:pk>', views.like_recipe, name='like-recipe'),
     path('fave/<int:pk>', views.fave_recipe, name='fave-recipe'),
-    path('my-faves', views.show_my_favs, name='my-favs'),
+
+    path('my-favs-all', views.show_my_favs_all, name='my-favs-all'),
+    path('my-favs-salads', views.show_my_favs_salads, name='my-favs-salads'),
+    path('my-favs-first-course', views.show_my_favs_first_course, name='my-favs-first-course'),
+    path('my-favs-main-course', views.show_my_favs_main_course, name='my-favs-main-course'),
+    path('my-favs-dessert', views.show_my_favs_dessert, name='my-favs-dessert'),
+    path('my-favs-bakery', views.show_my_favs_bakery, name='my-favs-bakery'),
+    path('my-favs-beverages', views.show_my_favs_beverages, name='my-favs-beverages'),
+
     path('users/<int:pk>/favs/', views.show_user_favs, name='user-favs'),
 ]
