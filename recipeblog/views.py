@@ -59,9 +59,13 @@ def register_user(request):
 def show_user_profile(request, pk):
     user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).get(pk=pk)
     fav_recipes = user.recipe_favs.all()
+    user_recipes = Recipe.objects.filter(author=user)
     return render(request, 'user-detail.html',
                   {'user': user,
-                   'fav_recipes': fav_recipes})
+                   'fav_recipes': fav_recipes,
+                   'user_recipes': user_recipes})
+
+
 def show_current_user_profile(request, pk):
     current_user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).filter(id = pk).get()
     my_recipes = Recipe.objects.filter(id = current_user.id)
@@ -874,4 +878,84 @@ def show_user_favs_beverages(request, pk):
     return render(request, 'user-favs/user_favs_beverages.html',
                   {'paged_recipes': paged_recipes,
                    'fav_recipes': fav_recipes,
+                   'user': user})
+
+
+# Блок показа всех рецептов конкретного пользователя
+
+def show_user_recipes_all(request, pk):
+    user = User.objects.get(id=pk)
+    user_recipes = Recipe.objects.filter(author=user)
+    p = Paginator(user_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'user-recipes/user_recipes_all.html',
+                  {'paged_recipes': paged_recipes,
+                   'user_recipes': user_recipes,
+                   'user': user})
+
+def show_user_recipes_salads(request, pk):
+    user = User.objects.get(id=pk)
+    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='SL')
+    p = Paginator(user_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'user-recipes/user_recipes_salads.html',
+                  {'paged_recipes': paged_recipes,
+                   'user_recipes': user_recipes,
+                   'user': user})
+
+def show_user_recipes_first_course(request, pk):
+    user = User.objects.get(id=pk)
+    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='FC')
+    p = Paginator(user_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'user-recipes/user_recipes_first_course.html',
+                  {'paged_recipes': paged_recipes,
+                   'user_recipes': user_recipes,
+                   'user': user})
+
+def show_user_recipes_main_course(request, pk):
+    user = User.objects.get(id=pk)
+    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='MC')
+    p = Paginator(user_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'user-recipes/user_recipes_main_course.html',
+                  {'paged_recipes': paged_recipes,
+                   'user_recipes': user_recipes,
+                   'user': user})
+
+def show_user_recipes_dessert(request, pk):
+    user = User.objects.get(id=pk)
+    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='DS')
+    p = Paginator(user_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'user-recipes/user_recipes_dessert.html',
+                  {'paged_recipes': paged_recipes,
+                   'user_recipes': user_recipes,
+                   'user': user})
+
+def show_user_recipes_bakery(request, pk):
+    user = User.objects.get(id=pk)
+    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='BK')
+    p = Paginator(user_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'user-recipes/user_recipes_bakery.html',
+                  {'paged_recipes': paged_recipes,
+                   'user_recipes': user_recipes,
+                   'user': user})
+
+def show_user_recipes_beverages(request, pk):
+    user = User.objects.get(id=pk)
+    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='BV')
+    p = Paginator(user_recipes, 5)
+    page = request.GET.get('page')
+    paged_recipes = p.get_page(page)
+    return render(request, 'user-recipes/user_recipes_beverages.html',
+                  {'paged_recipes': paged_recipes,
+                   'user_recipes': user_recipes,
                    'user': user})

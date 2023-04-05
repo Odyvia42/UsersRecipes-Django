@@ -148,4 +148,13 @@ urlpatterns=[
     path('users/<int:pk>/favs-dessert/', views.show_user_favs_dessert, name='user-favs-dessert'),
     path('users/<int:pk>/favs-bakery/', views.show_user_favs_bakery, name='user-favs-bakery'),
     path('users/<int:pk>/favs-beverages/', views.show_user_favs_beverages, name='user-favs-beverages'),
+
+    path('users/<int:pk>/recipes-all/', views.show_user_recipes_all, name='user-recipes-all'),
+    path('users/<int:pk>/recipes-salads/', views.show_user_recipes_salads, name='user-recipes-salads'),
+    path('users/<int:pk>/recipes-first-course/', views.show_user_recipes_first_course, name='user-recipes-first-course'),
+    path('users/<int:pk>/recipes-main-course/', views.show_user_recipes_main_course, name='user-recipes-main-course'),
+    path('users/<int:pk>/recipes-dessert/', views.show_user_recipes_dessert, name='user-recipes-dessert'),
+    path('users/<int:pk>/recipes-bakery/', views.show_user_recipes_bakery, name='user-recipes-bakery'),
+    path('users/<int:pk>/recipes-beverages/', views.show_user_recipes_beverages, name='user-recipes-beverages'),
+
 ]
