@@ -8,6 +8,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.views.generic import ListView
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from taggit.models import Tag
 
 from recipeblog.forms import RegisterUserForm, RecipeForm, UserForm
 from recipeblog.models import User, Recipe
@@ -33,6 +34,7 @@ def show_recipe_detail(request, pk):
                   {'recipe': recipe,
                    'is_faved': is_faved,
                    'is_liked': is_liked,
+
                    })
 
 class ChangePasswordView(PasswordChangeView):
@@ -163,6 +165,7 @@ def add_recipe(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
+            form.save_m2m()
             return HttpResponseRedirect('/add-recipe?submitted=True')
     else:
         form = RecipeForm
@@ -177,6 +180,7 @@ def update_recipe(request, recipe_id):
     form = RecipeForm(request.POST or None, instance=recipe)
     if form.is_valid():
         form.save()
+        form.save_m2m()
         return redirect('recipe-detail', pk=recipe_id)
     return render(request, 'update-recipe.html',
                   {'recipe': recipe,
