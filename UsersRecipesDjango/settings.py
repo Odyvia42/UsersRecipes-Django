@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +138,5 @@ LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = env("EMAIL_BACKEND")
 
 AUTH_USER_MODEL = 'recipeblog.User'
+
+TAGGIT_CASE_INSENSITIVE = True

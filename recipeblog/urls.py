@@ -157,4 +157,6 @@ urlpatterns=[
     path('users/<int:pk>/recipes-bakery/', views.show_user_recipes_bakery, name='user-recipes-bakery'),
     path('users/<int:pk>/recipes-beverages/', views.show_user_recipes_beverages, name='user-recipes-beverages'),
 
+    path('tag/<str:slug>', views.show_recipes_by_tag, name='show-recipes-by-tag'),
+
 ]

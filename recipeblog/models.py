@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 from django.db.models import Count
+from taggit.managers import TaggableManager
+
 
 # Create your models here.
 
@@ -58,7 +60,7 @@ class Recipe(models.Model):
     picture = models.URLField(default='')
     likes = models.ManyToManyField(User, related_name='recipe_likes')
     favs = models.ManyToManyField(User, related_name='recipe_favs', blank=True)
-    tags = models.CharField(max_length=150)
+    tags = TaggableManager(help_text='Введите теги через запятую', blank=True)
     ACTIVE = 'AC'
     BLOCKED = 'BL'
     status_choices = [
