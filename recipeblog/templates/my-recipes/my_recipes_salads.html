@@ -49,7 +49,11 @@
                     </p>
                     <img src=" {{ recipe.picture }} " alt=" {{ recipe.title }} ">
                     <p> {{ recipe.description }} </p>
-                    <p> Теги: {{ recipe.tags }} </p>
+                    <p> Теги:
+                        {% for tag in recipe.tags.all %}
+                            <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }}</a>
+                        {% endfor %}
+                    </p>
                     <p> ❤️ {{ recipe.likes.count }} </p>
                 {% endif %}
             {% endfor %}
