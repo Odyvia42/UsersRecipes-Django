@@ -17,7 +17,7 @@
     <h2>Теги</h2>
         <p>
             {% for tag in tags %}
-                <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }}</a><br/>
+                <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }} </a>({{tag.num_recipes}})<br/>
             {% endfor %}
         </p>
 
