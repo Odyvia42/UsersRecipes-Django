@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href=" {% static 'recipeblog/recipe-list.css'%}">
+{% endblock %}
+
+    {% block homebutton %}
+    <a href=" {% url 'home' %} " class="button">На главную</a>
+    {% endblock %}
+
+
+
+{% block content %}
+
+
+    <h2>Теги</h2>
+        <p>
+            {% for tag in tags %}
+                <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }}</a><br/>
+            {% endfor %}
+        </p>
+
+
+
+{% endblock %}
+
+{% block misc %}
+
+<p>Категории:</p>
+<a href=" {% url 'sort-all-recipes-by-pub-date-desc' %} "
+   class="button button-sort">Все рецепты</a>
+<a href=" {% url 'sort-salads-by-pub-date-desc' %} "
+   class="button button-sort">Салаты</a>
+<a href=" {% url 'sort-first-courses-by-pub-date-desc' %} "
+   class="button button-sort">Первое</a>
+<a href=" {% url 'sort-main-courses-by-pub-date-desc' %} "
+   class="button button-sort">Второе</a>
+<a href=" {% url 'sort-bakery-by-pub-date-desc' %} "
+   class="button button-sort">Выпечка</a>
+<a href=" {% url 'sort-desserts-by-pub-date-desc' %} "
+   class="button button-sort">Десерт</a>
+<a href=" {% url 'sort-beverages-by-pub-date-desc' %} "
+   class="button button-sort">Напиток</a>
+<a href=" {% url 'all-tags' %} "
+   class="button button-sort current-sort">Теги</a>
+
+{% endblock %}
