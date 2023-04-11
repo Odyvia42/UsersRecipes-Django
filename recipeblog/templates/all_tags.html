@@ -15,6 +15,15 @@
 
 
     <h2>Теги</h2>
+
+        <h3>Самые популярные</h3>
+        <p>
+            {% for tag in top_tags %}
+                <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }} </a>({{tag.num_recipes}})<br/>
+            {% endfor %}
+        </p>
+
+        <h3>Все теги</h3>
         <p>
             {% for tag in tags %}
                 <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }} </a>({{tag.num_recipes}})<br/>

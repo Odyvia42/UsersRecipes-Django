@@ -977,4 +977,7 @@ def show_recipes_by_tag(request, slug):
 
 def show_all_tags(request):
     tags = Tag.objects.all().annotate(num_recipes=Count('taggit_taggeditem_items')).order_by(F('name'))
-    return render(request, 'all_tags.html', {'tags': tags})
+    top_tags = Recipe.tags.most_common().annotate(num_recipes=Count('taggit_taggeditem_items'))[:5]
+    return render(request, 'all_tags.html',
+                  {'tags': tags,
+                   'top_tags': top_tags})
