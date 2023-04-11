@@ -59,7 +59,7 @@ def register_user(request):
     return render(request, 'registration/register_user.html', {'form': form})
 
 def show_user_profile(request, pk):
-    user = User.objects.annotate(num_recipes=Count('recipe')).annotate(likes_amount=Count('recipe__likes')).get(pk=pk)
+    user = User.objects.annotate(num_recipes=Count('recipe', distinct=True)).annotate(likes_amount=Count('recipe__likes')).get(pk=pk)
     fav_recipes = user.recipe_favs.all()
     user_recipes = Recipe.objects.filter(author=user)
     return render(request, 'user-detail.html',
