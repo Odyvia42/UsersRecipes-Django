@@ -966,7 +966,6 @@ def show_user_recipes_beverages(request, pk):
 
 # Получение списка рецептов по тегу
 def show_recipes_by_tag(request, slug):
-
     tag = get_object_or_404(Tag, slug=slug)
     tagged_recipes = Recipe.objects.filter(tags=tag)
     p = Paginator(tagged_recipes, 5)
@@ -975,3 +974,7 @@ def show_recipes_by_tag(request, slug):
     return render(request, 'recipes_by_tag.html',
                   {'paged_recipes': paged_recipes,
                    'tag': tag})
+
+def show_all_tags(request):
+    tags = Tag.objects.all().order_by(F('name'))
+    return render(request, 'all_tags.html', {'tags': tags})
