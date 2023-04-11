@@ -976,5 +976,5 @@ def show_recipes_by_tag(request, slug):
                    'tag': tag})
 
 def show_all_tags(request):
-    tags = Tag.objects.all().order_by(F('name'))
+    tags = Tag.objects.all().annotate(num_recipes=Count('taggit_taggeditem_items')).order_by(F('name'))
     return render(request, 'all_tags.html', {'tags': tags})
