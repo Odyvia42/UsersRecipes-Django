@@ -14,21 +14,20 @@
 {% block content %}
 
 
-    <h2>Теги</h2>
+    <h2>Авторы</h2>
 
-        <h3>Самые популярные</h3>
+
         <p>
-            {% for tag in top_tags %}
-                <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }} </a>({{tag.num_recipes}})<br/>
+            {% for author in authors %}
+                {% if author.num_recipes %}
+                    <a href="{% url 'user-recipes-all' author.pk %}">{{ author.username }} </a>
+                    Всего рецептов: {{author.num_recipes}}<br/>
+                {% endif %}
             {% endfor %}
         </p>
 
-        <h3>Все теги</h3>
-        <p>
-            {% for tag in tags %}
-                <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }} </a>({{tag.num_recipes}})<br/>
-            {% endfor %}
-        </p>
+
+
 
 
 
@@ -52,8 +51,8 @@
 <a href=" {% url 'sort-beverages-by-pub-date-desc' %} "
    class="button button-sort">Напиток</a>
 <a href=" {% url 'all-tags' %} "
-   class="button button-sort current-sort">Теги</a>
+   class="button button-sort">Теги</a>
 <a href=" {% url 'all-authors' %} "
-   class="button button-sort">Авторы</a>
+   class="button button-sort current-sort">Авторы</a>
 
 {% endblock %}

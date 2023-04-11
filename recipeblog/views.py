@@ -981,3 +981,9 @@ def show_all_tags(request):
     return render(request, 'all_tags.html',
                   {'tags': tags,
                    'top_tags': top_tags})
+
+def show_all_authors(request):
+    authors = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('username').asc())
+    return render(request, 'all_authors.html',
+                  {'authors': authors,
+                   })

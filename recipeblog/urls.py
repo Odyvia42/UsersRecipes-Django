@@ -159,6 +159,7 @@ urlpatterns=[
 
     path('tag/all-tags', views.show_all_tags, name='all-tags'),
     path('tag/<str:slug>', views.show_recipes_by_tag, name='show-recipes-by-tag'),
+    path('users/all-authors', views.show_all_authors, name='all-authors'),
 
 
 ]
