@@ -23,7 +23,8 @@
                 {% else %}
                     Заблокирован
                 {% endif %}
-                | Всего рецептов: {{ user.num_recipes }}
+                |
+                <a href=" {% url 'user-recipes-all' user.pk %}">Всего рецептов: {{ user.num_recipes }}</a>
             </p>
             <p>Рейтинг: {{ user.likes_amount }} </p>
         {% endif %}
