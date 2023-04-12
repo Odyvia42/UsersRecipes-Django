@@ -22,7 +22,7 @@
     </p>
     <p> Всего рецептов: {{ user.num_recipes }} </p>
     <p> Рейтинг: {{ user.likes_amount }} </p>
-    <a href=" {% url 'user-recipes-all' user.pk %}" class="button userlogin">Рецепты пользователя ({{ user_recipes.count }})</a>
+    <a href=" {% url 'user-recipes-all' user.pk %}" class="button userlogin">Рецепты пользователя ({{ user.num_recipes }})</a>
     <a href=" {% url 'user-favs-all' user.pk %}" class="button userlogin">Избранное ({{ fav_recipes.count }})</a>
 
 
