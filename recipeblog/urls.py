@@ -32,13 +32,7 @@ urlpatterns=[
 
     path('myrecipes/', include('myrecipes.urls')),
 
-    path('users/<int:pk>/favs-all/', views.show_user_favs_all, name='user-favs-all'),
-    path('users/<int:pk>/favs-salads/', views.show_user_favs_salads, name='user-favs-salads'),
-    path('users/<int:pk>/favs-first-course/', views.show_user_favs_first_course, name='user-favs-first-course'),
-    path('users/<int:pk>/favs-main-course/', views.show_user_favs_main_course, name='user-favs-main-course'),
-    path('users/<int:pk>/favs-dessert/', views.show_user_favs_dessert, name='user-favs-dessert'),
-    path('users/<int:pk>/favs-bakery/', views.show_user_favs_bakery, name='user-favs-bakery'),
-    path('users/<int:pk>/favs-beverages/', views.show_user_favs_beverages, name='user-favs-beverages'),
+    path('users/<int:pk>/', include('usersfavs.urls')),
 
     path('users/<int:pk>/recipes-all/', views.show_user_recipes_all, name='user-recipes-all'),
     path('users/<int:pk>/recipes-salads/', views.show_user_recipes_salads, name='user-recipes-salads'),
