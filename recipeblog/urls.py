@@ -32,7 +32,7 @@ urlpatterns=[
 
     path('myrecipes/', include('myrecipes.urls')),
 
-    path('users/<int:pk>/', include('usersfavs.urls')),
+    path('usersfavs/<int:pk>/', include('usersfavs.urls')),
 
     path('users/<int:pk>/recipes-all/', views.show_user_recipes_all, name='user-recipes-all'),
     path('users/<int:pk>/recipes-salads/', views.show_user_recipes_salads, name='user-recipes-salads'),
