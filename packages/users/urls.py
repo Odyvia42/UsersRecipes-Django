@@ -1,6 +1,6 @@
 from django.urls import path
 
-from recipeblog import views
+from packages.users import views
 
 urlpatterns = [
     path('sort-by-reg-date-asc/', views.sort_user_list_by_reg_date_asc, name='sort-users-by-reg-date-asc'),
