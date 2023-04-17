@@ -6,7 +6,7 @@ urlpatterns = [
     path('users/', include('packages.users.urls')),
     path('users/<int:pk>', views.show_user_profile, name='user-detail'),
     path('usersfavs/<int:pk>/', include('packages.usersfavs.urls')),
-    path('usersrecipes/<int:pk>/', include('usersrecipes.urls')),
+    path('usersrecipes/<int:pk>/', include('packages.usersrecipes.urls')),
     path('recipes/', include('packages.recipes.urls')),
     path('recipes/<int:pk>', views.show_recipe_detail, name='recipe-detail'),
     path('accounts/', include('django.contrib.auth.urls')),
