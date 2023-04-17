@@ -1,5 +1,5 @@
 from django.urls import path
-from recipeblog import views
+from packages.myrecipes import views
 
 urlpatterns = [
     path('all/', views.show_my_recipes_all, name='my-recipes-all'),
