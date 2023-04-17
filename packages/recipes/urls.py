@@ -1,5 +1,5 @@
 from django.urls import path, include
-from recipeblog import views
+from packages.recipes import views
 
 all_recipes_patterns = [
     path('sort-by-pub-date-desc/', views.sort_all_recipes_by_pub_date_desc,

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from recipeblog import views
+from packages.usersfavs import views
 
 urlpatterns = [
     path('favs-all/', views.show_user_favs_all, name='user-favs-all'),
