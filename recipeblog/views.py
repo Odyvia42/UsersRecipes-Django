@@ -124,7 +124,7 @@ def like_recipe(request, pk):
         recipe.likes.remove(request.user)
     else:
         recipe.likes.add(request.user)
-    return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def fave_recipe(request, pk):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
@@ -132,7 +132,7 @@ def fave_recipe(request, pk):
         recipe.favs.remove(request.user)
     else:
         recipe.favs.add(request.user)
-    return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 # Получение списка рецептов по тегу
 def show_recipes_by_tag(request, slug):
