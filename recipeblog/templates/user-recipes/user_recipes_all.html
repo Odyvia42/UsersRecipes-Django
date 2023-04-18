@@ -44,6 +44,40 @@
                         {% endfor %}
                     </p>
                     <p> ❤️ {{ recipe.likes.count }} </p>
+                    <p>
+                        {% if is_liked %}
+                            <form action=" {% url 'like-recipe' recipe.pk %} " method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button"
+                                        style="background-color:green; color: white">
+                                    Мне нравится
+                                </button>
+                            </form>
+                            {% else %}
+                            <form action=" {% url 'like-recipe' recipe.pk %} " method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
+                                    Мне нравится
+                                </button>
+                            </form>
+                            {% endif %}
+                            {% if is_faved == False %}
+                            <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
+                                    В избранное
+                                </button>
+                            </form>
+                            {% else %}
+                            В избранном
+                            <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
+                                    Удалить из избранного
+                                </button>
+                            </form>
+                        {% endif %}
+                    </p>
                 {% endif %}
             {% endfor %}
         {% else %}

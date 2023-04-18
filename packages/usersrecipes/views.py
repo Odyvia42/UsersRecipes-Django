@@ -8,6 +8,15 @@ from recipeblog.models import User, Recipe
 def show_user_recipes_all(request, pk):
     user = User.objects.get(id=pk)
     user_recipes = Recipe.objects.filter(author=user)
+    for user_recipe in user_recipes:
+        if user_recipe.likes.filter(id=request.user.id).exists():
+            user_recipe.is_liked = True
+        else:
+            user_recipe.is_liked = False
+        if user_recipe.favs.filter(id=request.user.id).exists():
+            user_recipe.is_faved = True
+        else:
+            user_recipe.is_faved = False
     p = Paginator(user_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
