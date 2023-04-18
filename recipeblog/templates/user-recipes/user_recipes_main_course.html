@@ -43,7 +43,7 @@
                             <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }}</a>
                         {% endfor %}
                     </p>
-                                        <p> ❤️ {{ recipe.likes.count }}
+                    <p> ❤️ {{ recipe.likes.count }}
                         {% if recipe.is_liked %}
                             <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
                                 {% csrf_token %}
