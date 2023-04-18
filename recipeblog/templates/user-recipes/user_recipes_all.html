@@ -45,7 +45,7 @@
                     </p>
                     <p> ❤️ {{ recipe.likes.count }} </p>
                     <p>
-                        {% if is_liked %}
+                        {% if recipe.is_liked %}
                             <form action=" {% url 'like-recipe' recipe.pk %} " method="POST">
                                 {% csrf_token %}
                                 <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button"
@@ -53,22 +53,22 @@
                                     Мне нравится
                                 </button>
                             </form>
-                            {% else %}
+                        {% else %}
                             <form action=" {% url 'like-recipe' recipe.pk %} " method="POST">
                                 {% csrf_token %}
                                 <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
                                     Мне нравится
                                 </button>
                             </form>
-                            {% endif %}
-                            {% if is_faved == False %}
+                        {% endif %}
+                        {% if recipe.is_faved == False %}
                             <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST">
                                 {% csrf_token %}
                                 <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
                                     В избранное
                                 </button>
                             </form>
-                            {% else %}
+                        {% else %}
                             В избранном
                             <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST">
                                 {% csrf_token %}
