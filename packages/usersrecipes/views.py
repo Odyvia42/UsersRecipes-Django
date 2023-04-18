@@ -28,6 +28,15 @@ def show_user_recipes_all(request, pk):
 def show_user_recipes_salads(request, pk):
     user = User.objects.get(id=pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='SL')
+    for user_recipe in user_recipes:
+        if user_recipe.likes.filter(id=request.user.id).exists():
+            user_recipe.is_liked = True
+        else:
+            user_recipe.is_liked = False
+        if user_recipe.favs.filter(id=request.user.id).exists():
+            user_recipe.is_faved = True
+        else:
+            user_recipe.is_faved = False
     p = Paginator(user_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -39,6 +48,15 @@ def show_user_recipes_salads(request, pk):
 def show_user_recipes_first_course(request, pk):
     user = User.objects.get(id=pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='FC')
+    for user_recipe in user_recipes:
+        if user_recipe.likes.filter(id=request.user.id).exists():
+            user_recipe.is_liked = True
+        else:
+            user_recipe.is_liked = False
+        if user_recipe.favs.filter(id=request.user.id).exists():
+            user_recipe.is_faved = True
+        else:
+            user_recipe.is_faved = False
     p = Paginator(user_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -50,6 +68,15 @@ def show_user_recipes_first_course(request, pk):
 def show_user_recipes_main_course(request, pk):
     user = User.objects.get(id=pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='MC')
+    for user_recipe in user_recipes:
+        if user_recipe.likes.filter(id=request.user.id).exists():
+            user_recipe.is_liked = True
+        else:
+            user_recipe.is_liked = False
+        if user_recipe.favs.filter(id=request.user.id).exists():
+            user_recipe.is_faved = True
+        else:
+            user_recipe.is_faved = False
     p = Paginator(user_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -61,6 +88,15 @@ def show_user_recipes_main_course(request, pk):
 def show_user_recipes_dessert(request, pk):
     user = User.objects.get(id=pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='DS')
+    for user_recipe in user_recipes:
+        if user_recipe.likes.filter(id=request.user.id).exists():
+            user_recipe.is_liked = True
+        else:
+            user_recipe.is_liked = False
+        if user_recipe.favs.filter(id=request.user.id).exists():
+            user_recipe.is_faved = True
+        else:
+            user_recipe.is_faved = False
     p = Paginator(user_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -72,6 +108,15 @@ def show_user_recipes_dessert(request, pk):
 def show_user_recipes_bakery(request, pk):
     user = User.objects.get(id=pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='BK')
+    for user_recipe in user_recipes:
+        if user_recipe.likes.filter(id=request.user.id).exists():
+            user_recipe.is_liked = True
+        else:
+            user_recipe.is_liked = False
+        if user_recipe.favs.filter(id=request.user.id).exists():
+            user_recipe.is_faved = True
+        else:
+            user_recipe.is_faved = False
     p = Paginator(user_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -83,6 +128,15 @@ def show_user_recipes_bakery(request, pk):
 def show_user_recipes_beverages(request, pk):
     user = User.objects.get(id=pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='BV')
+    for user_recipe in user_recipes:
+        if user_recipe.likes.filter(id=request.user.id).exists():
+            user_recipe.is_liked = True
+        else:
+            user_recipe.is_liked = False
+        if user_recipe.favs.filter(id=request.user.id).exists():
+            user_recipe.is_faved = True
+        else:
+            user_recipe.is_faved = False
     p = Paginator(user_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
