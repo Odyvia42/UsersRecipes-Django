@@ -9,6 +9,15 @@ from recipeblog.models import Recipe
 # все рецепты
 def sort_all_recipes_by_pub_date_desc(request):
     recipes = Recipe.objects.order_by(F('publication_date').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -18,6 +27,15 @@ def sort_all_recipes_by_pub_date_desc(request):
                    })
 def sort_all_recipes_by_pub_date_asc(request):
     recipes = Recipe.objects.order_by(F('publication_date').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -28,6 +46,15 @@ def sort_all_recipes_by_pub_date_asc(request):
 
 def sort_all_recipes_by_title_desc(request):
     recipes = Recipe.objects.order_by(F('title').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -37,6 +64,15 @@ def sort_all_recipes_by_title_desc(request):
                    })
 def sort_all_recipes_by_title_asc(request):
     recipes = Recipe.objects.order_by(F('title').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -47,6 +83,15 @@ def sort_all_recipes_by_title_asc(request):
 
 def sort_all_recipes_by_likes_desc(request):
     recipes = Recipe.objects.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -56,6 +101,15 @@ def sort_all_recipes_by_likes_desc(request):
                    })
 def sort_all_recipes_by_likes_asc(request):
     recipes = Recipe.objects.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -67,6 +121,15 @@ def sort_all_recipes_by_likes_asc(request):
 # салаты
 def sort_salads_by_pub_date_desc(request):
     recipes = Recipe.objects.filter(dish_type='SL').order_by(F('publication_date').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -77,6 +140,15 @@ def sort_salads_by_pub_date_desc(request):
 
 def sort_salads_by_pub_date_asc(request):
     recipes = Recipe.objects.filter(dish_type='SL').order_by(F('publication_date').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -88,6 +160,15 @@ def sort_salads_by_pub_date_asc(request):
 
 def sort_salads_by_title_desc(request):
     recipes = Recipe.objects.filter(dish_type='SL').order_by(F('title').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -98,6 +179,15 @@ def sort_salads_by_title_desc(request):
 
 def sort_salads_by_title_asc(request):
     recipes = Recipe.objects.filter(dish_type='SL').order_by(F('title').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -109,6 +199,15 @@ def sort_salads_by_title_asc(request):
 def sort_salads_by_likes_desc(request):
     recipes = Recipe.objects.filter(dish_type='SL').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -120,6 +219,15 @@ def sort_salads_by_likes_desc(request):
 def sort_salads_by_likes_asc(request):
     recipes = Recipe.objects.filter(dish_type='SL').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -132,6 +240,15 @@ def sort_salads_by_likes_asc(request):
 
 def sort_first_courses_by_pub_date_desc(request):
     recipes = Recipe.objects.filter(dish_type='FC').order_by(F('publication_date').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -142,6 +259,15 @@ def sort_first_courses_by_pub_date_desc(request):
 
 def sort_first_courses_by_pub_date_asc(request):
     recipes = Recipe.objects.filter(dish_type='FC').order_by(F('publication_date').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -153,6 +279,15 @@ def sort_first_courses_by_pub_date_asc(request):
 
 def sort_first_courses_by_title_desc(request):
     recipes = Recipe.objects.filter(dish_type='FC').order_by(F('title').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -163,6 +298,15 @@ def sort_first_courses_by_title_desc(request):
 
 def sort_first_courses_by_title_asc(request):
     recipes = Recipe.objects.filter(dish_type='FC').order_by(F('title').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -174,6 +318,15 @@ def sort_first_courses_by_title_asc(request):
 def sort_first_courses_by_likes_desc(request):
     recipes = Recipe.objects.filter(dish_type='FC').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -185,6 +338,15 @@ def sort_first_courses_by_likes_desc(request):
 def sort_first_courses_by_likes_asc(request):
     recipes = Recipe.objects.filter(dish_type='FC').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -197,6 +359,15 @@ def sort_first_courses_by_likes_asc(request):
 
 def sort_main_courses_by_pub_date_desc(request):
     recipes = Recipe.objects.filter(dish_type='MC').order_by(F('publication_date').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -207,6 +378,15 @@ def sort_main_courses_by_pub_date_desc(request):
 
 def sort_main_courses_by_pub_date_asc(request):
     recipes = Recipe.objects.filter(dish_type='MC').order_by(F('publication_date').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -218,6 +398,15 @@ def sort_main_courses_by_pub_date_asc(request):
 
 def sort_main_courses_by_title_desc(request):
     recipes = Recipe.objects.filter(dish_type='MC').order_by(F('title').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -228,6 +417,15 @@ def sort_main_courses_by_title_desc(request):
 
 def sort_main_courses_by_title_asc(request):
     recipes = Recipe.objects.filter(dish_type='MC').order_by(F('title').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -239,6 +437,15 @@ def sort_main_courses_by_title_asc(request):
 def sort_main_courses_by_likes_desc(request):
     recipes = Recipe.objects.filter(dish_type='MC').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -250,6 +457,15 @@ def sort_main_courses_by_likes_desc(request):
 def sort_main_courses_by_likes_asc(request):
     recipes = Recipe.objects.filter(dish_type='MC').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -262,6 +478,15 @@ def sort_main_courses_by_likes_asc(request):
 
 def sort_bakery_by_pub_date_desc(request):
     recipes = Recipe.objects.filter(dish_type='BK').order_by(F('publication_date').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -272,6 +497,15 @@ def sort_bakery_by_pub_date_desc(request):
 
 def sort_bakery_by_pub_date_asc(request):
     recipes = Recipe.objects.filter(dish_type='BK').order_by(F('publication_date').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -283,6 +517,15 @@ def sort_bakery_by_pub_date_asc(request):
 
 def sort_bakery_by_title_desc(request):
     recipes = Recipe.objects.filter(dish_type='BK').order_by(F('title').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -293,6 +536,15 @@ def sort_bakery_by_title_desc(request):
 
 def sort_bakery_by_title_asc(request):
     recipes = Recipe.objects.filter(dish_type='BK').order_by(F('title').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -304,6 +556,15 @@ def sort_bakery_by_title_asc(request):
 def sort_bakery_by_likes_desc(request):
     recipes = Recipe.objects.filter(dish_type='BK').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -315,6 +576,15 @@ def sort_bakery_by_likes_desc(request):
 def sort_bakery_by_likes_asc(request):
     recipes = Recipe.objects.filter(dish_type='BK').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -327,6 +597,15 @@ def sort_bakery_by_likes_asc(request):
 
 def sort_desserts_by_pub_date_desc(request):
     recipes = Recipe.objects.filter(dish_type='DS').order_by(F('publication_date').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -337,6 +616,15 @@ def sort_desserts_by_pub_date_desc(request):
 
 def sort_desserts_by_pub_date_asc(request):
     recipes = Recipe.objects.filter(dish_type='DS').order_by(F('publication_date').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -348,6 +636,15 @@ def sort_desserts_by_pub_date_asc(request):
 
 def sort_desserts_by_title_desc(request):
     recipes = Recipe.objects.filter(dish_type='DS').order_by(F('title').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -358,6 +655,15 @@ def sort_desserts_by_title_desc(request):
 
 def sort_desserts_by_title_asc(request):
     recipes = Recipe.objects.filter(dish_type='DS').order_by(F('title').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -369,6 +675,15 @@ def sort_desserts_by_title_asc(request):
 def sort_desserts_by_likes_desc(request):
     recipes = Recipe.objects.filter(dish_type='DS').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -380,6 +695,15 @@ def sort_desserts_by_likes_desc(request):
 def sort_desserts_by_likes_asc(request):
     recipes = Recipe.objects.filter(dish_type='DS').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -392,6 +716,15 @@ def sort_desserts_by_likes_asc(request):
 
 def sort_beverages_by_pub_date_desc(request):
     recipes = Recipe.objects.filter(dish_type='BV').order_by(F('publication_date').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -402,6 +735,15 @@ def sort_beverages_by_pub_date_desc(request):
 
 def sort_beverages_by_pub_date_asc(request):
     recipes = Recipe.objects.filter(dish_type='BV').order_by(F('publication_date').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -413,6 +755,15 @@ def sort_beverages_by_pub_date_asc(request):
 
 def sort_beverages_by_title_desc(request):
     recipes = Recipe.objects.filter(dish_type='BV').order_by(F('title').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -423,6 +774,15 @@ def sort_beverages_by_title_desc(request):
 
 def sort_beverages_by_title_asc(request):
     recipes = Recipe.objects.filter(dish_type='BV').order_by(F('title').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -434,6 +794,15 @@ def sort_beverages_by_title_asc(request):
 def sort_beverages_by_likes_desc(request):
     recipes = Recipe.objects.filter(dish_type='BV').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').desc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -445,6 +814,15 @@ def sort_beverages_by_likes_desc(request):
 def sort_beverages_by_likes_asc(request):
     recipes = Recipe.objects.filter(dish_type='BV').annotate(likes_amount=Count('likes')).order_by(
         F('likes_amount').asc())
+    for recipe in recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
