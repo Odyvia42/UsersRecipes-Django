@@ -7,6 +7,15 @@ from django.shortcuts import render
 def show_my_favs_all(request):
     user = request.user
     fav_recipes = user.recipe_favs.all()
+    for recipe in fav_recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(fav_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -17,6 +26,15 @@ def show_my_favs_all(request):
 def show_my_favs_salads(request):
     user = request.user
     fav_recipes = user.recipe_favs.filter(dish_type='SL')
+    for recipe in fav_recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(fav_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -27,6 +45,15 @@ def show_my_favs_salads(request):
 def show_my_favs_first_course(request):
     user = request.user
     fav_recipes = user.recipe_favs.filter(dish_type='FC')
+    for recipe in fav_recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(fav_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -37,6 +64,15 @@ def show_my_favs_first_course(request):
 def show_my_favs_main_course(request):
     user = request.user
     fav_recipes = user.recipe_favs.filter(dish_type='MC')
+    for recipe in fav_recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(fav_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -47,6 +83,15 @@ def show_my_favs_main_course(request):
 def show_my_favs_dessert(request):
     user = request.user
     fav_recipes = user.recipe_favs.filter(dish_type='DS')
+    for recipe in fav_recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(fav_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -57,6 +102,15 @@ def show_my_favs_dessert(request):
 def show_my_favs_bakery(request):
     user = request.user
     fav_recipes = user.recipe_favs.filter(dish_type='BK')
+    for recipe in fav_recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(fav_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
@@ -67,6 +121,15 @@ def show_my_favs_bakery(request):
 def show_my_favs_beverages(request):
     user = request.user
     fav_recipes = user.recipe_favs.filter(dish_type='BV')
+    for recipe in fav_recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     p = Paginator(fav_recipes, 5)
     page = request.GET.get('page')
     paged_recipes = p.get_page(page)
