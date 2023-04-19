@@ -24,18 +24,16 @@ def index(request: HttpRequest):
 
 def show_recipe_detail(request, pk):
     recipe = Recipe.objects.get(pk=pk)
-    is_faved = False
-    is_liked = False
-    if recipe.favs.filter(id=request.user.id).exists():
-        is_faved=True
     if recipe.likes.filter(id=request.user.id).exists():
-        is_liked=True
+        recipe.is_liked = True
+    else:
+        recipe.is_liked = False
+    if recipe.favs.filter(id=request.user.id).exists():
+        recipe.is_faved = True
+    else:
+        recipe.is_faved = False
     return render(request, 'recipe-detail.html',
-                  {'recipe': recipe,
-                   'is_faved': is_faved,
-                   'is_liked': is_liked,
-
-                   })
+                  {'recipe': recipe})
 
 class ChangePasswordView(PasswordChangeView):
     form_class = PasswordChangeForm

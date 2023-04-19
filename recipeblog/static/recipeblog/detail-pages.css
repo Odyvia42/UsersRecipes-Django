@@ -121,3 +121,16 @@ background-color: #ffecab;
 a.current-page:visited {
 background-color: #ffecab;
 }
+
+
+/* Оформление блока лайков и добавления в избранное */
+
+.likefaveform {
+display: inline-block;
+}
+
+.liked,
+.faved {
+background-color: lightgreen;
+color: black
+}
