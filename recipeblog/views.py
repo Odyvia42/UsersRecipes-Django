@@ -157,3 +157,5 @@ def show_all_authors(request):
     return render(request, 'all_authors.html',
                   {'authors': authors,
                    })
+
+
