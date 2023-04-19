@@ -31,7 +31,8 @@
                         Напиток
                         {% elif recipe.dish_type == 'BK' %}
                         Выпечка
-                        {% endif %} | Автор: {{ recipe.author }} | Опубликован: {{ recipe.publication_date }} |
+                        {% endif %} | Автор: <a href="{{ recipe.author.get_absolute_url }}"> {{ recipe.author }}</a> |
+                        Опубликован: {{ recipe.publication_date }} |
                         {% if recipe.author == request.user %}
                         <a href=" {% url 'update-recipe' recipe.id %}">Редактировать</a>
                         {% endif %}
