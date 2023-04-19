@@ -16,8 +16,8 @@
             <a href=" {% url 'update-user' user.id %} " class="button userlogin">Редактировать профиль</a>
             <a href=" {% url 'add-recipe' %}" class="button userlogin">Новый рецепт</a>
             <a href=" {% url 'my-recipes-all' %}" class="button userlogin">Мои рецепты</a>
-            <a href=" {% url 'my-likes-all' %}" class="button userlogin">Понравилось</a>
-            <a href=" {% url 'my-favs-all' %}" class="button userlogin current-page">Избранное</a>
+            <a href=" {% url 'my-likes-all' %}" class="button userlogin current-page">Понравилось</a>
+            <a href=" {% url 'my-favs-all' %}" class="button userlogin">Избранное</a>
             <a href=" {% url 'logout' %}" class="button userlogin">Выйти</a>
         {% else %}
             <a href=" {% url 'login' %}" class="button userlogin">Войти на сайт</a>
@@ -26,7 +26,7 @@
     {% endblock %}
 
 {% block content %}
-    <h2>Избранные рецепты: выпечка ({{ fav_recipes.count }})</h2>
+    <h2>Понравившиеся рецепты в категории "первое блюдо" ({{ liked_recipes.count }})</h2>
         {% if paged_recipes %}
             {% for recipe in paged_recipes %}
                 {% if recipe.status == 'AC' %}
@@ -112,19 +112,19 @@
 {% block misc %}
 
 <p>Категории:</p>
-<a href=" {% url 'my-favs-all' %} "
+<a href=" {% url 'my-likes-all' %} "
    class="button button-sort">Все рецепты</a>
-<a href=" {% url 'my-favs-salads' %} "
+<a href=" {% url 'my-likes-salads' %} "
    class="button button-sort">Салаты</a>
-<a href=" {% url 'my-favs-first-course' %} "
-   class="button button-sort">Первое</a>
-<a href=" {% url 'my-favs-main-course' %} "
+<a href=" {% url 'my-likes-first-course' %} "
+   class="button button-sort current-sort">Первое</a>
+<a href=" {% url 'my-likes-main-course' %} "
    class="button button-sort">Второе</a>
-<a href=" {% url 'my-favs-bakery' %} "
-   class="button button-sort current-sort">Выпечка</a>
-<a href=" {% url 'my-favs-dessert' %} "
+<a href=" {% url 'my-likes-bakery' %} "
+   class="button button-sort">Выпечка</a>
+<a href=" {% url 'my-likes-dessert' %} "
    class="button button-sort">Десерт</a>
-<a href=" {% url 'my-favs-beverages' %} "
+<a href=" {% url 'my-likes-beverages' %} "
    class="button button-sort">Напиток</a>
 
 
