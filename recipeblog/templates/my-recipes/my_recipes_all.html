@@ -26,6 +26,7 @@
     {% endblock %}
 
 {% block content %}
+    {% if request.user.is_authenticated %}
     <h2>Мои рецепты ({{ my_recipes.count }})</h2>
         {% if paged_recipes %}
             {% for recipe in paged_recipes %}
@@ -96,17 +97,22 @@
         {% endif %}
 
     <div class="pagination">
-        {% if paged_recipes.has_previous %}
-            <a href="?page=1" class="pages page-nav">&laquo Первая</a>
-            <a href="?page= {{ paged_recipes.previous_page_number }} " class="pages page-nav">Предыдущая</a>
-        {% endif %}
-        <p class="pages current-page">Страница {{ paged_recipes.number }} из {{ paged_recipes.paginator.num_pages }}</p>
-        {% if paged_recipes.has_next %}
-            <a href="?page= {{ paged_recipes.next_page_number }}" class="pages page-nav">Следующая</a>
-            <a href="?page= {{ paged_recipes.paginator.num_pages }} " class="pages page-nav">Последняя &raquo</a>
+        {% if request.user.is_authenticated %}
+            {% if paged_recipes.has_previous %}
+                <a href="?page=1" class="pages page-nav">&laquo Первая</a>
+                <a href="?page= {{ paged_recipes.previous_page_number }} " class="pages page-nav">Предыдущая</a>
+            {% endif %}
+            <p class="pages current-page">Страница {{ paged_recipes.number }} из {{ paged_recipes.paginator.num_pages }}</p>
+            {% if paged_recipes.has_next %}
+                <a href="?page= {{ paged_recipes.next_page_number }}" class="pages page-nav">Следующая</a>
+                <a href="?page= {{ paged_recipes.paginator.num_pages }} " class="pages page-nav">Последняя &raquo</a>
+            {% endif %}
         {% endif %}
     </div>
-
+    {% else %}
+        <h2 style="color: red">Недостаточно прав для просмотра страницы</h2>
+        <p>Чтобы просматривать эту страницу нужно войти на сайт.</p>
+    {% endif %}
 
 {% endblock %}
 
