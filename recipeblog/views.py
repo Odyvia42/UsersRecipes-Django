@@ -20,6 +20,15 @@ from recipeblog.models import User, Recipe
 
 def index(request: HttpRequest):
     top_recipes = Recipe.objects.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').desc())[:5]
+    for recipe in top_recipes:
+        if recipe.likes.filter(id=request.user.id).exists():
+            recipe.is_liked = True
+        else:
+            recipe.is_liked = False
+        if recipe.favs.filter(id=request.user.id).exists():
+            recipe.is_faved = True
+        else:
+            recipe.is_faved = False
     return render(request, 'index.html', {'top_recipes': top_recipes})
 
 def show_recipe_detail(request, pk):

@@ -118,3 +118,14 @@ border: 3px solid #00ec9e;
 background-color: #00ec9e;
 }
 
+/* Оформление блока лайков и добавления в избранное */
+
+.likefaveform {
+display: inline-block;
+}
+
+.liked,
+.faved {
+background-color: lightgreen;
+color: black
+}
