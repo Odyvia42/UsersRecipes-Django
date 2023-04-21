@@ -1,22 +1,12 @@
-from django.core.paginator import Paginator
 from django.shortcuts import render
-
-
-def get_all_favs(request):
-    return request.user.recipe_favs.all()
-
-def get_paginated(request, queryset):
-    p = Paginator(queryset, 5)
-    page = request.GET.get('page')
-    return p.get_page(page)
-
+from recipeblog.utils import get_all_my_favs, get_paginated
 
 
 # Блок "Избранное" текущего пользователя
 
 def show_my_favs_all(request):
     if request.user.is_authenticated:
-        fav_recipes = get_all_favs(request)
+        fav_recipes = get_all_my_favs(request)
         for recipe in fav_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -35,7 +25,7 @@ def show_my_favs_all(request):
 
 def show_my_favs_salads(request):
     if request.user.is_authenticated:
-        fav_recipes = get_all_favs(request).filter(dish_type='SL')
+        fav_recipes = get_all_my_favs(request).filter(dish_type='SL')
         for recipe in fav_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -54,7 +44,7 @@ def show_my_favs_salads(request):
 
 def show_my_favs_first_course(request):
     if request.user.is_authenticated:
-        fav_recipes = get_all_favs(request).filter(dish_type='FC')
+        fav_recipes = get_all_my_favs(request).filter(dish_type='FC')
         for recipe in fav_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -73,7 +63,7 @@ def show_my_favs_first_course(request):
 
 def show_my_favs_main_course(request):
     if request.user.is_authenticated:
-        fav_recipes = get_all_favs(request).filter(dish_type='MC')
+        fav_recipes = get_all_my_favs(request).filter(dish_type='MC')
         for recipe in fav_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -92,7 +82,7 @@ def show_my_favs_main_course(request):
 
 def show_my_favs_dessert(request):
     if request.user.is_authenticated:
-        fav_recipes = get_all_favs(request).filter(dish_type='DS')
+        fav_recipes = get_all_my_favs(request).filter(dish_type='DS')
         for recipe in fav_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -111,7 +101,7 @@ def show_my_favs_dessert(request):
 
 def show_my_favs_bakery(request):
     if request.user.is_authenticated:
-        fav_recipes = get_all_favs(request).filter(dish_type='BK')
+        fav_recipes = get_all_my_favs(request).filter(dish_type='BK')
         for recipe in fav_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -130,7 +120,7 @@ def show_my_favs_bakery(request):
 
 def show_my_favs_beverages(request):
     if request.user.is_authenticated:
-        fav_recipes = get_all_favs(request).filter(dish_type='BV')
+        fav_recipes = get_all_my_favs(request).filter(dish_type='BV')
         for recipe in fav_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
