@@ -26,6 +26,7 @@
     {% endblock %}
 
 {% block content %}
+    {% if request.user.is_authenticated %}
     <h2>Понравившиеся рецепты в категории "выпечка" ({{ liked_recipes.count }})</h2>
         {% if paged_recipes %}
             {% for recipe in paged_recipes %}
@@ -106,12 +107,16 @@
             <a href="?page= {{ paged_recipes.paginator.num_pages }} " class="pages page-nav">Последняя &raquo</a>
         {% endif %}
     </div>
+    {% else %}
+        <h2 style="color: red">Недостаточно прав для просмотра страницы</h2>
+        <p>Чтобы просматривать эту страницу нужно войти на сайт.</p>
+    {% endif %}
 
 
 {% endblock %}
 
 {% block misc %}
-
+{% if request.user.is_authenticated %}
 <p>Категории:</p>
 <a href=" {% url 'my-likes-all' %} "
    class="button button-sort">Все рецепты</a>
@@ -127,6 +132,8 @@
    class="button button-sort">Десерт</a>
 <a href=" {% url 'my-likes-beverages' %} "
    class="button button-sort">Напиток</a>
+{% else %}
 
+{% endif %}
 
 {% endblock %}
