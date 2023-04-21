@@ -108,7 +108,8 @@ def update_recipe(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     form = RecipeForm(request.POST or None, instance=recipe)
     if form.is_valid():
-        form.save()
+        obj = form.save(commit=False)
+        obj.save()
         form.save_m2m()
         return redirect('recipe-detail', pk=recipe_id)
     return render(request, 'update-recipe.html',
