@@ -12,27 +12,16 @@
 {% block content %}
 
     <h2> {{ user.username }} </h2>
-    {% if request.user.is_authenticated %}
-    <p> Дата регистрации: {{ user.registration_date }} | Последнее обновление профиля: {{ user.update_date }} |
-        Статус: {% if user.status == 'AC' %}
-            Активен
-        {% else %}
-            Заблокирован
-        {% endif %}
-    </p>
-    <p> Всего рецептов: {{ user.num_recipes }} </p>
-    <p> Рейтинг: {{ user.likes_amount }} </p>
-    <a href=" {% url 'user-recipes-all' user.pk %}" class="button userlogin">Рецепты пользователя ({{ user.num_recipes }})</a>
-    <a href=" {% url 'user-favs-all' user.pk %}" class="button userlogin">Избранное ({{ fav_recipes.count }})</a>
-
-
-
-
-
-    {% else %}
-    <p>Эта страница доступна только авторизованным пользователям.</p>
-    <p>Для просмотра, пожалуйста, <a href=" {% url 'login' %}">авторизуйтесь</a>.</p>
-    {% endif %}
-
+        <p> Дата регистрации: {{ user.registration_date }} | Последнее обновление профиля: {{ user.update_date }} |
+            Статус: {% if user.status == 'AC' %}
+                Активен
+            {% else %}
+                Заблокирован
+            {% endif %}
+        </p>
+        <p> Всего рецептов: {{ user.num_recipes }} </p>
+        <p> Рейтинг: {{ user.likes_amount }} </p>
+        <a href=" {% url 'user-recipes-all' user.pk %}" class="button userlogin">Рецепты пользователя ({{ user.num_recipes }})</a>
+        <a href=" {% url 'user-favs-all' user.pk %}" class="button userlogin">Избранное ({{ fav_recipes.count }})</a>
 
 {% endblock %}
