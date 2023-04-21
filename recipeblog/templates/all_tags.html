@@ -26,7 +26,9 @@
         <h3>Все теги</h3>
         <p>
             {% for tag in tags %}
-                <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }} </a>({{tag.num_recipes}})<br/>
+                {% if tag.num_recipes > 0 %}
+                    <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }} </a>({{tag.num_recipes}})<br/>
+                {% endif %}
             {% endfor %}
         </p>
 
