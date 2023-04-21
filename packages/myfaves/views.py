@@ -15,6 +15,7 @@ def show_my_favs_all(request):
     else:
         return render(request, 'my-favs/my_favs_all.html')
 
+
 def show_my_favs_salads(request):
     if request.user.is_authenticated:
         fav_recipes = get_all_my_favs(request).filter(dish_type='SL')
@@ -25,6 +26,7 @@ def show_my_favs_salads(request):
                        'fav_recipes': fav_recipes})
     else:
         return render(request, 'my-favs/my_favs_salads.html')
+
 
 def show_my_favs_first_course(request):
     if request.user.is_authenticated:
@@ -37,6 +39,7 @@ def show_my_favs_first_course(request):
     else:
         return render(request, 'my-favs/my_favs_first_course.html')
 
+
 def show_my_favs_main_course(request):
     if request.user.is_authenticated:
         fav_recipes = get_all_my_favs(request).filter(dish_type='MC')
@@ -47,6 +50,7 @@ def show_my_favs_main_course(request):
                        'fav_recipes': fav_recipes})
     else:
         return render(request, 'my-favs/my_favs_main_course.html')
+
 
 def show_my_favs_dessert(request):
     if request.user.is_authenticated:
@@ -59,6 +63,7 @@ def show_my_favs_dessert(request):
     else:
         return render(request, 'my-favs/my_favs_dessert.html')
 
+
 def show_my_favs_bakery(request):
     if request.user.is_authenticated:
         fav_recipes = get_all_my_favs(request).filter(dish_type='BK')
@@ -69,6 +74,7 @@ def show_my_favs_bakery(request):
                        'fav_recipes': fav_recipes})
     else:
         return render(request, 'my-favs/my_favs_bakery.html')
+
 
 def show_my_favs_beverages(request):
     if request.user.is_authenticated:
