@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.core.paginator import Paginator
 from django.db.models import F, Count
@@ -44,7 +45,8 @@ def show_recipe_detail(request, pk):
     return render(request, 'recipe-detail.html',
                   {'recipe': recipe})
 
-class ChangePasswordView(PasswordChangeView):
+
+class ChangePasswordView(PasswordChangeView, LoginRequiredMixin):
     form_class = PasswordChangeForm
     template_name = 'registration/change-password.html'
     success_url = reverse_lazy('password-success')
