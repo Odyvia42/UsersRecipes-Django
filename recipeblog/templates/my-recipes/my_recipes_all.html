@@ -117,7 +117,7 @@
 {% endblock %}
 
 {% block misc %}
-
+{% if request.user.is_authenticated %}
 <p>Категории:</p>
 <a href=" {% url 'my-recipes-all' %} "
    class="button button-sort current-sort">Все рецепты</a>
@@ -133,6 +133,8 @@
    class="button button-sort">Десерт</a>
 <a href=" {% url 'my-recipes-beverages' %} "
    class="button button-sort">Напиток</a>
+{% else %}
 
+{% endif %}
 
 {% endblock %}
