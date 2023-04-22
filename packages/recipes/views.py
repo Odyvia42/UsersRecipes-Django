@@ -181,7 +181,7 @@ def sort_salads_by_pub_date_asc(request):
 
 
 def sort_salads_by_title_desc(request):
-    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('title').desc())
+    recipes = get_salads(order_by_title_desc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -200,7 +200,7 @@ def sort_salads_by_title_desc(request):
                    })
 
 def sort_salads_by_title_asc(request):
-    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('title').asc())
+    recipes = get_salads(order_by_title_asc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -219,8 +219,7 @@ def sort_salads_by_title_asc(request):
                    })
 
 def sort_salads_by_likes_desc(request):
-    recipes = Recipe.objects.filter(dish_type='SL').annotate(likes_amount=Count('likes')).order_by(
-        F('likes_amount').desc())
+    recipes = get_salads(order_by_likes_amount_desc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -239,8 +238,7 @@ def sort_salads_by_likes_desc(request):
                    })
 
 def sort_salads_by_likes_asc(request):
-    recipes = Recipe.objects.filter(dish_type='SL').annotate(likes_amount=Count('likes')).order_by(
-        F('likes_amount').asc())
+    recipes = get_salads(order_by_likes_amount_asc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
