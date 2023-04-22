@@ -30,6 +30,9 @@ def get_salads(queryset):
 def get_first_courses(queryset):
     return queryset.filter(dish_type='FC')
 
+def get_main_courses(queryset):
+    return queryset.filter(dish_type='MC')
+
 
 # все рецепты
 def sort_all_recipes_by_pub_date_desc(request):
