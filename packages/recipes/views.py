@@ -11,9 +11,11 @@ def order_by_pub_date_desc(queryset):
 def order_by_pub_date_asc(queryset):
     return queryset.order_by(F('publication_date').asc())
 
+def order_by_title_desc(queryset):
+    return queryset.order_by(F('title').desc())
 
-
-
+def order_by_title_asc(queryset):
+    return queryset.order_by(F('title').asc())
 
 
 # все рецепты
@@ -55,7 +57,7 @@ def sort_all_recipes_by_pub_date_asc(request):
                    })
 
 def sort_all_recipes_by_title_desc(request):
-    recipes = Recipe.objects.order_by(F('title').desc())
+    recipes = order_by_title_desc(Recipe.objects)
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -73,7 +75,7 @@ def sort_all_recipes_by_title_desc(request):
                    'paged_recipes': paged_recipes,
                    })
 def sort_all_recipes_by_title_asc(request):
-    recipes = Recipe.objects.order_by(F('title').asc())
+    recipes = order_by_title_desc(Recipe.objects)
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
