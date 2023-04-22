@@ -24,6 +24,10 @@ def order_by_likes_amount_desc(queryset):
 def order_by_likes_amount_asc(queryset):
     return queryset.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').asc())
 
+def get_salads(queryset):
+    return queryset.filter(dish_type='SL')
+
+
 # все рецепты
 def sort_all_recipes_by_pub_date_desc(request):
     recipes = order_by_pub_date_desc(Recipe.objects.all())
@@ -138,7 +142,7 @@ def sort_all_recipes_by_likes_asc(request):
 
 # салаты
 def sort_salads_by_pub_date_desc(request):
-    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('publication_date').desc())
+    recipes = get_salads(order_by_pub_date_desc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -157,7 +161,7 @@ def sort_salads_by_pub_date_desc(request):
                    })
 
 def sort_salads_by_pub_date_asc(request):
-    recipes = Recipe.objects.filter(dish_type='SL').order_by(F('publication_date').asc())
+    recipes = get_salads(order_by_pub_date_asc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
