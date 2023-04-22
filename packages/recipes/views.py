@@ -18,6 +18,12 @@ def order_by_title_asc(queryset):
     return queryset.order_by(F('title').asc())
 
 
+def order_by_likes_amount_desc(queryset):
+    return queryset.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').desc())
+
+def order_by_likes_amount_asc(queryset):
+    return queryset.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').asc())
+
 # все рецепты
 def sort_all_recipes_by_pub_date_desc(request):
     recipes = order_by_pub_date_desc(Recipe.objects.all())
@@ -94,7 +100,7 @@ def sort_all_recipes_by_title_asc(request):
                    })
 
 def sort_all_recipes_by_likes_desc(request):
-    recipes = Recipe.objects.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').desc())
+    recipes = order_by_likes_amount_desc(Recipe.objects.all())
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -112,7 +118,7 @@ def sort_all_recipes_by_likes_desc(request):
                    'paged_recipes': paged_recipes,
                    })
 def sort_all_recipes_by_likes_asc(request):
-    recipes = Recipe.objects.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').asc())
+    recipes = order_by_likes_amount_asc(Recipe.objects.all())
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
