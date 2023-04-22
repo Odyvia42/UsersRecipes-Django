@@ -57,7 +57,7 @@ def sort_all_recipes_by_pub_date_asc(request):
                    })
 
 def sort_all_recipes_by_title_desc(request):
-    recipes = order_by_title_desc(Recipe.objects)
+    recipes = order_by_title_desc(Recipe.objects.all())
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -75,7 +75,7 @@ def sort_all_recipes_by_title_desc(request):
                    'paged_recipes': paged_recipes,
                    })
 def sort_all_recipes_by_title_asc(request):
-    recipes = order_by_title_desc(Recipe.objects)
+    recipes = order_by_title_desc(Recipe.objects.all())
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
