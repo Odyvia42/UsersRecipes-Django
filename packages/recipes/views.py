@@ -5,10 +5,20 @@ from django.shortcuts import render
 
 from recipeblog.models import Recipe
 
+def order_by_pub_date_desc(queryset):
+    return queryset.order_by(F('publication_date').desc())
+
+def order_by_pub_date_asc(queryset):
+    return queryset.order_by(F('publication_date').asc())
+
+
+
+
+
 
 # все рецепты
 def sort_all_recipes_by_pub_date_desc(request):
-    recipes = Recipe.objects.order_by(F('publication_date').desc())
+    recipes = order_by_pub_date_desc(Recipe.objects.all())
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -26,7 +36,7 @@ def sort_all_recipes_by_pub_date_desc(request):
                    'paged_recipes': paged_recipes,
                    })
 def sort_all_recipes_by_pub_date_asc(request):
-    recipes = Recipe.objects.order_by(F('publication_date').asc())
+    recipes = order_by_pub_date_asc(Recipe.objects.all())
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
