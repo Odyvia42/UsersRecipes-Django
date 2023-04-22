@@ -56,7 +56,7 @@ def show_my_likes_dessert(request):
         paged_recipes = get_paginated(request, liked_recipes)
         return render(request, 'my-likes/my_likes_dessert.html',
                       {'paged_recipes': paged_recipes,
-                       'fav_recipes': liked_recipes})
+                       'liked_recipes': liked_recipes})
     else:
         return render(request, 'my-likes/my_likes_dessert.html')
 
