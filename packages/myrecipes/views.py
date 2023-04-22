@@ -1,14 +1,11 @@
-# Блок "Мои рецепты"
 from django.core.paginator import Paginator
 from django.shortcuts import render
-
-from recipeblog.models import Recipe
+from recipeblog.utils import get_all_my_recipes
 
 
 def show_my_recipes_all(request):
     if request.user.is_authenticated:
-        user = request.user
-        my_recipes = Recipe.objects.filter(author=user)
+        my_recipes = get_all_my_recipes(request)
         for recipe in my_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -29,8 +26,7 @@ def show_my_recipes_all(request):
 
 def show_my_recipes_salads(request):
     if request.user.is_authenticated:
-        user = request.user
-        my_recipes = Recipe.objects.filter(author=user).filter(dish_type='SL')
+        my_recipes = get_all_my_recipes(request).filter(dish_type='SL')
         for recipe in my_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -51,8 +47,7 @@ def show_my_recipes_salads(request):
 
 def show_my_recipes_first_course(request):
     if request.user.is_authenticated:
-        user = request.user
-        my_recipes = Recipe.objects.filter(author=user).filter(dish_type='FC')
+        my_recipes = get_all_my_recipes(request).filter(dish_type='FC')
         for recipe in my_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -73,8 +68,7 @@ def show_my_recipes_first_course(request):
 
 def show_my_recipes_main_course(request):
     if request.user.is_authenticated:
-        user = request.user
-        my_recipes = Recipe.objects.filter(author=user).filter(dish_type='MC')
+        my_recipes = get_all_my_recipes(request).filter(dish_type='MC')
         for recipe in my_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -95,8 +89,7 @@ def show_my_recipes_main_course(request):
 
 def show_my_recipes_dessert(request):
     if request.user.is_authenticated:
-        user = request.user
-        my_recipes = Recipe.objects.filter(author=user).filter(dish_type='DS')
+        my_recipes = get_all_my_recipes(request).filter(dish_type='DS')
         for recipe in my_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -117,8 +110,7 @@ def show_my_recipes_dessert(request):
 
 def show_my_recipes_bakery(request):
     if request.user.is_authenticated:
-        user = request.user
-        my_recipes = Recipe.objects.filter(author=user).filter(dish_type='BK')
+        my_recipes = get_all_my_recipes(request).filter(dish_type='BK')
         for recipe in my_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True
@@ -139,8 +131,7 @@ def show_my_recipes_bakery(request):
 
 def show_my_recipes_beverages(request):
     if request.user.is_authenticated:
-        user = request.user
-        my_recipes = Recipe.objects.filter(author=user).filter(dish_type='BV')
+        my_recipes = get_all_my_recipes(request).filter(dish_type='BV')
         for recipe in my_recipes:
             if recipe.likes.filter(id=request.user.id).exists():
                 recipe.is_liked = True

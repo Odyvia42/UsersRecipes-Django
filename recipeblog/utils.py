@@ -1,5 +1,7 @@
 from django.core.paginator import Paginator
 
+from recipeblog.models import Recipe
+
 
 def get_all_my_favs(request):
     return request.user.recipe_favs.all()
@@ -23,3 +25,6 @@ def check_likes_faves(request, queryset):
 
 def get_liked_recipes(request):
     return request.user.recipe_likes.all()
+
+def get_all_my_recipes(request):
+    return Recipe.objects.filter(author=request.user)
