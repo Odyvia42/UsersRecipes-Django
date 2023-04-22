@@ -20,3 +20,6 @@ def check_likes_faves(request, queryset):
         else:
             recipe.is_faved = False
     return queryset
+
+def get_liked_recipes(request):
+    return request.user.recipe_likes.all()
