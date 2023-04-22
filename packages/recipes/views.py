@@ -27,6 +27,9 @@ def order_by_likes_amount_asc(queryset):
 def get_salads(queryset):
     return queryset.filter(dish_type='SL')
 
+def get_first_courses(queryset):
+    return queryset.filter(dish_type='FC')
+
 
 # все рецепты
 def sort_all_recipes_by_pub_date_desc(request):
