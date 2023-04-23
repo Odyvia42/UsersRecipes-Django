@@ -622,7 +622,7 @@ def sort_bakery_by_likes_asc(request):
 # десерты
 
 def sort_desserts_by_pub_date_desc(request):
-    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('publication_date').desc())
+    recipes = get_desserts(order_by_pub_date_desc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -641,7 +641,7 @@ def sort_desserts_by_pub_date_desc(request):
                    })
 
 def sort_desserts_by_pub_date_asc(request):
-    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('publication_date').asc())
+    recipes = get_desserts(order_by_pub_date_asc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -661,7 +661,7 @@ def sort_desserts_by_pub_date_asc(request):
 
 
 def sort_desserts_by_title_desc(request):
-    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('title').desc())
+    recipes = get_desserts(order_by_title_desc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -680,7 +680,7 @@ def sort_desserts_by_title_desc(request):
                    })
 
 def sort_desserts_by_title_asc(request):
-    recipes = Recipe.objects.filter(dish_type='DS').order_by(F('title').asc())
+    recipes = get_desserts(order_by_title_asc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -699,8 +699,7 @@ def sort_desserts_by_title_asc(request):
                    })
 
 def sort_desserts_by_likes_desc(request):
-    recipes = Recipe.objects.filter(dish_type='DS').annotate(likes_amount=Count('likes')).order_by(
-        F('likes_amount').desc())
+    recipes = get_desserts(order_by_likes_amount_desc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
@@ -719,8 +718,7 @@ def sort_desserts_by_likes_desc(request):
                    })
 
 def sort_desserts_by_likes_asc(request):
-    recipes = Recipe.objects.filter(dish_type='DS').annotate(likes_amount=Count('likes')).order_by(
-        F('likes_amount').asc())
+    recipes = get_desserts(order_by_likes_amount_asc(Recipe.objects.all()))
     for recipe in recipes:
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.is_liked = True
