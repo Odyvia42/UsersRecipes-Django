@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.db.models import Count, F
 
 from recipeblog.models import Recipe
 
@@ -28,3 +29,40 @@ def get_liked_recipes(request):
 
 def get_all_my_recipes(request):
     return Recipe.objects.filter(author=request.user)
+
+def order_by_pub_date_desc(queryset):
+    return queryset.order_by(F('publication_date').desc())
+
+def order_by_pub_date_asc(queryset):
+    return queryset.order_by(F('publication_date').asc())
+
+def order_by_title_desc(queryset):
+    return queryset.order_by(F('title').desc())
+
+def order_by_title_asc(queryset):
+    return queryset.order_by(F('title').asc())
+
+
+def order_by_likes_amount_desc(queryset):
+    return queryset.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').desc())
+
+def order_by_likes_amount_asc(queryset):
+    return queryset.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').asc())
+
+def get_salads(queryset):
+    return queryset.filter(dish_type='SL')
+
+def get_first_courses(queryset):
+    return queryset.filter(dish_type='FC')
+
+def get_main_courses(queryset):
+    return queryset.filter(dish_type='MC')
+
+def get_bakery(queryset):
+    return queryset.filter(dish_type='BK')
+
+def get_desserts(queryset):
+    return queryset.filter(dish_type='DS')
+
+def get_beverages(queryset):
+    return queryset.filter(dish_type='BV')
