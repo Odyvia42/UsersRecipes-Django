@@ -36,6 +36,9 @@ def get_main_courses(queryset):
 def get_bakery(queryset):
     return queryset.filter(dish_type='BK')
 
+def get_desserts(queryset):
+    return queryset.filter(dish_type='DS')
+
 
 # все рецепты
 def sort_all_recipes_by_pub_date_desc(request):
