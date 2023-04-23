@@ -1,8 +1,5 @@
 
-from django.core.paginator import Paginator
-from django.db.models import F, Count
 from django.shortcuts import render
-from recipeblog.models import Recipe
 from recipeblog.utils import *
 
 # все рецепты
