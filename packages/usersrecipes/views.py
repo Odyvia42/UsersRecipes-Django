@@ -1,12 +1,11 @@
 # Блок показа всех рецептов конкретного пользователя
 from django.core.paginator import Paginator
 from django.shortcuts import render
-
 from recipeblog.models import User, Recipe
-
+from recipeblog.utils import *
 
 def show_user_recipes_all(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     user_recipes = Recipe.objects.filter(author=user)
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
@@ -26,7 +25,7 @@ def show_user_recipes_all(request, pk):
                    'user': user})
 
 def show_user_recipes_salads(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='SL')
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
@@ -46,7 +45,7 @@ def show_user_recipes_salads(request, pk):
                    'user': user})
 
 def show_user_recipes_first_course(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='FC')
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
@@ -66,7 +65,7 @@ def show_user_recipes_first_course(request, pk):
                    'user': user})
 
 def show_user_recipes_main_course(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='MC')
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
@@ -86,7 +85,7 @@ def show_user_recipes_main_course(request, pk):
                    'user': user})
 
 def show_user_recipes_dessert(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='DS')
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
@@ -106,7 +105,7 @@ def show_user_recipes_dessert(request, pk):
                    'user': user})
 
 def show_user_recipes_bakery(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='BK')
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
@@ -126,7 +125,7 @@ def show_user_recipes_bakery(request, pk):
                    'user': user})
 
 def show_user_recipes_beverages(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     user_recipes = Recipe.objects.filter(author=user).filter(dish_type='BV')
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
