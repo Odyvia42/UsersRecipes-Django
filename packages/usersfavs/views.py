@@ -22,7 +22,7 @@ def show_user_favs_all(request, pk):
                    'user': user})
 
 def show_user_favs_salads(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     fav_recipes = user.recipe_favs.filter(dish_type='SL')
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
@@ -32,7 +32,7 @@ def show_user_favs_salads(request, pk):
                    'user': user})
 
 def show_user_favs_first_course(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     fav_recipes = user.recipe_favs.filter(dish_type='FC')
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
@@ -42,7 +42,7 @@ def show_user_favs_first_course(request, pk):
                    'user': user})
 
 def show_user_favs_main_course(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     fav_recipes = user.recipe_favs.filter(dish_type='MC')
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
@@ -52,7 +52,7 @@ def show_user_favs_main_course(request, pk):
                    'user': user})
 
 def show_user_favs_dessert(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     fav_recipes = user.recipe_favs.filter(dish_type='DS')
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
@@ -62,7 +62,7 @@ def show_user_favs_dessert(request, pk):
                    'user': user})
 
 def show_user_favs_bakery(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     fav_recipes = user.recipe_favs.filter(dish_type='BK')
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
@@ -72,7 +72,7 @@ def show_user_favs_bakery(request, pk):
                    'user': user})
 
 def show_user_favs_beverages(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     fav_recipes = user.recipe_favs.filter(dish_type='BV')
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
