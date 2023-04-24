@@ -4,9 +4,11 @@ from django.shortcuts import render
 from recipeblog.models import User, Recipe
 from recipeblog.utils import *
 
+
+
 def show_user_recipes_all(request, pk):
     user = get_user_by_id(pk)
-    user_recipes = Recipe.objects.filter(author=user)
+    user_recipes = get_all_users_recipes(pk)
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
             user_recipe.is_liked = True
