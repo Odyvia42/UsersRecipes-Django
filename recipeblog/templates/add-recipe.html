@@ -33,7 +33,7 @@
                 <p>Рецепт успешно сохранён</p>
                 <br/>
                 <a href=" {% url 'add-recipe' %}" class="button userlogin">Добавить ещё один рецепт</a>
-                <a href=" {% url 'recipe-list' %}" class="button userlogin">Перейти в список рецептов</a>
+                <a href=" {% url 'sort-all-recipes-by-pub-date-desc' %}" class="button userlogin">Перейти в список рецептов</a>
             </div>
         {% else %}
             <form action="" method="POST">
