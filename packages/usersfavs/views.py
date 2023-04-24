@@ -7,10 +7,13 @@ from recipeblog.models import User
 def get_user_by_id(pk):
     return User.objects.get(id=pk)
 
+def get_all_users_favs(pk):
+    return get_user_by_id(pk).recipe_favs.all()
+
 
 def show_user_favs_all(request, pk):
     user = get_user_by_id(pk)
-    fav_recipes = user.recipe_favs.all()
+    fav_recipes = get_all_users_favs(pk)
     for fav_recipe in fav_recipes:
         if fav_recipe.likes.filter(id=request.user.id).exists():
             fav_recipe.is_liked = True
