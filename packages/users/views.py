@@ -33,7 +33,6 @@ def sort_user_list_by_username_asc(request):
 
 def sort_user_list_by_username_desc(request):
     users = get_all_users().order_by(F('username').desc())
-    users_with_recipes = User.objects.annotate(num_recipes=Count('recipe'))
     paged_users = get_paginated(request, users)
     return render(request, 'user-list/user-list-sort-by-username-desc.html',
                   {'users': users,
