@@ -1,9 +1,5 @@
-# Блок показа всех рецептов конкретного пользователя
-from django.core.paginator import Paginator
 from django.shortcuts import render
-from recipeblog.models import User, Recipe
 from recipeblog.utils import *
-
 
 
 def show_user_recipes_all(request, pk):
@@ -16,6 +12,7 @@ def show_user_recipes_all(request, pk):
                    'user_recipes': user_recipes,
                    'user': user})
 
+
 def show_user_recipes_salads(request, pk):
     user = get_user_by_id(pk)
     user_recipes = get_salads(get_all_users_recipes(pk))
@@ -25,6 +22,7 @@ def show_user_recipes_salads(request, pk):
                   {'paged_recipes': paged_recipes,
                    'user_recipes': user_recipes,
                    'user': user})
+
 
 def show_user_recipes_first_course(request, pk):
     user = get_user_by_id(pk)
@@ -36,6 +34,7 @@ def show_user_recipes_first_course(request, pk):
                    'user_recipes': user_recipes,
                    'user': user})
 
+
 def show_user_recipes_main_course(request, pk):
     user = get_user_by_id(pk)
     user_recipes = get_main_courses(get_all_users_recipes(pk))
@@ -45,6 +44,7 @@ def show_user_recipes_main_course(request, pk):
                   {'paged_recipes': paged_recipes,
                    'user_recipes': user_recipes,
                    'user': user})
+
 
 def show_user_recipes_dessert(request, pk):
     user = get_user_by_id(pk)
@@ -56,6 +56,7 @@ def show_user_recipes_dessert(request, pk):
                    'user_recipes': user_recipes,
                    'user': user})
 
+
 def show_user_recipes_bakery(request, pk):
     user = get_user_by_id(pk)
     user_recipes = get_bakery(get_all_users_recipes(pk))
@@ -65,6 +66,7 @@ def show_user_recipes_bakery(request, pk):
                   {'paged_recipes': paged_recipes,
                    'user_recipes': user_recipes,
                    'user': user})
+
 
 def show_user_recipes_beverages(request, pk):
     user = get_user_by_id(pk)
