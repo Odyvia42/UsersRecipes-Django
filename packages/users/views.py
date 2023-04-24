@@ -1,9 +1,5 @@
-
-from django.core.paginator import Paginator
-from django.db.models import Count, F
+from django.db.models import F
 from django.shortcuts import render
-
-from recipeblog.models import User
 from recipeblog.utils import get_all_users, get_paginated
 
 
