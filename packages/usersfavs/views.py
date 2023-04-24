@@ -4,9 +4,12 @@ from django.shortcuts import render
 
 from recipeblog.models import User
 
+def get_user_by_id(pk):
+    return User.objects.get(id=pk)
+
 
 def show_user_favs_all(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_user_by_id(pk)
     fav_recipes = user.recipe_favs.all()
     for fav_recipe in fav_recipes:
         if fav_recipe.likes.filter(id=request.user.id).exists():
