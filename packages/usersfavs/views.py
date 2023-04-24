@@ -4,11 +4,8 @@ from django.shortcuts import render
 
 from recipeblog.models import User
 from recipeblog.utils import *
-def get_user_by_id(pk):
-    return User.objects.get(id=pk)
 
-def get_all_users_favs(pk):
-    return get_user_by_id(pk).recipe_favs.all()
+
 
 
 def show_user_favs_all(request, pk):

@@ -69,3 +69,9 @@ def get_beverages(queryset):
 
 def get_all_users():
     return User.objects.annotate(num_recipes=Count('recipe', distinct=True)).annotate(likes_amount=Count('recipe__likes'))
+
+def get_user_by_id(pk):
+    return User.objects.get(id=pk)
+
+def get_all_users_favs(pk):
+    return get_user_by_id(pk).recipe_favs.all()
