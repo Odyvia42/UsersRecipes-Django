@@ -6,6 +6,9 @@ from django.shortcuts import render
 from recipeblog.models import User
 
 
+def get_all_users():
+    return User.objects.annotate(num_recipes=Count('recipe', distinct=True)).annotate(likes_amount=Count('recipe__likes'))
+
 def sort_user_list_by_reg_date_asc(request):
     users = User.objects.annotate(num_recipes=Count('recipe', distinct=True)).annotate(likes_amount=Count('recipe__likes')).order_by(F('registration_date').asc())
     p = Paginator(users, 5)
