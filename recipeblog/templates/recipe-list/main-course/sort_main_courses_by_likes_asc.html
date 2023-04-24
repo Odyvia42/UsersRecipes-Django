@@ -14,7 +14,7 @@
 {% block content %}
 
 
-    <h2>Рецепты</h2>
+    <h2>Вторые блюда ({{ recipes.count }})</h2>
         {% for recipe in paged_recipes %}
             {% if recipe.status == 'AC' %}
                 <h3> <a href="{{ recipe.get_absolute_url }}"> {{ recipe.title }} </a></h3>
