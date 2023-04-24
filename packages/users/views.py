@@ -11,6 +11,7 @@ def sort_user_list_by_reg_date_asc(request):
                    'paged_users': paged_users,
                    })
 
+
 def sort_user_list_by_reg_date_desc(request):
     users = get_all_users().order_by(F('registration_date').desc())
     paged_users = get_paginated(request, users)
@@ -18,6 +19,7 @@ def sort_user_list_by_reg_date_desc(request):
                   {'users': users,
                    'paged_users': paged_users,
                    })
+
 
 def sort_user_list_by_username_asc(request):
     users = get_all_users().order_by(F('username').asc())
@@ -27,6 +29,7 @@ def sort_user_list_by_username_asc(request):
                    'paged_users': paged_users,
                    })
 
+
 def sort_user_list_by_username_desc(request):
     users = get_all_users().order_by(F('username').desc())
     paged_users = get_paginated(request, users)
@@ -34,6 +37,7 @@ def sort_user_list_by_username_desc(request):
                   {'users': users,
                    'paged_users': paged_users,
                    })
+
 
 def sort_user_list_by_recipes_amount_asc(request):
     users = get_all_users().order_by(F('num_recipes').asc())
@@ -43,6 +47,7 @@ def sort_user_list_by_recipes_amount_asc(request):
                    'paged_users': paged_users,
                    })
 
+
 def sort_user_list_by_recipes_amount_desc(request):
     users = get_all_users().order_by(F('num_recipes').desc())
     paged_users = get_paginated(request, users)
@@ -51,6 +56,7 @@ def sort_user_list_by_recipes_amount_desc(request):
                    'paged_users': paged_users,
                    })
 
+
 def sort_user_list_by_rating_asc(request):
     users = get_all_users().order_by(F('likes_amount').asc())
     paged_users = get_paginated(request, users)
@@ -58,6 +64,7 @@ def sort_user_list_by_rating_asc(request):
                   {'users': users,
                    'paged_users': paged_users,
                    })
+
 
 def sort_user_list_by_rating_desc(request):
     users = get_all_users().order_by(F('likes_amount').desc())
