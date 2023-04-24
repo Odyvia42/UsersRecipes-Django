@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 
 from recipeblog.models import User
-from recipeblog.utils import check_likes_faves, get_paginated
+from recipeblog.utils import *
 def get_user_by_id(pk):
     return User.objects.get(id=pk)
 
@@ -23,7 +23,7 @@ def show_user_favs_all(request, pk):
 
 def show_user_favs_salads(request, pk):
     user = get_user_by_id(pk)
-    fav_recipes = user.recipe_favs.filter(dish_type='SL')
+    fav_recipes = get_salads(get_all_users_favs(pk))
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
     return render(request, 'user-favs/user_favs_salads.html',
@@ -33,7 +33,7 @@ def show_user_favs_salads(request, pk):
 
 def show_user_favs_first_course(request, pk):
     user = get_user_by_id(pk)
-    fav_recipes = user.recipe_favs.filter(dish_type='FC')
+    fav_recipes = get_first_courses(get_all_users_favs(pk))
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
     return render(request, 'user-favs/user_favs_first_course.html',
@@ -43,7 +43,7 @@ def show_user_favs_first_course(request, pk):
 
 def show_user_favs_main_course(request, pk):
     user = get_user_by_id(pk)
-    fav_recipes = user.recipe_favs.filter(dish_type='MC')
+    fav_recipes = get_main_courses(get_all_users_favs(pk))
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
     return render(request, 'user-favs/user_favs_main_course.html',
@@ -53,7 +53,7 @@ def show_user_favs_main_course(request, pk):
 
 def show_user_favs_dessert(request, pk):
     user = get_user_by_id(pk)
-    fav_recipes = user.recipe_favs.filter(dish_type='DS')
+    fav_recipes = get_desserts(get_all_users_favs(pk))
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
     return render(request, 'user-favs/user_favs_dessert.html',
@@ -63,7 +63,7 @@ def show_user_favs_dessert(request, pk):
 
 def show_user_favs_bakery(request, pk):
     user = get_user_by_id(pk)
-    fav_recipes = user.recipe_favs.filter(dish_type='BK')
+    fav_recipes = get_bakery(get_all_users_favs(pk))
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
     return render(request, 'user-favs/user_favs_bakery.html',
@@ -73,7 +73,7 @@ def show_user_favs_bakery(request, pk):
 
 def show_user_favs_beverages(request, pk):
     user = get_user_by_id(pk)
-    fav_recipes = user.recipe_favs.filter(dish_type='BV')
+    fav_recipes = get_beverages(get_all_users_favs(pk))
     check_likes_faves(request, fav_recipes)
     paged_recipes = get_paginated(request, fav_recipes)
     return render(request, 'user-favs/user_favs_beverages.html',
