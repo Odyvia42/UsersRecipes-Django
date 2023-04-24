@@ -13,7 +13,7 @@
 
 {% block content %}
 
-    <h2>Пользователи</h2>
+    <h2>Пользователи ({{users.count}})</h2>
     {% for user in paged_users %}
         {% if user.status == 'AC' %}
             <h3> <a href="{{ user.get_absolute_url }}">{{ user.username }} </a></h3>
