@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.db.models import Count, F
 
-from recipeblog.models import Recipe
+from recipeblog.models import Recipe, User
 
 
 def get_all_my_favs(request):
@@ -66,3 +66,6 @@ def get_desserts(queryset):
 
 def get_beverages(queryset):
     return queryset.filter(dish_type='BV')
+
+def get_all_users():
+    return User.objects.annotate(num_recipes=Count('recipe', distinct=True)).annotate(likes_amount=Count('recipe__likes'))
