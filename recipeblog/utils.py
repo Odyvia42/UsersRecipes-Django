@@ -75,3 +75,6 @@ def get_user_by_id(pk):
 
 def get_all_users_favs(pk):
     return get_user_by_id(pk).recipe_favs.all()
+
+def get_all_users_recipes(pk):
+    return Recipe.objects.filter(author=get_user_by_id(pk))
