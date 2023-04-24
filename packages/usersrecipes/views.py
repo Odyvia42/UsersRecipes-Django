@@ -28,7 +28,7 @@ def show_user_recipes_all(request, pk):
 
 def show_user_recipes_salads(request, pk):
     user = get_user_by_id(pk)
-    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='SL')
+    user_recipes = get_salads(get_all_users_recipes(pk))
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
             user_recipe.is_liked = True
@@ -48,7 +48,7 @@ def show_user_recipes_salads(request, pk):
 
 def show_user_recipes_first_course(request, pk):
     user = get_user_by_id(pk)
-    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='FC')
+    user_recipes = get_first_courses(get_all_users_recipes(pk))
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
             user_recipe.is_liked = True
@@ -68,7 +68,7 @@ def show_user_recipes_first_course(request, pk):
 
 def show_user_recipes_main_course(request, pk):
     user = get_user_by_id(pk)
-    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='MC')
+    user_recipes = get_main_courses(get_all_users_recipes(pk))
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
             user_recipe.is_liked = True
@@ -88,7 +88,7 @@ def show_user_recipes_main_course(request, pk):
 
 def show_user_recipes_dessert(request, pk):
     user = get_user_by_id(pk)
-    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='DS')
+    user_recipes = get_desserts(get_all_users_recipes(pk))
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
             user_recipe.is_liked = True
@@ -108,7 +108,7 @@ def show_user_recipes_dessert(request, pk):
 
 def show_user_recipes_bakery(request, pk):
     user = get_user_by_id(pk)
-    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='BK')
+    user_recipes = get_bakery(get_all_users_recipes(pk))
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
             user_recipe.is_liked = True
@@ -128,7 +128,7 @@ def show_user_recipes_bakery(request, pk):
 
 def show_user_recipes_beverages(request, pk):
     user = get_user_by_id(pk)
-    user_recipes = Recipe.objects.filter(author=user).filter(dish_type='BV')
+    user_recipes = get_beverages(get_all_users_recipes(pk))
     for user_recipe in user_recipes:
         if user_recipe.likes.filter(id=request.user.id).exists():
             user_recipe.is_liked = True
