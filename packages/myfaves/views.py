@@ -2,8 +2,6 @@ from django.shortcuts import render
 from recipeblog.utils import get_all_my_favs, get_paginated, check_likes_faves
 
 
-# Блок "Избранное" текущего пользователя
-
 def show_my_favs_all(request):
     if request.user.is_authenticated:
         fav_recipes = get_all_my_favs(request)

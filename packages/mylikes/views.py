@@ -1,9 +1,6 @@
-from django.core.paginator import Paginator
 from django.shortcuts import render
 from recipeblog.utils import check_likes_faves, get_paginated, get_liked_recipes
 
-
-# Блок "Понравилось" текущего пользователя
 
 def show_my_likes_all(request):
     if request.user.is_authenticated:
@@ -16,6 +13,7 @@ def show_my_likes_all(request):
     else:
         return render(request, 'my-likes/my_likes_all.html')
 
+
 def show_my_likes_salads(request):
     if request.user.is_authenticated:
         liked_recipes = get_liked_recipes(request).filter(dish_type='SL')
@@ -26,6 +24,7 @@ def show_my_likes_salads(request):
                        'liked_recipes': liked_recipes})
     else:
         return render(request, 'my-likes/my_likes_salads.html')
+
 
 def show_my_likes_first_course(request):
     if request.user.is_authenticated:
@@ -38,6 +37,7 @@ def show_my_likes_first_course(request):
     else:
         return render(request, 'my-likes/my_likes_first_course.html')
 
+
 def show_my_likes_main_course(request):
     if request.user.is_authenticated:
         liked_recipes = get_liked_recipes(request).filter(dish_type='MC')
@@ -48,6 +48,7 @@ def show_my_likes_main_course(request):
                        'liked_recipes': liked_recipes})
     else:
         return render(request, 'my-likes/my_likes_main_course.html')
+
 
 def show_my_likes_dessert(request):
     if request.user.is_authenticated:
@@ -60,6 +61,7 @@ def show_my_likes_dessert(request):
     else:
         return render(request, 'my-likes/my_likes_dessert.html')
 
+
 def show_my_likes_bakery(request):
     if request.user.is_authenticated:
         liked_recipes = get_liked_recipes(request).filter(dish_type='BK')
@@ -70,6 +72,7 @@ def show_my_likes_bakery(request):
                        'liked_recipes': liked_recipes})
     else:
         return render(request, 'my-likes/my_likes_bakery.html')
+
 
 def show_my_likes_beverages(request):
     if request.user.is_authenticated:

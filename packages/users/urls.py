@@ -1,5 +1,4 @@
 from django.urls import path
-
 from packages.users import views
 
 urlpatterns = [
