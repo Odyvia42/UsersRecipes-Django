@@ -2,8 +2,6 @@ from django.shortcuts import render
 from recipeblog.utils import check_likes_faves, get_paginated, get_liked_recipes
 
 
-# Блок "Понравилось" текущего пользователя
-
 def show_my_likes_all(request):
     if request.user.is_authenticated:
         liked_recipes = get_liked_recipes(request)
