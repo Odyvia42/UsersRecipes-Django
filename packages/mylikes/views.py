@@ -1,4 +1,3 @@
-from django.core.paginator import Paginator
 from django.shortcuts import render
 from recipeblog.utils import check_likes_faves, get_paginated, get_liked_recipes
 
