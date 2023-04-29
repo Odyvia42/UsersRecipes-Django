@@ -1,37 +1,24 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
-from django.core.paginator import Paginator
 from django.db.models import F, Count
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpRequest, HttpResponse, request, HttpResponseRedirect
-from django.urls import reverse_lazy, reverse
-from django.views import generic
-from django.views.generic import ListView
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.http import HttpRequest, HttpResponseRedirect
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import PasswordChangeForm
 from taggit.models import Tag
-
 from recipeblog.forms import RegisterUserForm, RecipeForm, UserForm
 from recipeblog.models import User, Recipe
-from recipeblog.utils import check_likes_faves, get_paginated
-
-
-
+from recipeblog.utils import check_likes_faves, get_paginated, get_all_users, order_by_likes_amount_desc
 
 # Create your views here.
 
+
 def index(request: HttpRequest):
-    top_recipes = Recipe.objects.annotate(likes_amount=Count('likes')).order_by(F('likes_amount').desc())[:5]
-    for recipe in top_recipes:
-        if recipe.likes.filter(id=request.user.id).exists():
-            recipe.is_liked = True
-        else:
-            recipe.is_liked = False
-        if recipe.favs.filter(id=request.user.id).exists():
-            recipe.is_faved = True
-        else:
-            recipe.is_faved = False
+    top_recipes = order_by_likes_amount_desc(Recipe.objects.all())[:5]
+    check_likes_faves(request, top_recipes)
     return render(request, 'index.html', {'top_recipes': top_recipes})
+
 
 def show_recipe_detail(request, pk):
     recipe = Recipe.objects.get(pk=pk)
@@ -52,8 +39,10 @@ class ChangePasswordView(PasswordChangeView, LoginRequiredMixin):
     template_name = 'registration/change-password.html'
     success_url = reverse_lazy('password-success')
 
+
 def change_password_success(request):
     return render(request, 'registration/change-password-success.html', {})
+
 
 def register_user(request):
     if request.method == 'POST':
@@ -68,8 +57,9 @@ def register_user(request):
         form = RegisterUserForm
     return render(request, 'registration/register_user.html', {'form': form})
 
+
 def show_user_profile(request, pk):
-    user = User.objects.annotate(num_recipes=Count('recipe', distinct=True)).annotate(likes_amount=Count('recipe__likes')).get(pk=pk)
+    user = get_all_users().get(pk=pk)
     fav_recipes = user.recipe_favs.all()
     user_recipes = Recipe.objects.filter(author=user)
     return render(request, 'user-detail.html',
@@ -79,11 +69,10 @@ def show_user_profile(request, pk):
 
 
 def show_current_user_profile(request, pk):
-    current_user = User.objects.annotate(num_recipes=Count('recipe', distinct=True)).annotate(likes_amount=Count('recipe__likes')).filter(id = pk).get()
-    my_recipes = Recipe.objects.filter(id = current_user.id)
+    current_user = get_all_users().get(id=pk)
+    my_recipes = Recipe.objects.filter(id=current_user.id)
     return render(request, 'my-profile.html', {'current_user': current_user,
                                                'my_recipes': my_recipes})
-
 
 
 # представления для форм создания и обновления рецептов
@@ -105,6 +94,7 @@ def add_recipe(request):
                   {'form': form,
                    'submitted': submitted})
 
+
 def update_recipe(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     form = RecipeForm(request.POST or None, instance=recipe)
@@ -117,6 +107,7 @@ def update_recipe(request, recipe_id):
                   {'recipe': recipe,
                    'form': form})
 
+
 def update_user(request, user_id):
     user = User.objects.get(pk=user_id)
     form = UserForm(request.POST or None, instance=user)
@@ -128,7 +119,6 @@ def update_user(request, user_id):
                    'form': form})
 
 
-
 def like_recipe(request, pk):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
     if recipe.likes.filter(id=request.user.id).exists():
@@ -137,6 +127,7 @@ def like_recipe(request, pk):
         recipe.likes.add(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
 def fave_recipe(request, pk):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
     if recipe.favs.filter(id=request.user.id).exists():
@@ -144,6 +135,7 @@ def fave_recipe(request, pk):
     else:
         recipe.favs.add(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 # Получение списка рецептов по тегу
 def show_recipes_by_tag(request, slug):
@@ -155,6 +147,7 @@ def show_recipes_by_tag(request, slug):
                   {'paged_recipes': paged_recipes,
                    'tag': tag})
 
+
 def show_all_tags(request):
     tags = Tag.objects.all().annotate(num_recipes=Count('taggit_taggeditem_items')).order_by(F('name'))
     top_tags = Recipe.tags.most_common().annotate(num_recipes=Count('taggit_taggeditem_items'))[:5]
@@ -162,10 +155,9 @@ def show_all_tags(request):
                   {'tags': tags,
                    'top_tags': top_tags})
 
+
 def show_all_authors(request):
     authors = User.objects.annotate(num_recipes=Count('recipe')).order_by(F('username').asc())
     return render(request, 'all_authors.html',
                   {'authors': authors,
                    })
-
-
