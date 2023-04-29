@@ -57,18 +57,18 @@
                             <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }}</a>
                         {% endfor %}
                     </p>
-                    <p> ❤️ {{ recipe.likes.count }}
+                    <p> ❤️ {{ recipe.likes.count }} </p>
                         {% if recipe.is_liked %}
                             <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
                                 {% csrf_token %}
-                                <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button liked">
+                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button liked">
                                     Мне нравится
                                 </button>
                             </form>
                         {% else %}
                             <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
                                 {% csrf_token %}
-                                <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
+                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
                                     Мне нравится
                                 </button>
                             </form>
@@ -84,12 +84,11 @@
                             <span class="button faved">В избранном</span>
                             <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST" class="likefaveform">
                                 {% csrf_token %}
-                                <button type="submit" name="recipe_id" value= {{ recipe.id }} class="button">
+                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
                                     Удалить из избранного
                                 </button>
                             </form>
                         {% endif %}
-                    </p>
                 {% endif %}
             {% endfor %}
         {% else %}
