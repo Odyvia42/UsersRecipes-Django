@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
-from django.db.models import Count
 from taggit.managers import TaggableManager
 
 
@@ -31,7 +30,6 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('user-detail', args=[str(self.id)])
-
 
 
 class Recipe(models.Model):
@@ -72,9 +70,5 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
-    def total_likes(self):
-        return self.likes.count()
-
     def get_absolute_url(self):
         return reverse('recipe-detail', args=[str(self.id)])
-
