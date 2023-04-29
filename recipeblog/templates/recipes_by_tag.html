@@ -30,7 +30,8 @@
                     Напиток
                     {% elif recipe.dish_type == 'BK' %}
                     Выпечка
-                    {% endif %} | Автор: {{ recipe.author }} | Опубликован: {{ recipe.publication_date }} |
+                    {% endif %} | Автор: <a href="{{ recipe.author.get_absolute_url }}"> {{ recipe.author }}</a> |
+                    Опубликован: {{ recipe.publication_date }} |
                     {% if recipe.author == request.user %}
                     <a href=" {% url 'update-recipe' recipe.id %}">Редактировать</a>
                     {% endif %}
@@ -43,6 +44,39 @@
                     {% endfor %}
                 </p>
                 <p> ❤️ {{ recipe.likes.count }} </p>
+                    {% if request.user.is_authenticated %}
+                        {% if recipe.is_liked %}
+                            <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
+                                {% csrf_token %}
+                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button liked">
+                                    Мне нравится
+                                </button>
+                            </form>
+                        {% else %}
+                            <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
+                                {% csrf_token %}
+                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
+                                    Мне нравится
+                                </button>
+                            </form>
+                        {% endif %}
+                        {% if recipe.is_faved == False %}
+                            <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST" class="likefaveform">
+                                {% csrf_token %}
+                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
+                                    В избранное
+                                </button>
+                            </form>
+                        {% else %}
+                            <span class="button faved">В избранном</span>
+                            <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST" class="likefaveform">
+                                {% csrf_token %}
+                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
+                                    Удалить из избранного
+                                </button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
             {% endif %}
         {% endfor %}
     <div class="pagination">

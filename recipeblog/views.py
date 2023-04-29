@@ -13,6 +13,7 @@ from taggit.models import Tag
 
 from recipeblog.forms import RegisterUserForm, RecipeForm, UserForm
 from recipeblog.models import User, Recipe
+from recipeblog.utils import check_likes_faves, get_paginated
 
 
 
@@ -148,9 +149,8 @@ def fave_recipe(request, pk):
 def show_recipes_by_tag(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     tagged_recipes = Recipe.objects.filter(tags=tag)
-    p = Paginator(tagged_recipes, 5)
-    page = request.GET.get('page')
-    paged_recipes = p.get_page(page)
+    check_likes_faves(request, tagged_recipes)
+    paged_recipes = get_paginated(request, tagged_recipes)
     return render(request, 'recipes_by_tag.html',
                   {'paged_recipes': paged_recipes,
                    'tag': tag})
