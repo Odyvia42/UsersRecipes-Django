@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'taggit',
+    'django.contrib.admindocs',
+    'docutils'
 ]
 
 MIDDLEWARE = [
