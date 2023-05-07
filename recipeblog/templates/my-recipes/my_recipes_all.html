@@ -29,85 +29,12 @@
     {% if request.user.is_authenticated %}
     <h2>Мои рецепты ({{ my_recipes.count }})</h2>
         {% if paged_recipes %}
-            {% for recipe in paged_recipes %}
-                {% if recipe.status == 'AC' %}
-                    <h3> <a href="{{ recipe.get_absolute_url }}"> {{ recipe.title }} </a></h3>
-                    <p> {% if recipe.dish_type == 'SL' %}
-                        Салат
-                        {% elif recipe.dish_type == 'FC' %}
-                        Первое
-                        {% elif recipe.dish_type == 'MC' %}
-                        Второе
-                        {% elif recipe.dish_type == 'DS' %}
-                        Десерт
-                        {% elif recipe.dish_type == 'BV' %}
-                        Напиток
-                        {% elif recipe.dish_type == 'BK' %}
-                        Выпечка
-                        {% endif %} | Автор: <a href="{{ recipe.author.get_absolute_url }}"> {{ recipe.author }}</a> |
-                        Опубликован: {{ recipe.publication_date }} |
-                        {% if recipe.author == request.user %}
-                        <a href=" {% url 'update-recipe' recipe.id %}">Редактировать</a>
-                        {% endif %}
-                    </p>
-                    <img src=" {{ recipe.picture }} " alt=" {{ recipe.title }} ">
-                    <p> {{ recipe.description }} </p>
-                    <p> Теги:
-                        {% for tag in recipe.tags.all %}
-                            <a href="{% url 'show-recipes-by-tag' tag.slug %} ">{{ tag }}</a>
-                        {% endfor %}
-                    </p>
-                    <p> ❤️ {{ recipe.likes.count }} </p>
-                        {% if recipe.is_liked %}
-                            <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
-                                {% csrf_token %}
-                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button liked">
-                                    Мне нравится
-                                </button>
-                            </form>
-                        {% else %}
-                            <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
-                                {% csrf_token %}
-                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
-                                    Мне нравится
-                                </button>
-                            </form>
-                        {% endif %}
-                        {% if recipe.is_faved == False %}
-                            <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST" class="likefaveform">
-                                {% csrf_token %}
-                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
-                                    В избранное
-                                </button>
-                            </form>
-                        {% else %}
-                            <span class="button faved">В избранном</span>
-                            <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST" class="likefaveform">
-                                {% csrf_token %}
-                                <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
-                                    Удалить из избранного
-                                </button>
-                            </form>
-                        {% endif %}
-                {% endif %}
-            {% endfor %}
+            {% include 'recipe.html' %}
         {% else %}
             <p>Вы ещё не добавили ни одного рецепта.</p>
         {% endif %}
 
-    <div class="pagination">
-        {% if request.user.is_authenticated %}
-            {% if paged_recipes.has_previous %}
-                <a href="?page=1" class="pages page-nav">&laquo Первая</a>
-                <a href="?page= {{ paged_recipes.previous_page_number }} " class="pages page-nav">Предыдущая</a>
-            {% endif %}
-            <p class="pages current-page">Страница {{ paged_recipes.number }} из {{ paged_recipes.paginator.num_pages }}</p>
-            {% if paged_recipes.has_next %}
-                <a href="?page= {{ paged_recipes.next_page_number }}" class="pages page-nav">Следующая</a>
-                <a href="?page= {{ paged_recipes.paginator.num_pages }} " class="pages page-nav">Последняя &raquo</a>
-            {% endif %}
-        {% endif %}
-    </div>
+    {% include 'pagination.html' %}
     {% else %}
         <h2 style="color: red">Недостаточно прав для просмотра страницы</h2>
         <p>Чтобы просматривать эту страницу нужно войти на сайт.</p>
