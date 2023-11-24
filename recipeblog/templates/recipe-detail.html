@@ -49,14 +49,14 @@
         </p>
         <p> ❤️ {{ recipe.likes.count }} </p>
             {% if recipe.is_liked %}
-                <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
+                <form action=" {% url 'like-recipe' %} " method="POST" class="likefaveform">
                     {% csrf_token %}
                     <button type="submit" name="recipe_id" value={{recipe.id}} class="button liked">
                         Мне нравится
                     </button>
                 </form>
                 {% else %}
-                <form action=" {% url 'like-recipe' recipe.pk %} " method="POST" class="likefaveform">
+                <form action=" {% url 'like-recipe' %} " method="POST" class="likefaveform">
                     {% csrf_token %}
                     <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
                         Мне нравится
@@ -64,7 +64,7 @@
                 </form>
             {% endif %}
             {% if recipe.is_faved == False %}
-                <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST" class="likefaveform">
+                <form action=" {% url 'fave-recipe' %} " method="POST" class="likefaveform">
                     {% csrf_token %}
                     <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
                         В избранное
@@ -72,7 +72,7 @@
                 </form>
             {% else %}
                 <span class="button faved">В избранном</span>
-                <form action=" {% url 'fave-recipe' recipe.pk %} " method="POST" class="likefaveform">
+                <form action=" {% url 'fave-recipe' %} " method="POST" class="likefaveform">
                     {% csrf_token %}
                     <button type="submit" name="recipe_id" value={{recipe.id}} class="button">
                         Удалить из избранного
